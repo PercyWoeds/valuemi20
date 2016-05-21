@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Clients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vcodigo</th>
+      <th>Vruc</th>
+      <th>Vrazon2</th>
+      <th>Vdireccion</th>
+      <th>Vdistrito</th>
+      <th>Vprov</th>
+      <th>Vdep</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.vcodigo %></td>
+        <td><%= client.vruc %></td>
+        <td><%= client.vrazon2 %></td>
+        <td><%= client.vdireccion %></td>
+        <td><%= client.vdistrito %></td>
+        <td><%= client.vprov %></td>
+        <td><%= client.vdep %></td>
+        <td><%= link_to 'Show', client %></td>
+        <td><%= link_to 'Edit', edit_client_path(client) %></td>
+        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Client', new_client_path %>
+
+<h2>Importar Archivo clientes "*.csv"</h2>
+<%= form_tag import_clients_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Importar " %>
+<% end %>
