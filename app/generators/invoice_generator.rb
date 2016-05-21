@@ -354,19 +354,22 @@ class InvoiceGenerator < DocumentGenerator
   $lcCantScop1   =""
   $lcCantScop2   =""    
 
+$lcid= "#{@serie}-#{"%06d" % @@document_serial_id }"
+        
   protected
       def customer
       {legal_name:$lcLegalName , ruc: $lcRuc}
     end
 
+
   private
+   
 
+  def data(items = 0, currency = 'PEN')
+    invoice_data = {id: "#{@serie}-#{"%06d" % @@document_serial_id}", customer: customer, 
+    tax_totals: [{amount: {value: items*$lcIgv, currency: currency}, type: :igv}], legal_monetary_total: {value: $lcTotal * items, currency: currency}, 
+    additional_monetary_totals: [{id: "1001", payable_amount: {value: $lcVVenta * items, currency: currency}}]}
 
-    def data(items = 0, currency = 'PEN')
-invoice_data = {id: "#{@serie}-#{"%06d" % $lg_serial_id}", customer: customer, 
-tax_totals: [{amount: {value: items*$lcIgv, currency: currency}, type: :igv}], legal_monetary_total: {value: $lcTotal * items, currency: currency}, 
-additional_monetary_totals: [{id: "1001", payable_amount: {value: $lcVVenta * items, currency: currency}}]}
-#      @@document_serial_id += 1
       invoice_data[:lines] = []
       if items > 0
         invoice_data[:lines] = (1..items).map do |item|

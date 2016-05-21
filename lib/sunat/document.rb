@@ -32,7 +32,7 @@ module SUNAT
     def initialize(*args)
       super(*args)
       #self.issue_date ||= Date.today
-      self.issue_date ||= "2016-05-12"
+      self.issue_date ||= $lg_fecha 
       self.additional_properties ||= []
       self.additional_monetary_totals ||= []
     end

@@ -16,8 +16,9 @@ before_action :authenticate_user!
     def show
     	@invoice        = Invoice.find(params[:id])
         @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
-
-        $lg_serial_id   = @invoice.numero
+        
+        $lg_fecha       = @invoice.fecha 
+        $lg_serial_id   = @invoice.numero.to_i 
         $lcCantidad     = @invoice.cantidad   
         $lcClienteInv   = @invoice.cliente   
         $lcRuc          = @invoice.ruc    
@@ -54,7 +55,6 @@ before_action :authenticate_user!
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
 
-        puts $lcClienteInv
         
 
     end
@@ -83,8 +83,12 @@ before_action :authenticate_user!
     case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
 
     $lcGuiaRemision =""
+    @@document_serial_id =""
 
-
+    end
+    
+    def borrarregistro
+        
     end
 
     private
