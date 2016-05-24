@@ -112,8 +112,9 @@ class InvoiceGenerator < DocumentGenerator
   $lcScop2       =""
   $lcCantScop1   =""
   $lcCantScop2   =""    
-
-#$lcid= "#{@serie}-#{"%06d" % @@document_serial_id }"
+  
+   
+  #$lcid= "#{@serie}-#{"%06d" % @@document_serial_id }"
         
   protected
       def customer

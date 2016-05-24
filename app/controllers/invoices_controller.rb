@@ -57,10 +57,14 @@ before_action :authenticate_user!
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
         
+        #$lcAutorizacion =""
+        $lcAutorizacion1=""
+
+        
     end
 
     def sendsunat
-    
+        $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -83,6 +87,7 @@ before_action :authenticate_user!
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
 
         $lcGuiaRemision =""
+      
         @@document_serial_id =""
         $lg_serial_id=""
 
@@ -108,7 +113,8 @@ before_action :authenticate_user!
         files_to_clean.each do |file|
           File.delete(file)
         end 
-
+        $lcGuiaRemision =""
+        
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
         puts $lcFileName1
@@ -116,11 +122,11 @@ before_action :authenticate_user!
 
    #     send_data("#{$lcFileName1}" , type: "application/pdf", disposition: "attachment;
     #    filename= #{$lcFileName1} ")
-
+        
         send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
 
 
-        $lcGuiaRemision =""
+        
         @@document_serial_id =""
         $aviso=""
     end 

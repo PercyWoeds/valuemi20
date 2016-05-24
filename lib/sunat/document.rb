@@ -92,10 +92,13 @@ module SUNAT
 
 
     def build_pdf_footer(pdf)
+
+
       pdf.bounding_box([0, 50], :width => 535, :height => 50) do
       pdf.stroke_bounds
-      pdf.text $lcAutorizacion <<' Datos Adicionales GUIA DE REMISION : '<< $lcGuiaRemision  ,  :align => :center,:valign => :center, :style => :bold
-      #pdf.text $lcAutorizacion  ,  :align => :center,:valign => :center, :style => :bold
+
+      pdf.text  $lcAutorizacion1 ,  :align => :center,:valign => :center, :style => :bold
+    
       end
 
       pdf
