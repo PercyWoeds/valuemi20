@@ -37,21 +37,17 @@
     <td><%= invoice.importe %></td>
     <td><%= invoice.ruc %></td>
     <td><%= invoice.vrazon2 %></td>
+    
     <td><%= link_to 'Ver', invoice %></td>
     
   </tr>
 <% end %>
 </table>
-  
-
 </div>
-  
-
 </div>
 
 
 <h2>Importar Archivo Facturas "*.csv"</h2>
-
 <%= form_tag import_invoices_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Importar " %>

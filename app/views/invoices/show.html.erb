@@ -3,12 +3,8 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link href="/a/css/estilos2_0.css" rel="stylesheet">
-<link href="/a/css/estilos3_0.css" rel="stylesheet">
 <title>.:: Factura Electronica - Impresion ::.</title>
-	<link rel="stylesheet" type="text/css" href="/a/js/dojo1.3.1/dijit/themes/tundra/tundra.css"/>
-	<link rel="stylesheet" type="text/css" href="/a/css/see/invoiceConsulta_print.css"/>
-			
+	
 </head>
 
 <body>
@@ -189,9 +185,13 @@
 <%= link_to 'Regresar', invoices_path %>
 
 <h2>Enviar información a Sunat </h2>
-
 <%= form_tag sendsunat_invoices_path, multipart: true do %>
-  <%= submit_tag "Imprimir " %>
+  <%= submit_tag "Enviar Sunat  " %>
+<% end %>
+
+<h2>Imprimir </h2>
+<%= form_tag print_invoices_path, multipart: true do %>
+  <%= submit_tag  "Imprimir  " %>
 <% end %>
 
 </body>

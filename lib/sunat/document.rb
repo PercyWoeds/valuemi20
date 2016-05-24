@@ -108,6 +108,7 @@ module SUNAT
         pdf = build_pdf_header(pdf)
         pdf = build_pdf_body(pdf)
         build_pdf_footer(pdf)
+        $lcFileName =path || self.pdf_path || "app/pdf_output/#{file_name}.pdf"
       end
     end
 

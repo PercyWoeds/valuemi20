@@ -16,6 +16,12 @@ class InvoiceGenerator < DocumentGenerator
     invoice
   end
 
+  def with_igv2(pdf=false)
+    invoice = document_class.new(data(@items))
+    generate_documents2(invoice, pdf)
+    invoice
+  end
+
   def exempt(pdf=false)
     invoice_data = data
     invoice_data[:lines] = (1..@items).map do |item|
@@ -100,253 +106,6 @@ class InvoiceGenerator < DocumentGenerator
     SUNAT::Invoice
   end
 
-  #$lcLegalName ="GENYRM S.A.C."
-  #$lcRuc       ="20293967521"  
-  #$lcDirCli    ="AV. PRINCIPAL MZA. B LOTE. 3A URB. CAMPOY (ULT PARADERO LINEA 48)LIMA "#
-  #$lcDisCli    ="LIMA - SAN JUAN DE LURIGANCHO"
- 
-# $lcLegalName ="CIEMA CONSTRUCCIONES S.A.C."
-# $lcRuc       ="20560060107"  
-# $lcDirCli    ="MZA. X LOTE. 14 URB. COVICORTI (CERCA A SAUNA 40 GRADOS)"
-# $lcDisCli    ="LA LIBERTAD - TRUJILLO - TRUJILLO"
- 
-  #$lcLegalName="ASCUE PACCHIONI MOISES JUAN"
-  #3$lcRuc       ="10321354918"  
-  #$lcDirCli    ="PJ. CASMA NRO. S INT. 42 CASCO URBANO "
-  #$lcDisCli    ="ANCASH - HUARMEY - HUARMEY"
-
- #$lcLegalName ="EMPRESA DE TRANSPORTES JOSE RAFAEL FERNANDEZ EIRL"
- #$lcRuc       ="20522465713"  
- #$lcDirCli    ="JR. LAS LAUSONIAS NRO. 186 URB. LOS JARDINES DE SAN JUAN "
- #$lcDisCli    ="LIMA - LIMA - SAN JUAN DE LURIGANCHO"
-
-# $lcLegalName ="GRUPOS JAR S.A.C."
-# $lcRuc       ="20546587020"  
-# $lcDirCli    ="AV. LOS PROCERES MZA. A2 LOTE. 18 URB. SANTA ROSA (PISO 2)"
-# $lcDisCli    ="PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - CALLAO"
-
-#$lcLegalName ="SANCHEZ RICO INGENIERIA Y CONSTRUCCION SOCIEDAD ANONIMA"
-#$lcRuc       ="20477233458"
-#$lcDirCli    ="JR. WASHINGTON NRO. 1308 DPTO. 802 (A 2 CDRAS DEL HOTEL SHERATON)"
-#$lcDisCli    ="LIMA - LIMA - LIMA"
-
-#$lcLegalName ="TRANSPORTE ZAVALA CARGO S.A.C."
-#$lcRuc       ="20502028015"
-#$lcDirCli    ="AV. MARCO PUENTE LLANOS MZA. B LOTE. 3 URB. BARBADILLO (ALT. DINOES)"#
-#$lcDisCli    ="LIMA - LIMA - ATE"
- 
-#$lcLegalName ="INLAND SERVICES PERU S.A.C."
-#$lcRuc       ="20516505819"
-#$lcDirCli    ="CAL.VIÑA DEL MAR LOTE. 11 Z.I. VILLA EL SALVADOR "
-#$lcDisCli    ="LIMA - LIMA - VILLA EL SALVADOR "
-
-#$lcLegalName ="CAJAS ECOLOGICAS S.A.C."
-#$lcRuc       ="20522047393"
-#$lcDirCli    ="MZA. D1 LOTE. 3A A.H. HEROES DE SAN JUAN S-5 (AV. PASTOR SEVILLA CON AV. LAS TORRES)"
-#$lcDisCli    ="LIMA - LIMA - SAN JUAN DE MIRAFLORES"
-
-#$lcLegalName ="GUILLERMO RIERA ILUMINACION PROFESI EIRL"
-#$lcRuc       ="20261572690"
-#$lcDirCli    ="CAL.ALLENDE NRO. 306 URB. VILLA VICTORIA (ANGAMOS Y TOMAS MARSANO)"
-#$lcDisCli    ="LIMA - LIMA - SURQUILLO"
-
-#$lcLegalName ="PALOMINO HUARANGA RICHARD FLABIO"
-#$lcRuc       ="10436198880"
-#$lcDirCli    ="MZA. C LOTE. 7 A.H. SANTO DOMINGO (EN JR. CAÑETE)"
-#$lcDisCli    ="ANCASH - HUARMEY - HUARMEY"
-
-#$lcLegalName ="ALAMA S.A.C"
-#$lcRuc       ="20536468596"    
-#$lcDirCli    ="CAL.RICARDO PALMA NRO. 322 URB. SAN JOAQUIN "
-#$lcDisCli    ="PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - BELLAVISTA"
-
-#$lcLegalName ="EMPRESA CONSTRUCTORA Y TRANSPORTES EL INKA S.A.C."
-#$lcRuc       ="20540013986"
-#$lcDirCli    ="CAL.FELIPE PARDO Y ALIAGA NRO. 296 URB. PALERMO "
-#$lcDisCli    ="LA LIBERTAD - TRUJILLO - TRUJILLO"
-
-#$lcLegalName ="INVERSIONES MOSQUETA S.A.C."
-#$lcRuc       ="20550720354"
-#$lcDirCli    ="AV. PARDO Y ALIAGA NRO. 695 DPTO. 11 URB. CHACARILLA SANTA CRUZ "
-#$lcDisCli    ="LIMA - LIMA - SAN ISIDRO"
-
-#$lcLegalName ="AVENTURA PARK SA"
-#$lcRuc       ="20414686614"
-#$lcDirCli    ="AV. NUEVA TOLEDO NRO. 201 (OVALO DE CIENEGUILLA KM-20)"#
-#$lcDisCli    ="LIMA - LIMA - CIENEGUILLA"
-
-#$lcLegalName ="SERVICIOS H.F. HNOS. S.A.C."
-#$lcRuc       ="20504337571"
-#$lcDirCli    ="MZA. B LOTE. 17 PARQUE INDUSTRIAL PA 1 (ALTURA CUADRA 42 AV. PACHACUTEC)"
-#$lcDisCli    ="LIMA - LIMA - VILLA EL SALVADOR"
-
-#$lcLegalName ="MULTISERV. E INVERS. CHIM PUM CALLAO S.A"
-#$lcRuc       ="20339035530"
-#$lcDirCli    ="AV. TUPAC AMARU MZA. C LOTE. 14 ASOC 200 MILLAS (ALT DEL KM 22.5 DE AV TUPAC AMARU)"
-#$lcDisCli    ="LIMA - LIMA - CARABAYLLO"
-
-#$lcLegalName ="EMP. DE TRANSPORTES EL SOLITARIO S.A.C."
-#$lcRuc       ="20126233133"
-#$lcDirCli    ="AV. SAN LINO NRO. 6371 URB. SANTA LUISA "
-#$lcDisCli    ="LIMA - LIMA - LOS OLIVOS"
-
-#$lcLegalName ="ECOMPASA SRL"
-#$lcRuc       ="20138288065"
-#$lcDirCli    ="CAL.NAVARRA MZA. I LOTE. 13 URB. MAYORAZGO CHICO (FRENTE A LA CRISTAL)"
-#$lcDisCli    ="LIMA - LIMA - ATE"
-
-#$lcLegalName ="PESAJE Y AUTOMATIZACION INDUSTRIAL S.A.C"
-#$lcRuc       ="20510536488"
-#$lcDirCli    ="CAL.LAS AMAPOLAS MZA. G LOTE. 3 URB. LA FLORESTA DE NARANJAL "
-#$lcDisCli    ="LIMA - LIMA - SAN MARTIN DE PORRES"
-
-#$lcLegalName ="CIA MINERA LAS CAMELIAS S A"
-#$lcRuc       ="20100171652"
-#$lcDirCli    ="CAL.CUATRO NRO. MZ E INT. LT 6 URB. INDUSTRIAL LAS FLORES "
-#$lcDisCli    ="LIMA - LIMA - SAN JUAN DE LURIGANCHO"
-
-##
-
-#$lcLegalName ="MULTISERVICIOS PUNRE S.R.L."
-#$lcRuc       ="20411053050"
-#$lcDirCli    ="CAL.MANUEL SEOANE NRO. 386 BAR. 2 DE MAYO "
-#$lcDisCli    ="CAJAMARCA - CAJAMARCA - CAJAMARCA"#
-
-#$lcLegalName ="VIETTEL PERU S.A.C."
-#$lcRuc       ="20543254798"
-#$lcDirCli    ="CAL.21 NRO. 878 URB. CORPAC "
-#$lcDisCli    ="LIMA - LIMA - SAN ISIDRO"
-
-#$lcLegalName ="ALAMA S.A.C"
-#$lcRuc       ="20536468596"
-#$lcDirCli    ="CAL.RICARDO PALMA NRO. 322 URB. SAN JOAQUIN "
-#$lcDisCli    ="PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - BELLAVISTA"
-
-#$lcLegalName ="RED POWER S.A.C."
-#$lcRuc       ="20468068088"
-#$lcDirCli    ="JR. GENERAL DE SAN MARTIN MZA. E LOTE. 7-7A URB. SANTA MARIA DE HUACHIPA "
-#$lcDisCli    ="LIMA - LIMA - LURIGANCHO"
-    
-#$lcLegalName ="TRANSPORTES Y VENTAS SOCIEDAD ANONIMA CERRADA"
-#$lcRuc       ="20480286830"
-#$lcDirCli    ="CAR.A FERREÑAFE KM. 12 C.P.M. FALA (POR EL DREN DE LA FÁBRICA DE AZÚCAR)"
-#$lcDisCli    ="LAMBAYEQUE - FERREÑAFE - FERREÑAFE"
-
-#$lcLegalName ="APM TERMINALS INLAND SERVICES S.A."
-#$lcRuc       ="20107012011"
-#$lcDirCli    ="AV. NESTOR GAMBETTA KM. 14.5(CARRETERA A VENTANILLA)"
-#$lcDisCli    ="PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - CALLAO"
-
-#$lcLegalName ="INVERSIONES VALUEMI S.A.C." 
-#$lcRuc       ="20555691263"
-#$lcDirCli    ="JR. TOMAS CATARI NRO. 405 URB. EL TREBOL - PRIMERA ETAPA "
-#$lcDisCli    ="LIMA - LIMA - LOS OLIVOS"
-
-#$lcLegalName ="ADMINISTRACION INMOBILIARIA SOCIEDAD ANONIMA CERRADA"
-#$lcRuc       ="20506628963"
-#$lcDirCli    ="AV. PASEO DE LA REPUBLICA NRO. 3505 INT. P 13"
-#$lcDisCli    ="LIMA - LIMA - SAN ISIDRO"  
-
-
-#$lcLegalName ="NEGOCIOS CONTINENTE SAC "
-#$lcRuc       ="20487364089"
-#$lcDirCli    ="AV. LOS INCAS NRO. 120 "
-#$lcDisCli    ="LAMBAYEQUE - CHICLAYO - LA VICTORIA"  
-
-#$lcLegalName ="ADUAMERICA TRANSPORTES S.A."
-#$lcRuc       ="20504991033"
-#$lcDirCli    ="AV. FEDERICO FERNANDINI NRO. 257 URB. SANTA MARINA SUR (ALT MUNICIPALIDAD)"
-#$lcDisCli    ="PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - CALLAO "  
-
-#$lcLegalName ="ACEROS CHILCA S.A.C."
-#$lcRuc       ="20538379302"
-#$lcDirCli    ="AV. REPÚBLICA DE PANAMÁ NRO. 3030 DPTO. 8 URB. REPÚBLICA DE PANAMÁ "
-#$lcDisCli    ="LIMA - LIMA - SAN ISIDRO"  
-
-#$lcLegalName ="J E CONSTRUCCIONES GENERALES S A"
-#$lcRuc       ="20101508928"
-#$lcDirCli    ="AV. LA FONTANA NRO. 1155 INT. 01 URB. PABLO BONER"
-#$lcDisCli    =" LIMA - LIMA - LA MOLINA"  
-
-#$lcLegalName ="BANCO DE CREDITO DEL PERU"
-#$lcRuc       ="20100047218"
-#$lcDirCli    ="CAL.CENTENARIO NRO. 156 URB. LAS LADERAS DE MELGAREJO "
-#$lcDisCli    ="LIMA - LIMA - LA MOLINA"  
-
-#$lcLegalName ="TRANSPORTES MJM S.A.C."
-#$lcRuc       ="20565215184"
-#$lcDirCli    ="CAL.TOMAS CATARI NRO. 801 DPTO. 201 URB. EL TREBOL III ETA "
-#$lcDisCli    ="LIMA - LIMA - LOS OLIVOS"  
-
-#$lcLegalName ="SAAVEDRA SALIRROSAS EFRAIN JENARO"
-#$lcRuc       ="10181877001"
-#$lcDirCli    ="AV. 28 DE JULIO MZA. 13 LOTE. 09 "
-#$lcDisCli    ="LA LIBERTAD - VIRU - CHAO"  
-
-#$lcLegalName ="A & G MAQUINARIAS Y SERVICIOS SOCIEDAD ANONIMA CERRADA"
-#$lcRuc       ="20480248156"
-#$lcDirCli    ="CAL.LUIS CASTILLA PORTILLA NRO. 140 URB. LA PRIMAVERA II ETAPA "##
-#$lcDisCli    ="LAMBAYEQUE - CHICLAYO - CHICLAYO"  
-
-#$lcLegalName ="MULTISERVICIOS NAGALEA S.R.L."
-#$lcRuc       ="20600871651"
-#$lcDirCli    ="CAL.TUPAC AMARU MZA. B LOTE. 05 P.J. CHOSICA DEL NORTE (COSTADO DE CONDOMINIO GALILEA)"
-#$lcDisCli    ="LAMBAYEQUE - CHICLAYO - LA VICTORIA"  
-
-#$lcLegalName ="MINERA AGUILA DE ORO SOCIEDAD ANONIMA CERRADA"
-#$lcRuc       ="20513397543"
-#$lcDirCli    ="CAL.JUAN DE ARONA NRO. 670 DPTO. 401 "
-#$lcDisCli    ="LIMA - LIMA - SAN ISIDRO"  
-
-#$lcLegalName ="CONSTRUCTORA CYJ-ECHEVERRIA IZQUIERDO S.A.C."
-#$lcRuc       ="20544416147"
-#$lcDirCli    ="AV. MANUEL OLGUIN NRO. 501 DPTO. 402 URB. MONTERRICO (EDIFICIO MACROS)"
-#$lcDisCli    ="LIMA - LIMA - SANTIAGO DE SURCO"  
-
-#$lcLegalName ="NATFER CONSTRUCCIONES E.I.R.L."
-#$lcRuc       ="20601116872"
-#$lcDirCli    ="MZA. X LOTE. 14 INT. 1PIS URB. COVICORTI (SAUNA 40 GRADOS)"
-#$lcDisCli    ="LA LIBERTAD - TRUJILLO - TRUJILLO"  
-
-#$lcLegalName ="VALLADOLI CERNA JOSE LENIN"
-#$lcRuc       ="10182264615"
-#$lcDirCli    ="MZA. E LOTE. 02 URB. SANTA MARIA IV "
-#$lcDisCli    ="LA LIBERTAD - TRUJILLO - TRUJILLO"  
-
-#$lcLegalName ="MATH CONSTRUCCION Y CONSULTORIA SANCHEZ"
-#$lcRuc       ="20508703911"
-#$lcDirCli    ="CAL.ENRIQUE LEON GARCIA NRO. 517 URB. CHAMA (ALT. CDRA. 37 AV. BENAVIDES)"
-#$lcDisCli    ="LIMA - LIMA - SANTIAGO DE SURCO"  
-
-#$lcLegalName ="TRACTOMIN S.R.L."
-#$lcRuc       ="20481010382"
-#$lcDirCli    ="AV. TEODORO VALCARCEL NRO. 589 URB. PRIMAVERA "
-#$lcDisCli    ="LA LIBERTAD - TRUJILLO - TRUJILLO"  
-
-#$lcLegalName ="CODISCOM S.A.C."
-#$lcRuc       ="20545339006"
-#$lcDirCli    ="CAL.IGNACIO TOROTE NRO. 515 DPTO. 202 URB. EL TREBOL 1RA ETAPA "
-#$lcDisCli    ="LIMA - LIMA - LOS OLIVOS"  
-
-#$lcLegalName ="DESCARGA SAC"
-#$lcRuc       ="20515258681"
-#$lcDirCli    ="AV. SANTA BANGORI NRO. 1961 URB. EL TREBOL III ETAPA "
-#$lcDisCli    ="LIMA - LIMA - LOS OLIVOS"  
-
-#$lcLegalName ="PALMANOVA S.A.C."
-#$lcRuc       ="20109096785"
-#$lcDirCli    ="CAL.AURELIO FERNANDEZ CONCHA NRO. 163 INT. A URB. EL ROSEDAL"
-#$lcDisCli    ="LIMA - LIMA - MIRAFLORES"  
-
-#$lcLegalName ="ALDESA CONSTRUCCIONES SA SUCURSAL EN PERU"
-#$lcRuc       ="20548838461"
-#$lcDirCli    ="AV. PAZ SOLDAN NRO. 193 DPTO. P.5 "
-#$lcDisCli    ="LIMA - LIMA - SAN ISIDRO"  
-
-#$lcCantidad   = 250.00
-
-#$lcGuiaRemision =""
-
   $lcPercentIgv  =18000   
   $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0004185/SUNAT del 26/10/2015 "
   $lcScop1       =""   
@@ -354,19 +113,18 @@ class InvoiceGenerator < DocumentGenerator
   $lcCantScop1   =""
   $lcCantScop2   =""    
 
-$lcid= "#{@serie}-#{"%06d" % @@document_serial_id }"
+#$lcid= "#{@serie}-#{"%06d" % @@document_serial_id }"
         
   protected
       def customer
-      {legal_name:$lcLegalName , ruc: $lcRuc}
-    end
-
+       {legal_name:$lcLegalName , ruc: $lcRuc}
+      end
 
   private
    
 
   def data(items = 0, currency = 'PEN')
-    invoice_data = {id: "#{@serie}-#{"%06d" % @@document_serial_id}", customer: customer, 
+    invoice_data = {id: "#{@serie}-#{"%06d" %  $lg_serial_id}", customer: customer, 
     tax_totals: [{amount: {value: items*$lcIgv, currency: currency}, type: :igv}], legal_monetary_total: {value: $lcTotal * items, currency: currency}, 
     additional_monetary_totals: [{id: "1001", payable_amount: {value: $lcVVenta * items, currency: currency}}]}
 

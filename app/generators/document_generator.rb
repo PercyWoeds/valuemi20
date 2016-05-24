@@ -1,6 +1,6 @@
 class DocumentGenerator
   TYPES = {"SUNAT::Invoice"  => "01", "SUNAT::Receipt" => "03"}
-    @@document_serial_id = $lg_serial_id 
+    @@document_serial_id = $lg_serial_id
     
   attr_reader :group, :group_case
 
@@ -11,26 +11,34 @@ class DocumentGenerator
 
 
   def generate_documents(document, pdf=false)
+    
     if document.valid?
      begin
      document.deliver!
       rescue Savon::SOAPFault => e
-      puts "Error generating document for case #{group_case} in group #{group}: #{e}"
+      puts "Error generating document for case #{group_case} in group #{group}: #{e}"      
+      puts $lcid
       puts $lg_serial_id
-      puts $lg_serial_id.class
-
-      puts @@document_serial_id
-      
-      puts $lcid    
-
+      puts $lcFileName
       $aviso = "Error generating document for case #{group_case} in group #{group}: #{e}"
 
       end
       document.to_pdf if pdf
     else
      raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
-    
+    end
+  end
 
+  def generate_documents2(document, pdf=false)
+
+    if document.valid?
+      begin
+       document.to_pdf if pdf
+       $aviso = "Documento impreso con exito..."      
+      end 
+     else
+      raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
+    end
   end
-  end
+
 end

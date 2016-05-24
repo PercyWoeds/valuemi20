@@ -16,14 +16,22 @@ Rails.application.routes.draw do
    resources :invoices do
     collection { post :import }
     collection { post :sendsunat }
+    collection { post :print }
    end 
    
    resources :clients do
     collection { post :import }
 
    end 
+   resources :assets do
+    member do
+      get 'download'
+    end
+   end
+
 
    
+
    root 'invoices#index'
 
   # Example of regular route:

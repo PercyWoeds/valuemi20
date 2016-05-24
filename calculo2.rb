@@ -1,7 +1,14 @@
+	$lcFileName="20522012336-01-FF01-001074.pdf"
 
-$lg_serial_id ='1055'
-@serie='FF01'
-@@document_serial_id=$lg_serial_id 
 
-$lcid= "#{@serie}-#{"%06d" % $lg_serial_id }"
-puts $lcid
+        $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
+        puts $lcFileName1
+    
+
+        send_data("#{$lcFileName1}" , type: "application/pdf", disposition: "attachment;
+        filename=#{$lcFileName1}")
+
+
+        
+
+

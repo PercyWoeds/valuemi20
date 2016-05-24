@@ -9,7 +9,9 @@ before_action :authenticate_user!
 
 
     end
+    
 	def import
+       Invoice.delete_all 
 	   Invoice.import(params[:file])
        redirect_to root_url, notice: "Facturas importadas."
     end 
@@ -54,41 +56,82 @@ before_action :authenticate_user!
 
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
-
         
-
     end
 
     def sendsunat
     
-    lib = File.expand_path('../../../lib', __FILE__)
-    $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+        lib = File.expand_path('../../../lib', __FILE__)
+        $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-    require 'sunat'
-    require './config/config'
-    require './app/generators/invoice_generator'
-    require './app/generators/credit_note_generator'
-    require './app/generators/debit_note_generator'
-    require './app/generators/receipt_generator'
-    require './app/generators/daily_receipt_summary_generator'
-    require './app/generators/voided_documents_generator'
+        require 'sunat'
+        require './config/config'
+        require './app/generators/invoice_generator'
+        require './app/generators/credit_note_generator'
+        require './app/generators/debit_note_generator'
+        require './app/generators/receipt_generator'
+        require './app/generators/daily_receipt_summary_generator'
+        require './app/generators/voided_documents_generator'
 
-    SUNAT.environment = :production
+        SUNAT.environment = :production
 
-    files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
-    files_to_clean.each do |file|
-      File.delete(file)
-    end 
+        files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
+        files_to_clean.each do |file|
+          File.delete(file)
+        end 
 
-    case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
 
-    $lcGuiaRemision =""
-    @@document_serial_id =""
+        $lcGuiaRemision =""
+        @@document_serial_id =""
+        $lg_serial_id=""
 
     end
-    
+
+    def print
+       
+        lib = File.expand_path('../../../lib', __FILE__)
+        $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+        require 'sunat'
+        require './config/config'
+        require './app/generators/invoice_generator'
+        require './app/generators/credit_note_generator'
+        require './app/generators/debit_note_generator'
+        require './app/generators/receipt_generator'
+        require './app/generators/daily_receipt_summary_generator'
+        require './app/generators/voided_documents_generator'
+
+        SUNAT.environment = :production
+
+        files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
+        files_to_clean.each do |file|
+          File.delete(file)
+        end 
+
+        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+        $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
+        puts $lcFileName1
+        puts lib
+
+   #     send_data("#{$lcFileName1}" , type: "application/pdf", disposition: "attachment;
+    #    filename= #{$lcFileName1} ")
+
+        send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
+
+
+        $lcGuiaRemision =""
+        @@document_serial_id =""
+        $aviso=""
+    end 
+        
     def borrarregistro
         
+    end
+
+    def download
+        extension = File.extname(@asset.file_file_name)
+        send_data open("#{@asset.file.expiring_url(10000, :original)}").read, filename: "original_#{@asset.id}#{extension}", type: @asset.file_content_type
     end
 
     private

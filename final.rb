@@ -17,13 +17,13 @@ files_to_clean.each do |file|
   File.delete(file)
 end 
 
-case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
+#case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
 
 #case_6 = CreditNoteGenerator.new(1, 6, "FF01").for_igv_document(case_3,true)
 # case_6 = CreditNoteGenerator.new(1, 6, "FF01").for_igv_document(true)
 
 #case_6 = CreditNoteGenerator.new(1, 6, "FF01").for_igv_document(true)
-#VoidedDocumentsGenerator.new.generate
+VoidedDocumentsGenerator.new.generate
 
 #Resumen Diario boletas de venta 13
 #if groups.include?(13)

@@ -8,12 +8,12 @@ class VoidedDocumentsGenerator < DocumentGenerator
   end
 
   def generate
-    issue_date = Date.new(2016,05,07)
+    issue_date = Date.new(2016,05,21)
 
-    correlative_number = "078"
+    correlative_number = "079"
 
-    voided_documents_data = {reference_date: Date.new(2016,04,30), issue_date: issue_date, id: SUNAT::VoidedDocuments.generate_id(issue_date, correlative_number), correlative_number: correlative_number,
-                         lines:[{line_id: "1", document_type_code: "01", document_serial_id: "FF01", document_number_id: "900", void_reason: "Error en datos consignados" }]}
+    voided_documents_data = {reference_date: Date.new(2016,05,21), issue_date: issue_date, id: SUNAT::VoidedDocuments.generate_id(issue_date, correlative_number), correlative_number: correlative_number,
+                         lines:[{line_id: "1", document_type_code: "01", document_serial_id: "FF01", document_number_id: "1054", void_reason: "Error en datos consignados" }]}
 
     voided_document = SUNAT::VoidedDocuments.new(voided_documents_data)
 
