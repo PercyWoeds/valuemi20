@@ -17,9 +17,6 @@ class DocumentGenerator
      document.deliver!
       rescue Savon::SOAPFault => e
       puts "Error generating document for case #{group_case} in group #{group}: #{e}"      
-      puts $lcid
-      puts $lg_serial_id
-      puts $lcFileName
       $aviso = "Error generating document for case #{group_case} in group #{group}: #{e}"
 
       end

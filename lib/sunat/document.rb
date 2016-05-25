@@ -1,3 +1,4 @@
+
 # Wrapper over model with some
 # general properties to documents
 
@@ -112,6 +113,7 @@ module SUNAT
         pdf = build_pdf_body(pdf)
         build_pdf_footer(pdf)
         $lcFileName =path || self.pdf_path || "app/pdf_output/#{file_name}.pdf"
+        $lcFileNameIni =file_name
       end
     end
 

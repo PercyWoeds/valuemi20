@@ -79,9 +79,14 @@
 										<td>NUMERO DE DOCUMENTO </td>
 										<td><%= @invoice.ruc %></td>
 									</tr>
+
 									<tr>
 										<td>RAZ&Oacute;N SOCIAL </td>
 										<td> <%= $lcLegalName %> </td>
+									</tr>
+									<tr>
+										<td>Correo electronico  </td>
+										<td> <%= $lcMail  %> </td>
 									</tr>
 								</table>
 							</td>
@@ -160,13 +165,6 @@
 						</tr>
 						
 						<tr>
-							<td colspan="2" align="center"/>
-						</tr>
-						
-						<tr>
-							<td colspan="2" align="center"/>
-						</tr>
-						<tr>
 							<td colspan="2" align="center" class="form-table" style="padding:5px;">Este documento es un reporte con los datos tributarios de la Factura Electr&oacute;nica y no tiene la validez de una REPRESENTACIÓN IMPRESA.</td>
 						</tr>
 						<tr>
@@ -180,19 +178,33 @@
     </table>
 	</center>
 	<br>
+
+<table>
+	<tr>
+		
+
+		<%= form_tag sendsunat_invoices_path, multipart: true do %>
+  		<%= submit_tag "Enviar Sunat  " %>
+		<% end %>
+		
+	</tr>
+	<tr>
+		
+		<%= form_tag print_invoices_path, multipart: true do %>
+		  <%= submit_tag  "Imprimir  " %>
+		<% end %>		
+	</tr>
+
+	<tr>
+		
+		<%= form_tag sendmail_invoices_path, multipart: true do %>
+  		<%= submit_tag  "Correo Electronico  " %>
+		<% end %>
+
+	</tr>
 	
+</table>
 
 <%= link_to 'Regresar', invoices_path %>
-
-<h2>Enviar información a Sunat </h2>
-<%= form_tag sendsunat_invoices_path, multipart: true do %>
-  <%= submit_tag "Enviar Sunat  " %>
-<% end %>
-
-<h2>Imprimir </h2>
-<%= form_tag print_invoices_path, multipart: true do %>
-  <%= submit_tag  "Imprimir  " %>
-<% end %>
-
 </body>
 </html>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     collection { post :import }
     collection { post :sendsunat }
     collection { post :print }
+    collection { post :sendmail }
    end 
    
    resources :clients do

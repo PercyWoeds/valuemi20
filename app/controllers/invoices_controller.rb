@@ -17,14 +17,15 @@ before_action :authenticate_user!
     end 
     def show
     	@invoice        = Invoice.find(params[:id])
-        @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
+        @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
         
         $lg_fecha       = @invoice.fecha 
         $lg_serial_id   = @invoice.numero.to_i 
         $lcCantidad     = @invoice.cantidad   
         $lcClienteInv   = @invoice.cliente   
-        $lcRuc          = @invoice.ruc    
-
+        $lcRuc          = @list[0].ruc
+        #$lcMail         = "zportal@hidrotransp.com"
+        $lcMail         = @list[0].mailclient
         $lcLegalName    = @list[0].vrazon2    
         $lcDirCli       = @list[0].vdireccion   
         $lcDisCli       = @list[0].vdistrito
@@ -131,7 +132,32 @@ before_action :authenticate_user!
         $aviso=""
     end 
         
-    def borrarregistro
+    def sendmail
+
+        lib = File.expand_path('../../../lib', __FILE__)
+        $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+        require 'sunat'
+        require './config/config'
+        require './app/generators/invoice_generator'
+        require './app/generators/credit_note_generator'
+        require './app/generators/debit_note_generator'
+        require './app/generators/receipt_generator'
+        require './app/generators/daily_receipt_summary_generator'
+        require './app/generators/voided_documents_generator'
+
+        SUNAT.environment = :production
+
+        files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
+        files_to_clean.each do |file|
+          File.delete(file)
+        end 
+        $lcGuiaRemision =""
+        
+        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+        $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
+
+        ActionCorreo.bienvenido_email(@invoice).deliver
         
     end
 

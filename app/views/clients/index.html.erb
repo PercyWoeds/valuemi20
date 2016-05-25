@@ -26,9 +26,9 @@
         <td><%= client.vdistrito %></td>
         <td><%= client.vprov %></td>
         <td><%= client.vdep %></td>
-        <td><%= link_to 'Show', client %></td>
-        <td><%= link_to 'Edit', edit_client_path(client) %></td>
-        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', client %></td>
+        <td><%= link_to 'Editar', edit_client_path(client) %></td>
+        <td><%= link_to 'Eliminar', client, method: :delete, data: { confirm: 'Esta seguro de eliminar ?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,7 +36,7 @@
 
 <br>
 
-<%= link_to 'New Client', new_client_path %>
+<%= link_to 'Nuevo Cliente', new_client_path %>
 
 <h2>Importar Archivo clientes "*.csv"</h2>
 <%= form_tag import_clients_path, multipart: true do %>

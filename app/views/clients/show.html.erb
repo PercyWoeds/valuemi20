@@ -34,6 +34,11 @@
   <strong>Vdep:</strong>
   <%= @client.vdep %>
 </p>
+<p>
+  <strong>Mail :</strong>
+  <%= @client.mailclient %>
+</p>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+
+<%= link_to 'Editar', edit_client_path(@client) %> |
+<%= link_to 'Regresar', clients_path %>
