@@ -4,10 +4,10 @@ before_action :authenticate_user!
         #@invoices = Invoice.joins(:client).select("invoices.*,clients.vrazon2 as client_name").where("Invoices.cliente=Clients.Vcodigo")
         #@invoices = Invoice.paginate(:page => params[:page], :per_page => 20)
         #@invoices = Invoice.all	    
-        @invoices = Invoice.paginate(:page => params[:page], :per_page => 20).find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+        @invoices = Invoice.paginate(:page => params[:page], :per_page => 15).find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+        
         #@invoices = @invoices.paginate(:page => params[:page], :per_page => 20)
-
-
+        
     end
     
 	def import
@@ -17,7 +17,7 @@ before_action :authenticate_user!
     end 
     def show
     	@invoice        = Invoice.find(params[:id])
-        @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
+        @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient,clients.mailclient2,clients.mailclient3  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
         
         $lg_fecha       = @invoice.fecha 
         $lg_serial_id   = @invoice.numero.to_i 
@@ -26,6 +26,8 @@ before_action :authenticate_user!
         $lcRuc          = @list[0].ruc
         #$lcMail         = "zportal@hidrotransp.com"
         $lcMail         = @list[0].mailclient
+        $lcMail2        = @list[0].mailclient2
+        $lcMail3        = @list[0].mailclient3
         $lcLegalName    = @list[0].vrazon2    
         $lcDirCli       = @list[0].vdireccion   
         $lcDisCli       = @list[0].vdistrito

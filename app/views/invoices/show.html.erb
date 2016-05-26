@@ -9,17 +9,17 @@
 
 <body>
 	<center>
-	<table class="comprobante" align="center" cellspacing="5"  width="100%" >
+	<table  align="center" cellspacing="5"  width="100%" >
       <tr>     
 		<td> 
-				<TABLE ALIGN="right" class="form-table" width="100%">
+				<TABLE  ALIGN="left" id="box-table-a" width="100%">
 					<tbody>
 						<tr>
-							<td><B>REPORTE DE COMPROBANTE ELECTR&Oacute;NICO</B></td>
+							<td id="box-table-a"><B>REPORTE DE COMPROBANTE ELECTR&Oacute;NICO</B></td>
 						</tr>
 						
 						<tr class="beta" align="right">
-							<td style="height:20;"><b>DATOS DEL COMPROBANTE:</b></td>
+							<td style="height:20;" id="box-table-a" ><b>DATOS DEL COMPROBANTE:</b></td>
 						</tr>
 						<tr>
 							<td>
@@ -43,22 +43,22 @@
 						</tr>
 						
 						<tr class="beta" align="left">
-							<td style="height:20;"><b>DATOS DEL EMISOR:</b></td>
+							<td style="height:20;" id="box-table-a"><b>DATOS DEL EMISOR:</b></td>
 						</tr>
 						<tr>
 							<td>
 								<table>
 									<tr>
 										<td>RUC </td>
-										<td>: 20522012336</td>
+										<td align="left" id="box-table-a">: 20522012336</td>
 									</tr>
 									<tr>
-										<td>RAZ&Oacute;N SOCIAL </td>
-										<td>: HIDROTRANSP S.A.C.</td>
+										<td id="box-table-a" >RAZ&Oacute;N SOCIAL </td>
+										<td id="box-table-a">: HIDROTRANSP S.A.C.</td>
 									</tr>
 									<tr>
 										<td>DOMICILIO FISCAL</td>
-										<td>: JR. TOMAS CATARI NRO. 405 URB. EL TREBOL 1RA. ETAPA, , LOS OLIVOS, LIMA, , PE 	 											
+										<td id="box-table-a">: JR. TOMAS CATARI NRO. 405 URB. EL TREBOL 1RA. ETAPA, , LOS OLIVOS, LIMA, , PE 	 											
 										</td>
 									</tr>
 								</table>
@@ -66,34 +66,43 @@
 						</tr>
 						
 						<tr class="beta" align="left">
-							<td style="height:20;"><b>DATOS DEL COMPRADOR:</b></td>
+							<td style="height:20;" id="box-table-a"	><b>DATOS DEL COMPRADOR:</b></td>
 						</tr>
 						<tr>
 							<td>
 								<table>
 									<tr>
-										<td>TIPO DE DOCUMENTO </td>
-										<td>: RUC </td>
+										<td id="box-table-a">TIPO DE DOCUMENTO </td>
+										<td id="box-table-a">: RUC </td>
 									</tr>
 									<tr>
-										<td>NUMERO DE DOCUMENTO </td>
-										<td><%= @invoice.ruc %></td>
+										<td id="box-table-a">NUMERO DE DOCUMENTO </td>
+										<td id="box-table-a"><%= @invoice.ruc %></td>
 									</tr>
 
 									<tr>
 										<td>RAZ&Oacute;N SOCIAL </td>
-										<td> <%= $lcLegalName %> </td>
+										<td id="box-table-a"> <%= $lcLegalName %> </td>
 									</tr>
 									<tr>
-										<td>Correo electronico  </td>
-										<td> <%= $lcMail  %> </td>
+										<td>Correo electronico 1  </td>
+										<td id="box-table-a"> <%= $lcMail  %> </td>
 									</tr>
+											<tr>
+										<td>Correo electronico 2 </td>
+										<td id="box-table-a"> <%= $lcMail2  %> </td>
+									</tr>
+									<tr>
+										<td>Correo electronico 3 </td>
+										<td id="box-table-a"> <%= $lcMail3  %> </td>
+									</tr>
+							
 								</table>
 							</td>
 						</tr>
 									
 						<tr class="beta" align="left" >
-							<td style="height:20;"><b>DETALLE:</b></td>
+							<td style="height:20;" id="box-table-a"><b>DETALLE:</b></td>
 						</tr>							
 						<tr>
 							<td colspan="2">
@@ -139,10 +148,10 @@
 														<td class="gamma" ><b>Sumatoria otros cargos</b></td>
 														<td class="gamma" ><b>Sumatoria ISC</b></td>
 														<td class="gamma" ><b>Sumatoria IGV</b></td>
-														<td class="gamma" ><b>Importe total</b></td>													
+														<td class="gamma" ><b>Importe total</b></td>												
 													</tr>	
 																								
-													<tr class="bgn" align="right">																					
+													<tr class="bgn" align="right">									
 														<td align="right" class="totales">S/. &nbsp;  <%= @invoice.vventa %> </td>
 														<td align="right" class="totales">S/. &nbsp; 0</td>
 														<td align="right" class="totales">S/. &nbsp; 0</td>
@@ -205,6 +214,5 @@
 	
 </table>
 
-<%= link_to 'Regresar', invoices_path %>
 </body>
 </html>

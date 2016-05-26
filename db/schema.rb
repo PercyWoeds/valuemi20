@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525203912) do
+ActiveRecord::Schema.define(version: 20160526212341) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "vcodigo"
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(version: 20160525203912) do
     t.string   "vdistrito"
     t.string   "vprov"
     t.string   "vdep"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "mailclient"
+    t.string   "mailclient2"
+    t.string   "mailclient3"
   end
 
   create_table "invoices", force: :cascade do |t|

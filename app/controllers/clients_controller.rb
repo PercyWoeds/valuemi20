@@ -12,7 +12,7 @@ class ClientsController < ApplicationController
   # GET /clients.json
 
   def index
-    @clients = Client.all
+    @clients = Client.order("vCODIGO ASC").all.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /clients/1
@@ -77,7 +77,7 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:vcodigo, :vruc, :vrazon2, :vdireccion, :vdistrito, :vprov, :vdep, :mailclient)
+      params.require(:client).permit(:vcodigo, :vruc, :vrazon2, :vdireccion, :vdistrito, :vprov, :vdep, :mailclient, :mailclient2, :mailclient3)
     end
 
 

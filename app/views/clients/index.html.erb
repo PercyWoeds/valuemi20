@@ -1,17 +1,32 @@
+
+
+
 <p id="notice"><%= notice %></p>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-<h1>Listing Clients</h1>
+th, td {
+    text-align: left;
+    padding: 8px;
+}
 
-<table>
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+
+
+<h1>Listado Clientes</h1>
+
+<table style="overflow-x:auto;">
   <thead>
     <tr>
-      <th>Vcodigo</th>
-      <th>Vruc</th>
-      <th>Vrazon2</th>
-      <th>Vdireccion</th>
-      <th>Vdistrito</th>
-      <th>Vprov</th>
-      <th>Vdep</th>
+      <th>Codigo</th>
+      <th>Ruc</th>
+      <th>Razon Social </th>
+      <th>Direccion</th>
+      <th>Distrito</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,8 +39,6 @@
         <td><%= client.vrazon2 %></td>
         <td><%= client.vdireccion %></td>
         <td><%= client.vdistrito %></td>
-        <td><%= client.vprov %></td>
-        <td><%= client.vdep %></td>
         <td><%= link_to 'Ver', client %></td>
         <td><%= link_to 'Editar', edit_client_path(client) %></td>
         <td><%= link_to 'Eliminar', client, method: :delete, data: { confirm: 'Esta seguro de eliminar ?' } %></td>
@@ -33,6 +46,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @clients %>
 
 <br>
 

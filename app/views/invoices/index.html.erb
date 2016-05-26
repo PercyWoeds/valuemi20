@@ -1,7 +1,23 @@
 <h1> </h1>
+
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+
+
 <h1>Listado Facturas</h1>
 <div class ="media">
-<div class ="media-body">
+<div class ="media-body" style="overflow-x:auto;">
 <table class="table table-hover">
 
  <tr>
@@ -10,13 +26,12 @@
     <th>Td</th>
     <th>Serie</th>
     <th>Numero</th>
-    <th>Preciocigv</th>
-    <th>Preciosigv</th>
+    <th>P.C/Igv</th>
     <th>Cantidad</th>
     <th>Vventa</th>
     <th>Igv</th>
     <th>Importe</th>
-    <th>Ruc</th>
+
     <th></th>
     <th></th>
     <th></th>
@@ -30,12 +45,12 @@
     <td><%= invoice.serie %></td>
     <td><%= invoice.numero %></td>
     <td><%= invoice.preciocigv %></td>
-    <td><%= invoice.preciosigv %></td>
+
     <td><%= invoice.cantidad %></td>
     <td><%= invoice.vventa %></td>
     <td><%= invoice.igv %></td>
     <td><%= invoice.importe %></td>
-    <td><%= invoice.ruc %></td>
+
     <td><%= invoice.vrazon2 %></td>
     
     <td><%= link_to 'Ver', invoice %></td>
@@ -45,7 +60,6 @@
 </table>
 </div>
 </div>
-
 
 <h2>Importar Archivo Facturas "*.csv"</h2>
 <%= form_tag import_invoices_path, multipart: true do %>

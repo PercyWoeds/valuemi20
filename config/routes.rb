@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     collection { post :import }
 
    end 
+
+   get '/about', to: 'layouts#about'
+
    resources :assets do
     member do
       get 'download'
