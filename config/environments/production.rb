@@ -87,5 +87,7 @@ Rails.application.configure do
     password:             'hidro123456',
     authentication:       'plain',
     enable_starttls_auto: true  }
+
+  config.serve_static_assets = true
     
 end
