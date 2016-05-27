@@ -61,7 +61,7 @@ before_action :authenticate_user!
         $lcGuiaRemision =@invoice.guia     
         
         #$lcAutorizacion =""
-        $lcAutorizacion1=""
+        #$lcAutorizacion1=""
 
         
     end
@@ -97,7 +97,7 @@ before_action :authenticate_user!
     end
 
     def print
-       
+        $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -135,7 +135,7 @@ before_action :authenticate_user!
     end 
         
     def sendmail
-
+        $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
