@@ -229,6 +229,14 @@ a {
   .links {
     margin: 2em 0;
   }
+  input[type="text"], input[type="buscar"], textarea {
+    width: 350px;
+    border: 1px solid #d6dce0;
+    border-radius: .35em;
+    margin-top: 10px;
+    padding: .5em 1em;
+    line-height: 1.75;
+  }
   input[type="text"], input[type="email"], input[type="password"], textarea {
     width: 90%;
     border: 1px solid #d6dce0;
@@ -256,6 +264,9 @@ a {
 
       color: #33acb7;
     }
+  
+  
+
   }
 
  #box-table-a

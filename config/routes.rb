@@ -18,11 +18,12 @@ Rails.application.routes.draw do
     collection { post :sendsunat }
     collection { post :print }
     collection { post :sendmail }
+    collection { get :search   }
    end 
    
    resources :clients do
     collection { post :import }
-
+    collection { get :search   }
    end 
 
    get '/about', to: 'layouts#about'

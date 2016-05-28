@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:show, :edit, :update, :destroy], :except=> [:search]
+
 
   def import
    
@@ -12,8 +13,22 @@ class ClientsController < ApplicationController
   # GET /clients.json
 
   def index
-    @clients = Client.order("vCODIGO ASC").all.paginate(:page => params[:page], :per_page => 10)
+    
+    @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
+    @clients=@likes.all 
+
+  end     
+    
+  def search
+        if params[:search].blank?
+            @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
+            @clients=Client.all
+        else
+            @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
+            @clients=Client.where("vrazon2 like  ?",params[:seach])                
+        end        
   end
+
 
   # GET /clients/1
   # GET /clients/1.json
@@ -69,12 +84,13 @@ class ClientsController < ApplicationController
     end
   end
 
-  private
+
+   private  
     # Use callbacks to share common setup or constraints between actions.
     def set_client
-      @client = Client.find(params[:id])
-    end
-
+          @client = Client.find(params[:id])
+      end
+  
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
       params.require(:client).permit(:vcodigo, :vruc, :vrazon2, :vdireccion, :vdistrito, :vprov, :vdep, :mailclient, :mailclient2, :mailclient3)

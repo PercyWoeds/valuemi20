@@ -1,15 +1,24 @@
 class InvoicesController < ApplicationController
 before_action :authenticate_user!
-	def index
-        #@invoices = Invoice.joins(:client).select("invoices.*,clients.vrazon2 as client_name").where("Invoices.cliente=Clients.Vcodigo")
-        #@invoices = Invoice.paginate(:page => params[:page], :per_page => 20)
-        #@invoices = Invoice.all	    
-        @invoices = Invoice.paginate(:page => params[:page], :per_page => 15).find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
-        
-        #@invoices = @invoices.paginate(:page => params[:page], :per_page => 20)
-        
-    end
+
+	def index        
+    @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
+    @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+
+    end     
     
+    def search
+        if params[:search].blank?
+            @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
+            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+        else
+            @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
+            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where numero like ?',params[:search]])
+        end        
+
+    end
+
+
 	def import
        Invoice.delete_all 
 	   Invoice.import(params[:file])

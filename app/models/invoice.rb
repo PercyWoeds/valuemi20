@@ -11,6 +11,11 @@ class Invoice < ActiveRecord::Base
 
       end 
 
+      def self.search(params)        
+        invoices = Invoice.where("numero   LIKE ?","%#{params[:search]}%") if params[:search].present?
+        invoices
+      end
+
       def enviarsunat      	
        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true) 
       end

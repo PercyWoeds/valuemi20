@@ -67,9 +67,8 @@ tr:nth-child(even){background-color: #f2f2f2}
 </table>
 </div>
 </div>
-<%=will_paginate  @likes%>
 
-
+<%= will_paginate @likes %>
 
 <h2>Importar Archivo Facturas "*.csv"</h2>
 <%= form_tag import_invoices_path, multipart: true do %>
@@ -81,3 +80,4 @@ tr:nth-child(even){background-color: #f2f2f2}
 <br />
 
 
+    
