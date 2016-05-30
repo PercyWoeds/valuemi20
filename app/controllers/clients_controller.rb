@@ -1,11 +1,11 @@
 class ClientsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_client, only: [:show, :edit, :update, :destroy], :except=> [:search]
+  before_action :set_client, only: [:show, :edit, :update, :destroy], :except=> [:index,:search]
 
 
   def import
-   
-       Client.import(params[:file])
+ 
+      Client.import(params[:file])
        redirect_to root_url, notice: "Clientes importadas."
   end 
   
@@ -22,10 +22,11 @@ class ClientsController < ApplicationController
   def search
         if params[:search].blank?
             @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
-            @clients=Client.all
+            @clients=@likes.all
         else
             @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
-            @clients=Client.where("vrazon2 like  ?",params[:seach])                
+            #@clients=@likes.where("vrazon2 like  ?",params[:seach])                
+            @clients=@likes.where(params[:seach])
         end        
   end
 

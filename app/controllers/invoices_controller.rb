@@ -2,22 +2,20 @@ class InvoicesController < ApplicationController
 before_action :authenticate_user!
 
 	def index        
-    @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-    @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
-
+        @likes= Invoice.page(params[:page]).per_page(15)
+        @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+        
     end     
     
     def search
         if params[:search].blank?
             @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
-        else
+            @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+        else            
             @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where numero like ?',params[:search]])
+            @invoices=@likes.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where numero like ?',params[:search]])
         end        
-
     end
-
 
 	def import
        Invoice.delete_all 
@@ -29,10 +27,12 @@ before_action :authenticate_user!
         @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient,clients.mailclient2,clients.mailclient3  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
         
         $lg_fecha       = @invoice.fecha 
-        $lg_serial_id   = @invoice.numero.to_i 
+        $lg_serial_id   = @invoice.numero.to_i
+        $lg_serial_id2  = @invoice.numero
         $lcCantidad     = @invoice.cantidad   
         $lcClienteInv   = @invoice.cliente   
         $lcRuc          = @list[0].ruc
+        
         #$lcMail         = "zportal@hidrotransp.com"
         $lcMail         = @list[0].mailclient
         $lcMail2        = @list[0].mailclient2
@@ -43,9 +43,6 @@ before_action :authenticate_user!
         $lcProv         = @list[0].vprov
         $lcDep          = @list[0].vdep
 
-        #$lcPrecioSIgv1  =  @invoice.preciosigv * 100
-        #$lcPrecioSIgv   =  $lcPrecioSIgv1.round(0)
-        
         $lcPrecioCigv1  =  @invoice.preciocigv * 100
         $lcPrecioCigv2   = $lcPrecioCigv1.round(0).to_f
         $lcPrecioCigv   =  $lcPrecioCigv2.to_i 
@@ -65,7 +62,7 @@ before_action :authenticate_user!
 
         #@clienteName1   = Client.where("vcodigo = ?",params[ :$lcClienteInv ])        
         $lcClienteName = ""
-
+    
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
         
@@ -106,7 +103,7 @@ before_action :authenticate_user!
     end
 
     def print
-        $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
+
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -125,6 +122,7 @@ before_action :authenticate_user!
         files_to_clean.each do |file|
           File.delete(file)
         end 
+        
         $lcGuiaRemision =""
         
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
@@ -166,11 +164,12 @@ before_action :authenticate_user!
         $lcGuiaRemision =""
         
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+        
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
-
         ActionCorreo.bienvenido_email(@invoice).deliver
         
     end
+
 
     def download
         extension = File.extname(@asset.file_file_name)

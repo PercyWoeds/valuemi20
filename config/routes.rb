@@ -19,12 +19,20 @@ Rails.application.routes.draw do
     collection { post :print }
     collection { post :sendmail }
     collection { get :search   }
+
    end 
    
    resources :clients do
     collection { post :import }
     collection { get :search   }
    end 
+
+   resources :voideds do
+    collection { post :anular }
+  
+   end 
+
+
 
    get '/about', to: 'layouts#about'
 

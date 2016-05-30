@@ -58,7 +58,7 @@
 									</tr>
 									<tr>
 										<td>DOMICILIO FISCAL</td>
-										<td id="box-table-a">: JR. TOMAS CATARI NRO. 405 URB. EL TREBOL 1RA. ETAPA, , LOS OLIVOS, LIMA, , PE 	 											
+										<td id="box-table-a">: JR. TOMAS  NRO. 000435 URB. EL TREBOL 1RA. ETAPA, , LOS OLIVOS, LIMA, , PE 	 											
 										</td>
 									</tr>
 								</table>
@@ -208,6 +208,14 @@
 		
 		<%= form_tag sendmail_invoices_path, multipart: true do %>
   		<%= submit_tag  "Correo Electronico  " %>
+		<% end %>
+
+	</tr>
+	
+	<tr>
+		
+		<%= form_tag anular_voideds_path, multipart: true do %>
+  		<%= submit_tag  "Anular " %>
 		<% end %>
 
 	</tr>

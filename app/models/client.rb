@@ -10,10 +10,14 @@ class Client < ActiveRecord::Base
         end
       end       
 
-	   def self.search(params)    
-        clients = Client.where("vrazon2   LIKE ?","%#{params[:search]}%") if params[:search].present?
-        clients
-      end
+	   def self.search(search,page=1)  
+        paginate :per_page=>5 , :page=> page,  
+        :conditions=> ["vrazon2 LIKE ?","%#{:search}%","%#{:search}%"],order=>'name'
+        #clients = Client.where("vrazon2   LIKE ?","%#{params[:search]}%") if params[:search].present?
+        #clients
+
+     end
+
 
 
 end
