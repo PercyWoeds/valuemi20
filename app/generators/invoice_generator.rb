@@ -2,15 +2,9 @@ require_relative 'document_generator'
 
 class InvoiceGenerator < DocumentGenerator
   attr_reader :items 
- 
-  $lcPercentIgv  =18000   
-  $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0004185/SUNAT del 26/10/2015 "
-  $lcScop1       =""   
-  $lcScop2       =""
-  $lcCantScop1   =""
-  $lcCantScop2   =""    
+   
 
-  $lcAutorizacion1=$lcAutorizacion <<' Datos Adicionales GUIA DE REMISION : '<<$lcGuiaRemision
+  #$lcAutorizacion1=$lcAutorizacion <<' Datos Adicionales GUIA DE REMISION : '<<$lcGuiaRemision
 
   def initialize(group, group_case, items, serie)
     super(group, group_case)
@@ -143,4 +137,5 @@ class InvoiceGenerator < DocumentGenerator
       invoice_data
     end
 end 
+
 

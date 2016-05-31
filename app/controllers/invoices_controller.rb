@@ -65,15 +65,21 @@ before_action :authenticate_user!
     
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
-        
         #$lcAutorizacion =""
         #$lcAutorizacion1=""
 
-        
+          $lcPercentIgv  =18000   
+          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0004185/SUNAT del 26/10/2015 "
+          $lcScop1       =""   
+          $lcScop2       =""
+          $lcCantScop1   =""
+          $lcCantScop2   =""  
+          $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
+                
     end
 
     def sendsunat
-        $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
+       # $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -103,6 +109,8 @@ before_action :authenticate_user!
     end
 
     def print
+        #$lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
+        puts $lcAutorizacion1
 
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -123,7 +131,7 @@ before_action :authenticate_user!
           File.delete(file)
         end 
         
-        $lcGuiaRemision =""
+    
         
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
@@ -142,7 +150,8 @@ before_action :authenticate_user!
     end 
         
     def sendmail
-        $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
+      
+
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
