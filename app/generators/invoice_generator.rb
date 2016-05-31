@@ -9,7 +9,8 @@ class InvoiceGenerator < DocumentGenerator
   $lcScop2       =""
   $lcCantScop1   =""
   $lcCantScop2   =""    
-  $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
+
+  $lcAutorizacion1=$lcAutorizacion <<' Datos Adicionales GUIA DE REMISION : '<<$lcGuiaRemision
 
   def initialize(group, group_case, items, serie)
     super(group, group_case)
