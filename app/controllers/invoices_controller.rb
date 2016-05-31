@@ -3,17 +3,17 @@ before_action :authenticate_user!
 
 	def index        
         @likes= Invoice.page(params[:page]).per_page(15)
-        @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+        @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente order by numero desc')
         
     end     
     
     def search
         if params[:search].blank?
             @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente')
+            @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente order by numero desc')
         else            
             @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=@likes.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where numero like ?',params[:search]])
+            @invoices=@likes.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where numero like ? ',params[:search]])
         end        
     end
 
