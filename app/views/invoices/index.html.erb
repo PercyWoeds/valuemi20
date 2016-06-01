@@ -52,15 +52,13 @@ tr:nth-child(even){background-color: #f2f2f2}
     <td><%= invoice.serie %></td>
     <td><%= invoice.numero %></td>
     <td><%= invoice.preciocigv %></td>
-
     <td><%= invoice.cantidad %></td>
     <td><%= invoice.vventa %></td>
     <td><%= invoice.igv %></td>
     <td><%= invoice.importe %></td>
-
     <td><%= invoice.vrazon2 %></td>
     
-    <td><%= link_to 'Ver', invoice %></td>
+    <td><%= link_to('Ver', invoice  , data: { no_turbolink: true }) %> </td>
     
   </tr>
 <% end %>

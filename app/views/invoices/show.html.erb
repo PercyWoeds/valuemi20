@@ -122,15 +122,15 @@
 											<td width="80px" ><b>Valor V.<br>(a)*(b)</b></td>
 										</tr>
 										  
-											<tr>												
-												<td align="center"> <%= @invoice.cantidad %></td>
-												<td align="center"> UNIDAD</td>
-												<td align="center">1</td>
-												<td>DIESEL B5 S-50</td>
-												<td align="right"> <%= @invoice.preciosigv %></td>
-												<td align="right"> <%= @invoice.preciocigv %></td>
-												<td align="right"> <%= @invoice.vventa %></td>
-											</tr>
+										<tr>												
+											<td align="center"> <%= @invoice.cantidad %></td>
+											<td align="center"> UNIDAD</td>
+											<td align="center">1</td>
+											<td>DIESEL B5 S-50</td>
+											<td align="right"> <%= @invoice.preciosigv %></td>
+											<td align="right"> <%= @invoice.preciocigv %></td>
+											<td align="right"> <%= @invoice.vventa %></td>
+										</tr>
 											
 									</TBODY>
 								</TABLE>
@@ -192,39 +192,35 @@
 	</center>
 	<br>
 
-<table>
-	<tr>
-		
+	<table>
+		<tr>
 
-		<%= form_tag sendsunat_invoices_path, multipart: true do %>
-  		<%= submit_tag "Enviar Sunat  " %>
-		<% end %>
-		
-	</tr>
-	<tr>
-		
-		<%= form_tag print_invoices_path, multipart: true do %>
-		  <%= submit_tag  "Imprimir  " %>
-		<% end %>		
-	</tr>
+			<%= form_tag sendsunat_invoices_path, multipart: true do %>
+	  		<%= submit_tag "Enviar Sunat  " %>
+			<% end %>
+			
+		</tr>
+		<tr>
+			<%= form_tag print_invoices_path, multipart: true do %>
+			  <%= submit_tag  "Imprimir  " %>
+			<% end %>		
+		</tr>
 
-	<tr>
+		<tr>
+			<%= form_tag sendmail_invoices_path, multipart: true do %>
+	  		<%= submit_tag  "Correo Electronico  " %>
+			<% end %>
+		</tr>
 		
-		<%= form_tag sendmail_invoices_path, multipart: true do %>
-  		<%= submit_tag  "Correo Electronico  " %>
-		<% end %>
+		<tr>
+			
+			<%= form_tag anular_voideds_path,  multipart: true, data: { confirm: "Esta seguro de anular este documento ?" } do  %>
+	  		<%= submit_tag  "Anular " %>
+			<% end %>
 
-	</tr>
-	
-	<tr>
+		</tr>
 		
-		<%= form_tag anular_voideds_path, multipart: true do %>
-  		<%= submit_tag  "Anular " %>
-		<% end %>
-
-	</tr>
-	
-</table>
+	</table>
 
 </body>
 </html>
