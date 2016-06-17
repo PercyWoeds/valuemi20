@@ -37,5 +37,20 @@ class DocumentGenerator
       raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
     end
   end
+  def generate_documents3(document, pdf=false)
+    
+    if document.valid?
+     begin
+     document.deliver!
+      rescue Savon::SOAPFault => e
+      puts "Error generating document for case #{group_case} in group #{group}: #{e}"      
+      $aviso = ""
+
+      end
+      document.to_pdf if pdf
+    else
+     raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
+    end
+  end
 
 end

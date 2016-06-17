@@ -207,6 +207,12 @@
 		</tr>
 
 		<tr>
+			<%= form_tag xml_invoices_path, multipart: true do %>
+			  <%= submit_tag  "XML  " %>
+			<% end %>		
+		</tr>
+		
+		<tr>
 			<%= form_tag sendmail_invoices_path, multipart: true do %>
 	  		<%= submit_tag  "Correo Electronico  " %>
 			<% end %>

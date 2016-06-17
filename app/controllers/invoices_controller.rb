@@ -79,7 +79,7 @@ before_action :authenticate_user!
     end
 
     def sendsunat
-       # $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
+       
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -101,16 +101,13 @@ before_action :authenticate_user!
 
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
 
-        $lcGuiaRemision =""
-      
+        $lcGuiaRemision =""      
         @@document_serial_id =""
         $lg_serial_id=""
 
     end
 
     def print
-        #$lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
-        puts $lcAutorizacion1
 
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -129,28 +126,21 @@ before_action :authenticate_user!
         files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
         files_to_clean.each do |file|
           File.delete(file)
-        end 
-        
-    
+        end         
         
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
-        puts $lcFileName1
-        puts lib
-
-   #     send_data("#{$lcFileName1}" , type: "application/pdf", disposition: "attachment;
-    #    filename= #{$lcFileName1} ")
-        
+                
         send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
-
 
         
         @@document_serial_id =""
         $aviso=""
     end 
+
         
-    def sendmail
-      
+    def sendmail      
 
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -185,6 +175,36 @@ before_action :authenticate_user!
         send_data open("#{@asset.file.expiring_url(10000, :original)}").read, filename: "original_#{@asset.id}#{extension}", type: @asset.file_content_type
     end
 
+    def xml
+        
+        lib = File.expand_path('../../../lib', __FILE__)
+        $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+        require 'sunat'
+        require './config/config'
+        require './app/generators/invoice_generator'
+        require './app/generators/credit_note_generator'
+        require './app/generators/debit_note_generator'
+        require './app/generators/receipt_generator'
+        require './app/generators/daily_receipt_summary_generator'
+        require './app/generators/voided_documents_generator'
+
+        SUNAT.environment = :production
+        files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
+
+        files_to_clean.each do |file|
+          File.delete(file)
+        end         
+        
+        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
+        #$lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
+        $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
+        puts $lcFile2 
+        #send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
+        send_file("#{$lcFile2}",:type =>'application/zip', :disposition => 'inline') 
+        @@document_serial_id =""
+        $aviso=""
+    end 
     private
     def validate_user
         redirect_to  new_user_session_path, notice: "Necesitas iniciar sesión ..."

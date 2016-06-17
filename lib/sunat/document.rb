@@ -114,6 +114,8 @@ module SUNAT
         build_pdf_footer(pdf)
         $lcFileName =path || self.pdf_path || "app/pdf_output/#{file_name}.pdf"
         $lcFileNameIni =file_name
+        $lcFilezip =path || self.pdf_path || "/#{file_name}.zip"
+        
       end
     end
 

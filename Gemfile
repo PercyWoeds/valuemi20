@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gemspec
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -29,6 +28,12 @@ gem 'devise'
 gem 'protected_attributes'
 
 gem 'will_paginate', '~> 3.0.6'
+
+gem "prawn", "~> 1.3"
+gem 'prawn-table', '~> 0.2.2'
+gem 'numbers_and_words', '~> 0.10.5'
+gem 'savon', '~> 2.11', '>= 2.11.1'
+gem 'rubyzip', '~> 1.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

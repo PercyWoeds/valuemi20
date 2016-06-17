@@ -23,6 +23,12 @@ class InvoiceGenerator < DocumentGenerator
     generate_documents2(invoice, pdf)
     invoice
   end
+  
+  def with_igv3(pdf=false)
+    invoice = document_class.new(data(@items))
+    generate_documents3(invoice, pdf)
+    invoice
+  end
 
   def exempt(pdf=false)
     invoice_data = data

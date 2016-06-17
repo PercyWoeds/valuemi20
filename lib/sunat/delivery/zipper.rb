@@ -18,6 +18,7 @@ module SUNAT
           zipfile.get_output_stream(name) { |f| f.puts body }
         end
         File.read(zipfile_name)
+        
       end
 
       def read_string(zip_string)
