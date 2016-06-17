@@ -13,7 +13,7 @@ before_action :authenticate_user!
             @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente order by numero desc')
         else            
             @likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=@likes.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where numero like ? ',params[:search]])
+            @invoices=@likes.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"])
         end        
     end
 
