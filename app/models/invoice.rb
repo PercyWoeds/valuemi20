@@ -1,4 +1,5 @@
 class Invoice < ActiveRecord::Base
+ self.per_page = 10
 
 	belongs_to :client, :class_name=> 'Client',    :foreign_key=> 'cliente'
 
