@@ -9,7 +9,9 @@ class ActionCorreo < ApplicationMailer
 		  #attachments['Factura'] = File.read($lcFileName1)
 		  email_with_name = "Factura Enviada <factura-electronica@hidrotransp.com>"	
 
-		  attachments['Factura.pdf'] =  open($lcFileName1).read
+		  attachments[$lcFileName] =  open($lcFileName1).read
+
+		  attachments[$lcFilezip] =  open($lcFile2).read
 
 		  mail(to: [$lcMail,$lcMail2,$lcMail3],  bcc:email_with_name, subject: 'Factura Electrónica : '+$lcFileNameIni )
 

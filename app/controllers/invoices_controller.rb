@@ -162,9 +162,11 @@ before_action :authenticate_user!
         end 
         $lcGuiaRemision =""
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
         
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
+        $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
+        
         ActionCorreo.bienvenido_email(@invoice).deliver
         
     end
