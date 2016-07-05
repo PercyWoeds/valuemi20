@@ -70,16 +70,22 @@ before_action :authenticate_user!
 
           $lcPercentIgv  =18000   
           $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0004185/SUNAT del 26/10/2015 "
+        $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
+Banco SCOTIABANK Cuenta Corriente soles : 000-2681110 CCI : 009-702-000002681110-29
+BBVA CONTINENTAL Cuenta Corriente soles : 0011-0244-01-00023293 CCI : 011 244 000100023293 12
+Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 00219100223112804551"
+
           $lcScop1       =""   
           $lcScop2       =""
           $lcCantScop1   =""
           $lcCantScop2   =""  
-          $lcAutorizacion1=$lcAutorizacion +' Datos Adicionales GUIA DE REMISION : '+ $lcGuiaRemision
-                
+          $lcAutorizacion1=$lcAutorizacion +$lcCuentas
+                                
     end
 
     def sendsunat
        
+    
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
