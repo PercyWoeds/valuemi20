@@ -175,6 +175,8 @@ require 'active_support/number_helper'
       #invoice_headers = [["Fecha de emisión :", "2015-12-09"]]
       invoice_headers << ["Tipo de moneda : ", Currency.new(document_currency_code).singular_name.upcase]
       invoice_headers << ["Guia Remision :", $lcGuiaRemision]
+      invoice_headers << ["Placa :", $lcPlaca]
+
       invoice_headers
     end
 

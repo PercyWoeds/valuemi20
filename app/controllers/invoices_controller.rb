@@ -65,6 +65,7 @@ before_action :authenticate_user!
     
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
+        $lcPlaca =@invoice.codplaca10
         #$lcAutorizacion =""
         #$lcAutorizacion1=""
 

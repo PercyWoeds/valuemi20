@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530215202) do
+ActiveRecord::Schema.define(version: 20160712214555) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "vcodigo"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160530215202) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "guia"
+    t.string   "codplaca10"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,7 +67,16 @@ ActiveRecord::Schema.define(version: 20160530215202) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-  
+  create_table "voided_invoices", force: :cascade do |t|
+    t.string   "numero"
+    t.string   "serie"
+    t.string   "factura"
+    t.date     "fecha"
+    t.text     "texto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "voideds", force: :cascade do |t|
     t.string   "numero"
     t.string   "serie"
