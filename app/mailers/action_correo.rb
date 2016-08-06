@@ -1,5 +1,5 @@
 class ActionCorreo < ApplicationMailer
-  	  default from: 'factura-electronica@hidrotransp.com'
+  	  default from: 'factura-electronica@codiscom.com'
 
 
 	  def bienvenido_email(invoice)
@@ -7,7 +7,7 @@ class ActionCorreo < ApplicationMailer
 		   @url  = 'http://www.apple.com'
 		  #attachments["Factura"] = File.read("#{$lcFileName1}")
 		  #attachments['Factura'] = File.read($lcFileName1)
-		  email_with_name = "Factura Enviada <factura-electronica@hidrotransp.com>"	
+		  email_with_name = "Factura Enviada <factura-electronica@codiscom.com>"	
 
 		  attachments[$lcFileName] =  open($lcFileName1).read
 
