@@ -12,7 +12,7 @@ SUNAT.configure do |config|
   config.signature do |s|
     s.party_id    = "20545339006"
     s.party_name  = "CODISCOM S.A.C."
-    s.cert_file   = File.join(Dir.pwd, './app/keys', 'certicado.crt')
+    s.cert_file   = File.join(Dir.pwd, './app/keys', 'certificado.crt')
     s.pk_file     = File.join(Dir.pwd, './app/keys', 'CERTIFICADO.key') 
   end
 
