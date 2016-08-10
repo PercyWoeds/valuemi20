@@ -3,6 +3,8 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sunat/version'
 
+require 'composite_primary_keys'    
+
 Gem::Specification.new do |spec|
   spec.name          = "sunat"
   spec.version       = SUNAT::VERSION

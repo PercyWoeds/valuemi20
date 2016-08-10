@@ -6,17 +6,19 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>   
   <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+   
 
 </head>
 <body>
   <div id="sidebar">
-  <!--
+
     <div id="logo">
       <%= link_to invoices_path do %>
-        <%= image_tag "logo.PNG" %>
+        <%= image_tag "" %>
       <% end %>
     </div>   
-   --!>
+  
 
 
     <ul>
@@ -58,6 +60,13 @@
       <%= content_tag(:div, msg, class: "alert") %>
     <% end %>
     
+    <!-- //Navbar -->
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% elsif alert %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+
     <%= yield %>
     
   </div>

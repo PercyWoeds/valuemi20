@@ -1,7 +1,7 @@
 class Invoice < ActiveRecord::Base
  self.per_page = 10
-
-	belongs_to :client, :class_name=> 'Client',    :foreign_key=> 'cliente'
+  belongs_to :client, :class_name=> 'Client',    :foreign_key=> 'cliente'
+  
 
 	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa,:codplaca10
 
