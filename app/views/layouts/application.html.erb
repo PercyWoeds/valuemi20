@@ -60,13 +60,6 @@
       <%= content_tag(:div, msg, class: "alert") %>
     <% end %>
     
-    <!-- //Navbar -->
-  <% if notice %>
-    <p class="notice"><%= notice %></p>
-  <% elsif alert %>
-    <p class="alert"><%= alert %></p>
-  <% end %>
-
     <%= yield %>
     
   </div>
