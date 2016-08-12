@@ -11,10 +11,16 @@ class InvoicesController < ApplicationController
     def search
         if params[:search].blank?
             #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente order by numero desc').paginate(:page => params[:page])
+            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            LEFT JOIN mailings ON invoices.numero = mailings.numero
+            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
+            order by numero desc').paginate(:page => params[:page])
         else            
             #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
+            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            LEFT JOIN mailings ON invoices.numero = mailings.numero
+            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
+            order by numero desc where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
         end        
     end
 
