@@ -41,7 +41,7 @@ class DocumentGenerator
     
     if document.valid?
      begin
-     document.deliver!
+      document.deliver!
       rescue Savon::SOAPFault => e
       puts "Error generating document for case #{group_case} in group #{group}: #{e}"      
       $aviso = ""

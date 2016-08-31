@@ -220,10 +220,8 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         end         
         
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
-        #$lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
-        $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
-        puts $lcFile2 
-        #send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
+        $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip    
+    
         send_file("#{$lcFile2}",:type =>'application/zip', :disposition => 'inline') 
         @@document_serial_id =""
         $aviso=""
