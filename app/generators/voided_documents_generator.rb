@@ -29,9 +29,7 @@ class VoidedDocumentsGenerator < DocumentGenerator
     
     lcNumeroFactura=$lg_serial_id2
 
-    puts lcNumeroFactura
-    puts $lcFileName1
-
+    
     voided_documents_data = {reference_date: Date.new(lcanio,lcmes,lcdia), issue_date: issue_date, id: SUNAT::VoidedDocuments.generate_id(issue_date, correlative_number), correlative_number: correlative_number,
                          lines:[{line_id: "1", document_type_code: "01", document_serial_id: "FF01", document_number_id: lcNumeroFactura  , void_reason: "Error en datos consignados" }]}
 
