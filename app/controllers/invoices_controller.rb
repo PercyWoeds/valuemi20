@@ -199,7 +199,7 @@ before_action :authenticate_user!
         require './app/generators/daily_receipt_summary_generator'
         require './app/generators/voided_documents_generator'
 
-        SUNAT.environment = :production
+        SUNAT.environment = :test 
         files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
 
         files_to_clean.each do |file|
