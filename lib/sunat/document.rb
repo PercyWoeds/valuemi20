@@ -117,9 +117,24 @@ module SUNAT
         
       end
     end
+    def build_pdf2(path=false)
+      Prawn::Document.generate(path || self.pdf_path || "app/pdf_output/#{file_name}.pdf") do |pdf|
+        pdf.font "Helvetica"
+        pdf = build_pdf_header(pdf)
+        pdf = build_pdf_body(pdf)
+        
+        $lcFileName =path || self.pdf_path || "app/pdf_output/#{file_name}.pdf"
+        $lcFileNameIni =file_name
+        $lcFilezip =path || self.pdf_path || "/#{file_name}.zip"
+        
+      end
+    end
 
     def to_pdf(path=false)
       build_pdf(path)
+    end
+    def to_pdf2(path=false)
+      build_pdf2(path)
     end
 
     def customization_id

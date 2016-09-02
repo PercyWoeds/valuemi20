@@ -12,11 +12,6 @@ class VoidedDocumentsGenerator < DocumentGenerator
     lcanio= $lg_fecha.year
     lcmes = $lg_fecha.mon
     lcdia = $lg_fecha.mday
-    puts $lg_fecha.class
-    puts lcanio
-    puts lcmes
-    puts lcdia
-
 
 
     @voidedlast = Voided.find(1)
@@ -39,7 +34,7 @@ class VoidedDocumentsGenerator < DocumentGenerator
     voided_document
     
     File::open("voided_document.xml", "w") { |file| file.write(voided_document.to_xml) }
-    voided_document.to_pdf
+    voided_document.to_pdf2
     
   end
 
