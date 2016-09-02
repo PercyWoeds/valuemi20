@@ -69,7 +69,7 @@ module SUNAT
           wsse_auth:          [login, password],
           ssl_cert_file:      cert_file,
           ssl_cert_key_file:  pk_file,
-          ssl_version:        :SSLv3
+          ssl_version:        :SSLv23
         )
       end
 
