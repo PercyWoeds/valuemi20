@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mailings
   resources :clients
   resources :clients
   resources :clients
