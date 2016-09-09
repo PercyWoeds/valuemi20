@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  td: MyString
+  serie: MyString
+  numero: MyString
+  ruc: MyString
+  flag: false
+  flag1: MyString
+
+two:
+  td: MyString
+  serie: MyString
+  numero: MyString
+  ruc: MyString
+  flag: false
+  flag1: MyString

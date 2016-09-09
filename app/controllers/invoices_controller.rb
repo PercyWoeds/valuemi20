@@ -1,21 +1,29 @@
 class InvoicesController < ApplicationController
 before_action :authenticate_user!
 
-	def index        
-       # @likes= Invoice.page(params[:page]).per_page(15)
-       # @invoices=@likes.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente order by numero desc')
-       @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente order by numero desc').paginate(:page => params[:page])
+	def   index             
+         @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            LEFT JOIN mailings ON invoices.numero = mailings.numero
+            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
+            order by numero desc').paginate(:page => params[:page])
     end     
     
     def search
         if params[:search].blank?
             #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente order by numero desc').paginate(:page => params[:page])
+            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            LEFT JOIN mailings ON invoices.numero = mailings.numero
+            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
+            order by numero desc').paginate(:page => params[:page])
         else            
             #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2 from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
+            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            LEFT JOIN mailings ON invoices.numero = mailings.numero
+            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
+            order by numero desc where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
         end        
     end
+
 
 	def import
        Invoice.delete_all 
@@ -29,11 +37,12 @@ before_action :authenticate_user!
         $lg_fecha       = @invoice.fecha 
         $lg_serial_id   = @invoice.numero.to_i
         $lg_serial_id2  = @invoice.numero
+
         $lcCantidad     = @invoice.cantidad   
         $lcClienteInv   = @invoice.cliente   
         $lcRuc          = @list[0].ruc
         
-        #$lcMail         = "zportal@hidrotransp.com"
+        $lcTd           = @list[0].td 
         $lcMail         = @list[0].mailclient
         $lcMail2        = @list[0].mailclient2
         $lcMail3        = @list[0].mailclient3
@@ -65,6 +74,8 @@ before_action :authenticate_user!
     
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
+        $lcPlaca =@invoice.codplaca10
+        $lcDocument_serial_id =@invoice.numero 
         #$lcAutorizacion =""
         #$lcAutorizacion1=""
 
@@ -176,6 +187,9 @@ before_action :authenticate_user!
         $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
         
         ActionCorreo.bienvenido_email(@invoice).deliver
+
+        @mailing = Mailing.new(:td =>$lcTd, :serie => 'FF01', :numero => $lcDocument_serial_id, :ruc=>$lcRuc, :flag1 => '1')
+        @mailing.save
         
     end
 
