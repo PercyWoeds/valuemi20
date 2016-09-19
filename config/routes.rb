@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :clients
   resources :clients
 
-
-
   devise_for :users
 
 
@@ -21,8 +19,6 @@ Rails.application.routes.draw do
     collection { post :xml }
     collection { post :sendmail }
     collection { get :search   }
-
-
    end 
    
    resources :clients do
@@ -31,11 +27,8 @@ Rails.application.routes.draw do
    end 
 
    resources :voideds do
-    collection { post :anular }
-  
+    collection { post :anular }  
    end 
-
-
 
    get '/about', to: 'layouts#about'
 
@@ -45,10 +38,7 @@ Rails.application.routes.draw do
     end
    end
 
-
-   
-
-   root 'invoices#index'
+  root 'invoices#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

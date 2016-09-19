@@ -176,7 +176,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         files_to_clean.each do |file|
           File.delete(file)
         end 
-        $lcGuiaRemision =""
+
         
         case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
         
@@ -187,7 +187,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
     
         @mailing = Mailing.new(:td =>$lcTd, :serie => 'FF01', :numero => $lcDocument_serial_id, :ruc=>$lcRuc, :flag1 => '1')
         @mailing.save
-
+        $lcGuiaRemision =""
              
 
     end
