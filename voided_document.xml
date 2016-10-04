@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<VoidedDocuments xmlns="urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:stat="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatusCode-1.0" xmlns:udt="urn:un:unece:uncefact:data:draft:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><ds:Signature Id="IDSignKG"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>2whmdaFU0KUL5G52stn2Dq7i1f8=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>SeQ3KyrlbgZMG0Dx2lutFeEIiNN+goDF474n2qBjEzQa6V+xbStpyHM1Ve8V3Jo2MIKXOjBsSVdNzhwmPeuksFJVywaw5DAjPnVmxdpY+GrUKqdqGRdgd/NvIlxJAhX3xO/0XZhHbCe4Rvm+fGrw/QYzkWOADSJ7lRBFOFLWEI9rlCVwC3947puHE7bBm5+LNzzfuWu1mp1bxz/q1i1qb18BLQic4j4hBi7u47U32HaizGCDSVD+bvuHYOMfPgoGuh8cmonoiKeJrDH1IdshI0arf321wl7whoYJ6IahGCPYi0R3Y/tcJvqa0trcx4J5nxG7/SFwa67K5FmeHPiIqA==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509SubjectName>C=BE,O=GlobalSign nv-sa,CN=GlobalSign PersonalSign 2 CA - G3</ds:X509SubjectName><ds:X509Certificate>
+MIIFiDCCBHCgAwIBAgIMM2J6sc9XNZwpVPb+MA0GCSqGSIb3DQEBBQUAMFQxCzAJ
+BgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFH
+bG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0gRzMwHhcNMTYwNjIxMTkzNzU1
+WhcNMTcwNjIyMTkzNzU1WjCB3DELMAkGA1UEBhMCUEUxDTALBgNVBAgTBExJTUEx
+DTALBgNVBAcTBExJTUExFTATBgNVBAoTDENPRElTQ09NIFNBQzElMCMGA1UECxMc
+RE5JIDQxMTk5NjYyIFJVQyAyMDU0NTMzOTAwNjElMCMGA1UECxMcRE5JIDQxMTk5
+NjYyIFJVQyAyMDU0NTMzOTAwNjEiMCAGA1UEAxMZTUFEUklEIFJFRlVMSU8gSFVH
+TyBERU5JUzEmMCQGCSqGSIb3DQEJARYXenBvcnRhbEBoaWRyb3RyYW5zcC5jb20w
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCZOIdYZO0WpJ4GEmR3TpoW
+z+9wiXrO4R9rGxuc9ZaFc2uCN+jzCQLsGNm5LS6aYQWO1qBNwlboKvXxv9Zr2sTc
+uEZhV6CIGr9k6FGnV0/U9fcaPL4nvLElMdNKeTnsh+sWRF7DCBKvKV91S6pBZWi+
+tgMO5fDq06Z9ETZO+eR1JBYNFTAxmtL9JNxBdhNvQmrgIdusc9Sh0mJaK2Q0VJew
+gai3IdahL5hvDH6PP7WDqoT95GMArl7Jnen4g57xWfBqVmmCgrGDQOTYxGeq0XbD
+QUzj+EMLjgUcOxPlKWRIeKyAZYfM+fa6nqdmuj6XLsJsPsyRuBf56sWM9/NV68rJ
+AgMBAAGjggHPMIIByzAOBgNVHQ8BAf8EBAMCBaAwgZYGCCsGAQUFBwEBBIGJMIGG
+MEkGCCsGAQUFBzAChj1odHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2Vy
+dC9nc3BlcnNvbmFsc2lnbjJnM29jc3AuY3J0MDkGCCsGAQUFBzABhi1odHRwOi8v
+b2NzcDIuZ2xvYmFsc2lnbi5jb20vZ3NwZXJzb25hbHNpZ24yZzMwTQYDVR0gBEYw
+RDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
+bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwQwYDVR0fBDwwOjA4oDag
+NIYyaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9ncy9nc3BlcnNvbmFsc2lnbjJn
+My5jcmwwIgYDVR0RBBswGYEXenBvcnRhbEBoaWRyb3RyYW5zcC5jb20wHQYDVR0l
+BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMB0GA1UdDgQWBBQStNM3230eaSZrWAEb
+CrQcgWUYNTAfBgNVHSMEGDAWgBRkN5W3gUTjWp14LLIDUTmdvQHJUTANBgkqhkiG
+9w0BAQUFAAOCAQEAdpXC+PeqY2Z+5tyMOPcAt1R8Jk13Cpc6p6zZ41Qf8c2Gj8QZ
+46H0uZeW7svTuIt+YVzVUDceCLFqyd7tERIncdHppHDSYu/1V6Bg17aJpvPkLDE3
+sbSZ7GlLAPyGXzfTzho1DoakN+f9vnVlPQaoZvP/3DQhJjSENr/5MWqsql12ALiA
+sb7y0DfXQmpTBEnzFv6KsjopXR5CnzODxLN/bfY3RRZ+VPDs2CiQK8lKYJeo5ytH
+hAGpO+o2UMlBvAsh6ZOL1qyzD+b2hqOkZf1+pdONsrXPRlZwDZKCHy7Y0n/TRh9n
+xejq5QrfjtcKDF34pZ/x4oFOjtMfaOPbls6mqw==
+
+</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature></ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+  <cbc:CustomizationID>1.0</cbc:CustomizationID>
+  <cbc:ID>RA-20160926-2</cbc:ID>
+  <cbc:ReferenceDate>2016-09-26</cbc:ReferenceDate>
+  <cbc:IssueDate>2016-09-26</cbc:IssueDate>
+  <cac:Signature>
+    <cbc:ID>IDSignKG</cbc:ID>
+    <cac:SignatoryParty>
+      <cac:PartyIdentification>
+        <cbc:ID>20545339006</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>CODISCOM S.A.C.</cbc:Name>
+      </cac:PartyName>
+    </cac:SignatoryParty>
+    <cac:DigitalSignatureAttachment>
+      <cac:ExternalReference>
+        <cbc:URI>#signatureKG</cbc:URI>
+      </cac:ExternalReference>
+    </cac:DigitalSignatureAttachment>
+  </cac:Signature>
+  <cac:AccountingSupplierParty>
+    <cbc:CustomerAssignedAccountID>20545339006</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PartyName>
+        <cbc:Name>HUGO DENIS MADRID REFULIO</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:ID>150117</cbc:ID>
+        <cbc:StreetName>CL.IGNACIO TOROTE NRO.515 DPTO 202 URB. EL TREBOL</cbc:StreetName>
+        <cbc:CitySubdivisionName/>
+        <cbc:CityName>LIMA</cbc:CityName>
+        <cbc:CountrySubentity/>
+        <cbc:District>1RA. ETAPA LOS OLIVOS</cbc:District>
+        <cac:Country>
+          <cbc:IdentificationCode>PE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>CODISCOM S.A.</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <sac:VoidedDocumentsLine>
+    <cbc:LineID>1</cbc:LineID>
+    <cbc:DocumentTypeCode>01</cbc:DocumentTypeCode>
+    <sac:DocumentSerialID>FF01</sac:DocumentSerialID>
+    <sac:DocumentNumberID>000043</sac:DocumentNumberID>
+    <sac:VoidReasonDescription>Error en datos consignados</sac:VoidReasonDescription>
+  </sac:VoidedDocumentsLine>
+</VoidedDocuments>
