@@ -6,7 +6,8 @@ class Invoice < ActiveRecord::Base
 	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa
 
         def self.import(file)
-          CSV.foreach(file.path, headers: true) do |row|
+          CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
+        
           Invoice.create! row.to_hash 
         end
 

@@ -5,7 +5,7 @@ class Client < ActiveRecord::Base
 	attr_accessible :vcodigo, :vdep, :vdireccion, :vdistrito, :vprov, :vrazon2, :vruc, :mailclient, :mailclient2, :mailclient3
 
       def self.import(file)
-          CSV.foreach(file.path, headers: true) do |row|
+          CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
           Client.create! row.to_hash 
         end
       end       
