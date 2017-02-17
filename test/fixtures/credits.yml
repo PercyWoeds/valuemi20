@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2017-02-17 16:38:36
+  code: MyString
+  nota_id: 1
+  motivo: MyString
+  subtotal: 1.5
+  tax: 1.5
+  total: 1.5
+  moneda_id: 1
+  mod_factura: MyString
+  mod_tipo: 1
+
+two:
+  fecha: 2017-02-17 16:38:36
+  code: MyString
+  nota_id: 1
+  motivo: MyString
+  subtotal: 1.5
+  tax: 1.5
+  total: 1.5
+  moneda_id: 1
+  mod_factura: MyString
+  mod_tipo: 1

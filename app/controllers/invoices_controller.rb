@@ -11,7 +11,8 @@ class InvoicesController < ApplicationController
     def search
         if params[:search].blank?
             #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 
+            from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
             LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
             order by numero desc').paginate(:page => params[:page])
@@ -32,7 +33,7 @@ class InvoicesController < ApplicationController
     def show
     	@invoice        = Invoice.find(params[:id])
         @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient,clients.mailclient2,clients.mailclient3  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
-        
+            
         $lg_fecha       = @invoice.fecha 
         $lg_serial_id   = @invoice.numero.to_i
         $lg_serial_id2  = @invoice.numero

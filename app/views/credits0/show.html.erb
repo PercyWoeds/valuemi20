@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @credit.fecha %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @credit.code %>
+</p>
+
+<p>
+  <strong>Nota:</strong>
+  <%= @credit.nota_id %>
+</p>
+
+<p>
+  <strong>Motivo:</strong>
+  <%= @credit.motivo %>
+</p>
+
+<p>
+  <strong>Subtotal:</strong>
+  <%= @credit.subtotal %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @credit.tax %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @credit.total %>
+</p>
+
+<p>
+  <strong>Moneda:</strong>
+  <%= @credit.moneda_id %>
+</p>
+
+<p>
+  <strong>Mod factura:</strong>
+  <%= @credit.mod_factura %>
+</p>
+
+<p>
+  <strong>Mod tipo:</strong>
+  <%= @credit.mod_tipo %>
+</p>
+
+<%= link_to 'Edit', edit_credit_path(@credit) %> |
+<%= link_to 'Back', credits_path %>

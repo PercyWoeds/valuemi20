@@ -1,0 +1,54 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %>
+</div>
+
+<h1>
+  <%= image_tag("invoice_48.png", :class => "vmiddle") %>
+  Facturacion 
+  <% if @customer %>
+    for customer: <%= @customer.name %>
+  <% end %>
+</h1>
+
+<div class="small">
+  <form method="get" action="/companies/facturas/<%= @company.id %>">
+    <strong>Buscar :</strong>
+    <input type="text" name="search" value="<% if @q_org %><%= @q_org %><% end %>" class="small" style="width: 250px;" onclick="$(this).select();" />
+    <input type="submit" value="Find" class="bold small_btn" />
+    <a href="/companies/facturas/<%= @company.id %>" > Limpiar</a>
+  </form>
+</div>
+
+<br />
+<%= render "facturas/list" %>
+<br />
+
+<%= will_paginate @invoices %>  
+
+<div class="button">
+  <%= link_to 'Nueva Factura', "/facturas/new/#{@company.id}" %>  
+  
+  <%= link_to "Download CSV", "/facturas/export2/#{@company.id}" %>
+
+  <%= link_to "Comprob.Fisicos TXT", "/facturas/export/#{@company.id}" %> 
+
+  <%= link_to "Export Concar", "/facturas/export3/#{@company.id}" %> 
+
+
+</div>
+</div>
+
+<%= render 'layouts/autocomplete' %>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#ac_customer").autocomplete("/facturas/ac_customers/<%= @company.id %>", {
+			matchSubset: 1,
+			matchContains: 1,
+      selectFirst: false
+    });
+  });
+</script>
