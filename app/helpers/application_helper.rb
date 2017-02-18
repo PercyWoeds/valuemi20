@@ -138,7 +138,7 @@ module ApplicationHelper
   
   # Genera un GUID
   def generate_guid
-      @voidedlast = Voided.find(4)
+      @voidedlast = Voided.find(2)
     correlative_number =@voidedlast.serie + "-"+@voidedlast.numero.to_s
     return correlative_number
   
