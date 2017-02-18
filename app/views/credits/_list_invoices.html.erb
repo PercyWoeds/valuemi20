@@ -1,0 +1,41 @@
+
+
+<h1>
+  <%= image_tag("invoice_48.png", :class => "vmiddle") %>
+
+  Notas 
+  
+</h1>
+
+<div class="small">
+  <form method="get" action="/credits">
+    <strong>Buscar :</strong>
+    <input type="text" name="search" value="<% if @q_org %><%= @q_org %><% end %>" class="small" style="width: 250px;" onclick="$(this).select();" />
+    <input type="submit" value="Find" class="bold small_btn" />
+    <a href="/credits" > Limpiar</a>
+  </form>
+</div>
+
+<br />
+<%= render "credits/list" %>
+<br />
+
+<% if @invoices != nil %>
+<%= will_paginate @invoices %>  
+<% end %>
+<div class="button">
+  <%= link_to 'Nuevo Documento ', "/credits/new" %>    
+</div>
+</div>
+
+<%= render 'layouts/autocomplete' %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#ac_supplier").autocomplete("/credits/ac_suppliers", {
+			matchSubset: 1,
+			matchContains: 1,
+      selectFirst: false
+    });
+  });
+</script>

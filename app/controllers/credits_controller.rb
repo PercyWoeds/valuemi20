@@ -1,51 +1,23 @@
 
+include ApplicationHelper
+
 class CreditsController < ApplicationController
 
-  before_filter :authenticate_user!, :checkServices
-
-  def discontinue  
-    @facturasselect = Factura.find(params[:products_ids])
-    for item in @guiasselect
-        begin
-          a = item.id
-          b = item.remite_id               
-          new_invoice_guia = Deliverymine.new(:mine_id =>$minesid, :delivery_id =>item.id)          
-          new_invoice_guia.save                
-         end              
-    end
-  end  
-  def excel
-
-    @company=Company.find(1)          
-    @fecha1 = params[:fecha1]    
-    @fecha2 = params[:fecha2]
-
-    @facturas_rpt = @company.get_facturas_day(@fecha1,@fecha2)      
-
-    respond_to do |format|
-      format.html    
-        format.xls # { send_data @products.to_csv(col_sep: "\t") }
-    end 
-  end 
-
-  def import
-      Factura.import(params[:file])
-       redirect_to root_url, notice: "Factura importadas."
-  end 
+  before_filter :authenticate_user!
 
 
     # Export invoice to PDF
   def pdf
-    @invoice = Factura.find(params[:id])
+    @invoice = Credit.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to("/facturas/pdf/#{@invoice.id}.pdf") }
+      format.html { redirect_to("/credits/pdf/#{@invoice.id}.pdf") }
       format.pdf { render :layout => false }
     end
   end
   
   # Process an invoice
   def do_process
-    @invoice = Factura.find(params[:id])
+    @invoice =Credit.find(params[:id])
     @invoice[:processed] = "1"
     @invoice.process
     
@@ -55,7 +27,7 @@ class CreditsController < ApplicationController
   
   # Do send invoice via email
   def do_email
-    @invoice = Factura.find(params[:id])
+    @invoice = Credit.find(params[:id])
     @email = params[:email]
     
     Notifier.invoice(@email, @invoice).deliver
@@ -66,12 +38,12 @@ class CreditsController < ApplicationController
   
   # Send invoice via email
   def email
-    @invoice = Factura.find(params[:id])
+    @invoice = Credit.find(params[:id])
     @company = @invoice.company
   end
 
   def do_anular
-    @invoice = Factura.find(params[:id])
+    @invoice = Credit.find(params[:id])
     @invoice[:processed] = "2"
     
     @invoice.anular 
@@ -82,12 +54,9 @@ class CreditsController < ApplicationController
   end
   
   
-
-  
   # List items
   def list_items
-    
-    @company = Company.find(params[:company_id])
+      
     items = params[:items]
     items = items.split(",")
     items_arr = []
@@ -103,7 +72,7 @@ class CreditsController < ApplicationController
         price = parts[2]
         discount = parts[3]
         
-        product = Service.find(id.to_i)
+        product = Product.find(id.to_i)
         product[:i] = i
         product[:quantity] = quantity.to_f
         product[:price] = price.to_f
@@ -123,46 +92,10 @@ class CreditsController < ApplicationController
     render :layout => false
   end
   
-  def list_items2
-    
-    @company = Company.find(params[:company_id])
-    items = params[:items2]
-    items = items.split(",")
-    items_arr = []
-    @guias = []
-    i = 0
-
-    for item in items
-      if item != ""
-        parts = item.split("|BRK|")
-
-        puts parts
-
-        id = parts[0]      
-        product = Delivery.find(id.to_i)
-        product[:i] = i
-
-        @guias.push(product)
-
-
-      end
-      
-      i += 1
-    end
-
-    render :layout => false
-  end 
   # Autocomplete for products
-  def ac_guias
-    procesado='4'
-
-    @guias = Delivery.where(["company_id = ? AND (code LIKE ?)", params[:company_id], "%" + params[:q] + "%"])   
-    render :layout => false
-  end
-  
   # Autocomplete for products
-  def ac_services
-    @products = Service.where(["company_id = ? AND (code LIKE ? OR name LIKE ?)", params[:company_id], "%" + params[:q] + "%", "%" + params[:q] + "%"])
+  def ac_products
+    @products = Product.where(["(code LIKE ? OR name LIKE ?)",  "%" + params[:q] + "%", "%" + params[:q] + "%"])
    
     render :layout => false
   end
@@ -192,326 +125,45 @@ class CreditsController < ApplicationController
   
   # Autocomplete for customers
   def ac_customers
-    @customers = Customer.where(["company_id = ? AND (ruc LIKE ? OR name LIKE ?)", params[:company_id], "%" + params[:q] + "%", "%" + params[:q] + "%"])
+    @customers = Client.where(["(ruc LIKE ? )",  "%" + params[:q] + "%"])
    
     render :layout => false
   end
   
   # Show invoices for a company
   def list_invoices
-    @company = Company.find(params[:company_id])
-    @pagetitle = "#{@company.name} - Invoices"
-    @filters_display = "block"
-    
-    @locations = Location.where(company_id: @company.id).order("name ASC")
-    @divisions = Division.where(company_id: @company.id).order("name ASC")
-    
-    if(params[:location] and params[:location] != "")
-      @sel_location = params[:location]
-    end
-    
-    if(params[:division] and params[:division] != "")
-      @sel_division = params[:division]
-    end
-  
-    if(@company.can_view(current_user))
 
-         @invoices = Factura.all.order('id DESC').paginate(:page => params[:page])
+        @pagetitle = "Notas "
+        
+         @invoices = Credit.all.order('id DESC').paginate(:page => params[:page])
+
+
+
         if params[:search]
-          @invoices = Factura.search(params[:search]).order('id DESC').paginate(:page => params[:page])
+          @invoices = Credit.search(params[:search]).order('id DESC').paginate(:page => params[:page])
         else
-          @invoices = Factura.all.order('id DESC').paginate(:page => params[:page]) 
+          @invoices = Credit.all.order('id DESC').paginate(:page => params[:page]) 
         end
 
     
-    else
-      errPerms()
-    end
   end
   
   # GET /invoices
   # GET /invoices.xml
   def index
-    @companies = Company.where(user_id: current_user.id).order("name")
+
+    
     @path = 'factura'
     @pagetitle = "Facturas"
 
-    @invoicesunat = Invoicesunat.order(:numero)    
-
-    @company= Company.find(1)
 
   end
 
-  def export
-    @company = Company.find(params[:company_id])
-    @facturas  = Factura.all
-  end
-  def export3
-    @company = Company.find(params[:company_id])
-    @facturas  = Factura.all
-  end
-  def export4
-    @company = Company.find(params[:company_id])
-    @facturas  = Factura.all
-  end
-
-  def generar4
-    
-    @company = Company.find(params[:company_id])
-     Csubdiario.delete_all
-     Dsubdiario.delete_all
-
-
-     fecha1 =params[:fecha1]
-     fecha2 =params[:fecha2]
-
-     @facturas = @company.get_facturas_day(fecha1,fecha2)
-
-      $lcSubdiario='05'
-
-      subdiario = Numera.find_by(:subdiario=>'12')
-
-      lastcompro = subdiario.compro.to_i + 1
-      $lastcompro1 = lastcompro.to_s.rjust(4, '0')
-
-        item = fecha1.to_s 
-        parts = item.split("-")        
-        
-        mm    = parts[1]        
-
-      if subdiario
-          nrocompro = mm << $lastcompro1
-      end
-
-
-     for f in @facturas
-        
-        $lcFecha =f.fecha.strftime("%Y-%m-%d")   
-        
-
-
-      newsubdia =Csubdiario.new(:csubdia=>$lcSubdiario,:ccompro=>$lastcompro1,:cfeccom=>$lcFecha, :ccodmon=>"MN",
-        :csitua=>"F",:ctipcam=>"0.00",:cglosa=>f.code,:csubtotal=>f.subtotal,:ctax=>f.tax,:ctotal=>f.total,
-        :ctipo=>"V",:cflag=>"N",:cdate=>$lcFecha ,:chora=>"",:cfeccam=>"",:cuser=>"SIST",
-        :corig=>"",:cform=>"M",:cextor=>"",:ccodane=>f.customer.ruc ) 
-
-        newsubdia.save
-
-      lastcompro = lastcompro + 1
-      $lastcompro1 = lastcompro.to_s.rjust(4, '0')      
-
-      end 
-
-      subdiario.compro = $lastcompro1
-      subdiario.save
-
-      @invoice = Csubdiario.all
-      send_data @invoice.to_csv  , :filename => 'CC0317.csv'
-
-    
-  end
-
-  def generar5
-
-      option =  params[:archivo]
-      puts option
-
-      if option == "Ventas Cabecera"
-
-        @invoice = Csubdiario.all
-        send_data @invoice.to_csv  , :filename => 'CC0317.csv'
-
-      else
-        @invoice = Dsubdiario.all
-        send_data @invoice.to_csv  , :filename => 'CD0317.csv'
-
-        
-      end 
-       
-  end 
-
-  def export2
-    Invoicesunat.delete_all
-
-    @company = Company.find(params[:company_id])
-    @facturas  = Factura.where(:tipo => 1)
-     a = ""
-     
-     lcGuia=""
-    for f in @facturas      
-        @fec =(f.code)
-        parts = @fec.split("-")
-        lcSerie  = parts[0]
-        lcNumero = parts[1]
-        lcFecha  = f.fecha 
-        lcTD = "FT"
-        lcVventa = f.subtotal
-        lcIGV = f.tax
-        lcImporte = f.total 
-        lcFormapago = f.payment.descrip
-        lcRuc = f.customer.ruc         
-        lcDes = f.description
-        lcMoneda = f.moneda_id 
-              
-        for productItem in f.get_products2(f.id)
-
-        lcPsigv= productItem.price
-        lcPsigv1= lcPsigv*1.18
-        lcPcigv = lcPsigv1.round(2)
-        lcCantidad= productItem.quantity
-        lcDescrip = ""
-
-        lcDescrip << productItem.name + "\n"
-
-        lcDescrip << lcDes
-
-        a = ""        
-        lcDes1 = ""
-
-        begin
-
-          a << " GT: "
-
-            for guia in f.get_guias2(f.id)
-
-              a <<  guia.code << " "
-              if guia.description == nil
-                
-              else  
-
-
-                  a << " " << guia.description                   
-
-
-              end   
-              existe1 = f.get_guias_remision(guia.id)
-
-              if existe1.size > 0 
-                a<<  "\n GR:" 
-                for guias in  f.get_guias_remision(guia.id)    
-                   a<< guias.delivery.code<< ", " 
-                end     
-              end      
-
-            end
-              existe2 = f.get_guiasremision2(f.id)
-              if existe2.size > 0
-              a << "\n GR : "
-                for guia in f.get_guiasremision2(f.id)
-                  a << guia.code << " "            
-                end
-              end 
-
-            lcDes1 << a
-            lcComments = ""
-          
-        end
-new_invoice_item= Invoicesunat.new(:cliente => lcRuc, :fecha => lcFecha,:td=>lcTD,
-:serie=>lcSerie,:numero=>lcNumero,:preciocigv => lcPcigv ,:preciosigv=>lcPsigv,:cantidad=>lcCantidad,
-:vventa=>lcVventa,:igv=>lcIGV,:importe => lcImporte,:ruc=>lcRuc,:guia=> lcGuia,:formapago=>lcFormapago,
-:description=>lcDescrip,:comments=> lcComments,:descrip=>lcDes1,:moneda=>lcMoneda )
-new_invoice_item.save
-
-       end  
-    end 
-
-  
-    @invoice = Invoicesunat.all
-    send_data @invoice.to_csv  
-    
-  end
-  
-  def generar
-        
-    @company = Company.find(params[:company_id])
-    @users = @company.get_users()
-    @users_cats = []
-    
-    @pagetitle = "Generar archivo txt"
-    
-    @f =(params[:fecha1])
-
-        parts = @f.split("-")
-        yy = parts[0]
-        mm = parts[1]
-        dd = parts[2]
-
-     @fechadoc=dd+"/"+mm+"/"+yy   
-     @tipodocumento='01'
-    
-    files_to_clean =  Dir.glob("./app/txt_output/*.txt")
-        files_to_clean.each do |file|
-          File.delete(file)
-        end 
-  
-
-    @facturas_all_txt = @company.get_facturas_year_month_day(@f)
-
-
-
-    if @facturas_all_txt
-      out_file = File.new("#{Dir.pwd}/app/txt_output/20424092941-RF-#{dd}#{mm}#{yy}-01.txt", "w")      
-        for factura in @facturas_all_txt 
-            parts = factura.code.split("-")
-            @serie     =parts[0]
-            @nrodocumento=parts[1]
-
-            out_file.puts("7|#{@fechadoc}|#{@tipodocumento}|#{@serie}|#{@nrodocumento}||6|#{factura.customer.ruc}|#{factura.customer.name}|#{factura.subtotal}|0.00|0.00|0.00|#{factura.tax}|0.00|#{factura.total}||||\n")
-                    
-        end 
-    out_file.close
-    end 
-    
-    
-  end
-
-  def generar3
-        
-    @company = Company.find(params[:company_id])
-    @users = @company.get_users()
-    @users_cats = []
-    
-    @pagetitle = "Generar archivo"
-    
-    @f =(params[:fecha1])
-    @f2 =(params[:fecha1])
-
-        parts = @f.split("-")
-        yy = parts[0]
-        mm = parts[1]
-        dd = parts[2]
-
-     @fechadoc=dd+"/"+mm+"/"+yy   
-     @tipodocumento='01'
-    
-    files_to_clean =  Dir.glob("./app/txt_output/*.txt")
-        files_to_clean.each do |file|
-          File.delete(file)
-        end 
-
-    @facturas_all_txt = @company.get_facturas_year_month_day2(@f,@f2)
-
-    if @facturas_all_txt
-      out_file = File.new("#{Dir.pwd}/app/txt_output/20424092941-RF-#{dd}#{mm}#{yy}-01.txt", "w")      
-        for factura in @facturas_all_txt 
-            parts = factura.code.split("-")
-            @serie     =parts[0]
-            @nrodocumento=parts[1]
-
-            out_file.puts("7|#{@fechadoc}|#{@tipodocumento}|#{@serie}|#{@nrodocumento}||6|#{factura.customer.ruc}|#{factura.customer.name}|#{factura.subtotal}|0.00|0.00|0.00|#{factura.tax}|0.00|#{factura.total}||||\n")
-                    
-        end 
-    out_file.close
-    end 
-    
-    
-  end
-    
 
   # GET /invoices/1
   # GET /invoices/1.xml
   def show
-    @invoice = Factura.find(params[:id])
+    @invoice = Credit.find(params[:id])
     @customer = @invoice.customer
     
   end
@@ -522,24 +174,14 @@ new_invoice_item.save
   def new
     @pagetitle = "Nueva factura"
     @action_txt = "Create"
-    
-    @invoice = Factura.new
-    @invoice[:code] = "#{generate_guid3()}"
+
+    @notas = Notum.all 
+    @products = Product.all 
+
+    @invoice = Credit.new
+    @invoice[:code] = "#{generate_guid()}"
     @invoice[:processed] = false
     
-    @company = Company.find(params[:company_id])
-    @invoice.company_id = @company.id
-    
-    @locations = @company.get_locations()
-    @divisions = @company.get_divisions()
-    @payments = @company.get_payments()
-    @services = @company.get_services()
-    @deliveryships = @invoice.my_deliverys 
-    @tipofacturas = @company.get_tipofacturas() 
-    @monedas = @company.get_monedas()
-
-    @ac_user = getUsername()
-    @invoice[:user_id] = getUserId()
   end
 
   # GET /invoices/1/edit
@@ -547,18 +189,18 @@ new_invoice_item.save
     @pagetitle = "Edit invoice"
     @action_txt = "Update"
     
-    @invoice = Factura.find(params[:id])
-    @company = @invoice.company
+    @invoice = Credit.find(params[:id])    
+
     @ac_customer = @invoice.customer.name
     @ac_user = @invoice.user.username
+
     @payments = @company.get_payments()    
     @services = @company.get_services()
     @deliveryships = @invoice.my_deliverys 
 
     @products_lines = @invoice.products_lines
     
-    @locations = @company.get_locations()
-    @divisions = @company.get_divisions()
+    
   end
 
   # POST /invoices
@@ -569,14 +211,10 @@ new_invoice_item.save
     
     items = params[:items].split(",")
 
-    items2 = params[:items2].split(",")
 
-    @invoice = Factura.new(factura_params)
-    
-    @company = Company.find(params[:factura][:company_id])
-    
-    @locations = @company.get_locations()
-    @divisions = @company.get_divisions()
+    @invoice = Credit.new(factura_params)
+        
+
     @payments = @company.get_payments()    
     @services = @company.get_services()
 
@@ -589,17 +227,9 @@ new_invoice_item.save
     end
     
     @invoice[:total] = @invoice[:subtotal] + @invoice[:tax]
-    @invoice[:balance] = @invoice[:total]
-    @invoice[:pago] = 0
-    @invoice[:charge] = 0
     
-
     
-    if(params[:factura][:user_id] and params[:factura][:user_id] != "")
-      curr_seller = User.find(params[:factura][:user_id])
-      @ac_user = curr_seller.username
-    end
-
+    
     respond_to do |format|
       if @invoice.save
         # Create products for kit
@@ -628,7 +258,7 @@ new_invoice_item.save
     
     items = params[:items].split(",")
     
-    @invoice = Factura.find(params[:id])
+    @invoice = Credit.find(params[:id])
     @company = @invoice.company
     @payments = @company.get_payments()    
     if(params[:ac_customer] and params[:ac_customer] != "")
@@ -638,10 +268,7 @@ new_invoice_item.save
     end
     
     @products_lines = @invoice.products_lines
-    
-    @locations = @company.get_locations()
-    @divisions = @company.get_divisions()
-    
+        
     @invoice[:subtotal] = @invoice.get_subtotal(items)
     @invoice[:tax] = @invoice.get_tax(items, @invoice[:customer_id])
     @invoice[:total] = @invoice[:subtotal] + @invoice[:tax]
@@ -667,7 +294,7 @@ new_invoice_item.save
   # DELETE /invoices/1
   # DELETE /invoices/1.xml
   def destroy
-    @invoice = Factura.find(params[:id])
+    @invoice = Credit.find(params[:id])
     company_id = @invoice[:company_id]
     if @invoice.destroy
       @invoice.delete_guias()
@@ -1232,7 +859,7 @@ new_invoice_item.save
 
 
   private
-  def factura_params
+  def credit_params
     params.require(:factura).permit(:company_id,:location_id,:division_id,:customer_id,:description,:comments,:code,:subtotal,:tax,:total,:processed,:return,:date_processed,:user_id,:payment_id,:fecha,:preciocigv,:tipo,:observ,:moneda_id)
   end
 

@@ -138,11 +138,10 @@ module ApplicationHelper
   
   # Genera un GUID
   def generate_guid
-    require 'digest/md5'
-    
-    hash = Digest::MD5.hexdigest(Time.now.to_s)
-    hash = hash[0..5].upcase
-    return hash
+      @voidedlast = Voided.find(4)
+    correlative_number =@voidedlast.serie + "-"+@voidedlast.numero.to_s
+    return correlative_number
+  
   end
   
   # Regresa extensiones para imagenes

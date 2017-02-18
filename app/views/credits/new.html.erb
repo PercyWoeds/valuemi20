@@ -1,12 +1,7 @@
-<div class="breadcrumbs">
-  <%= link_to "My companies", "/companies" %> &raquo;
-  <%= link_to @company.name, @company %> &raquo;
-  <%= link_to "Invoices", "/companies/facturas/#{@company.id}" %>
-</div>
 
 <h1>
   <%= image_tag("invoice_48.png", :class => "vmiddle") %>
-  Nueva factura
+  Nueva Nota
 </h1>
 
 <p>
@@ -19,5 +14,5 @@
 <%= hr() %>
 
 <div class="button">
-  <%= link_to 'Back', "/companies/facturas/#{@company.id}" %>
+  <%= link_to 'Back', "/credits" %>
 </div>

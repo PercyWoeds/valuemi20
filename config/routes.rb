@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :notacredits
+  resources :products
+  resources :nota
   resources :credits
   resources :mailings
   resources :clients
@@ -12,6 +15,18 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
+  resources :notacredits do
+    collection { post :import }
+    collection { post :sendsunat }
+    collection { post :print }
+    collection { post :xml }
+    collection { post :sendmail }
+    collection { get :search   }
+
+
+  end 
+
 
    resources :invoices do
     collection { post :import }

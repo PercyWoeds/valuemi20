@@ -18,7 +18,7 @@
 
 <%= hr() %>
 
-<form method="post" action="/facturas/do_email/<%= @invoice.id %>">
+<form method="post" action="/credits/do_email/<%= @invoice.id %>">
   <strong>Email:</strong>
   <input type="text" name="email" value="<%= @invoice.customer.email %>" onclick="$(this).select();" />
   <input type="submit" value="Send" class="bold" />
@@ -27,6 +27,6 @@
 <%= hr() %>
 
 <div class="button">
-  <%= link_to 'Show invoice', @invoice %>
-  <%= link_to 'Back', "/companies/facturas/#{@company.id}" %>
+  <%= link_to 'Ver', @invoice %>
+  <%= link_to 'Regresar', "/companies/facturas/#{@company.id}" %>
 </div>

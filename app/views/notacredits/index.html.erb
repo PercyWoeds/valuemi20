@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listado Nota </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Code</th>
+      <th>Nota</th>
+      <th>Motivo</th>
+      <th>Subtotal</th>
+      <th>Tax</th>
+      <th>Total</th>
+      <th>Moneda</th>
+      <th>Mod factura</th>
+      
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notacredits.each do |notacredit| %>
+      <tr>
+        <td><%= notacredit.fecha %></td>
+        <td><%= notacredit.code %></td>
+        <td><%= notacredit.nota_id %></td>
+        <td><%= notacredit.motivo %></td>
+        <td><%= notacredit.subtotal %></td>
+        <td><%= notacredit.tax %></td>
+        <td><%= notacredit.total %></td>
+        <td><%= notacredit.moneda_id %></td>
+        <td><%= notacredit.mod_factura %></td>
+      
+        <td><%= link_to 'Show', notacredit %></td>
+        <td><%= link_to 'Edit', edit_notacredit_path(notacredit) %></td>
+        <td><%= link_to 'Destroy', notacredit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Nota ', new_notacredit_path %>
