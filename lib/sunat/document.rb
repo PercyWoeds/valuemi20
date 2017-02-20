@@ -104,6 +104,7 @@ module SUNAT
 
     def build_pdf(path=false)
       Prawn::Document.generate(path || self.pdf_path || "app/pdf_output/#{file_name}.pdf") do |pdf|
+      
         pdf.font "Helvetica"
         pdf = build_pdf_header(pdf)
         pdf = build_pdf_body(pdf)
