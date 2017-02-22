@@ -15,7 +15,16 @@ class NotacreditsController < ApplicationController
   def show
 
         @invoice        = Notacredit.find(params[:id])
-        $lg_fecha       = @invoice.fecha         
+        $lg_fecha       = @invoice.fecha
+        $lg_fecha1      = $lg_fecha.to_s
+
+          parts = $lg_fecha1.split("-")
+          $aa = parts[0].to_i
+          $mm = parts[1].to_i        
+          $dd = parts[2].to_i        
+          puts $dd 
+          puts $mm
+          puts $aa 
 
          parts = @invoice.code.split("-")        
           id = parts[0]
@@ -66,7 +75,7 @@ class NotacreditsController < ApplicationController
 
         #@clienteName1   = Client.where("vcodigo = ?",params[ :$lcClienteInv ])        
         $lcClienteName = ""
-    
+        $lcDescrip      = "ANULACION DE FACTURA "    
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =""
         $lcPlaca =""
@@ -95,7 +104,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
     @customers = Client.all.order(:vrazon2)
     @notacredit[:code] = "#{generate_guid()}"
     @notacredit[:processed] = false
-  
+    @edit =true 
 
   end
 
@@ -120,14 +129,14 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         end 
 
       # Group 1
-        credit_note_data = { issue_date: $Date.new(2017,02,02), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
+        credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
                              billing_reference: {id: $lcBillingReference, document_type_code: "01"},
                              discrepancy_response: {reference_id: $lcBillingReference, response_code: "09", description: $lcDescrip},
                              lines: [{id: "1", item: {id: "05", description: "DIESEL B5 S-50"}, quantity: $lcCantidad, unit: 'GLL', 
                                   price: {value: $lcPrecioSIgv}, pricing_reference: $lcPrecioCigv, tax_totals: [{amount: $lcIgv, type: :igv, code: "10"}], line_extension_amount:$lcVVenta }],
                              additional_monetary_totals: [{id: "1001", payable_amount: $lcVVenta}], tax_totals: [{amount: $lcIgv, type: :igv}], legal_monetary_total: $lcTotal}
 
-        SUNAT.environment = :test 
+        SUNAT.environment = :production
 
         files_to_clean = Dir.glob("*.xml") + Dir.glob("./pdf_output/*.pdf") + Dir.glob("*.zip")
         files_to_clean.each do |file|
@@ -139,10 +148,8 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         if credit_note.valid?
           begin
           credit_note.deliver!    
-
           rescue Savon::SOAPFault => e
-              puts "Error generating document for case : #{e}"
-              
+              puts "Error generating document for case : #{e}"              
           end
 
           File::open("credit_note.xml", "w") { |file| file.write(credit_note.to_xml) }
@@ -151,7 +158,6 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         else
           puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
         end
-
 
         $lcGuiaRemision =""      
         @@document_serial_id =""
@@ -180,15 +186,37 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
           File.delete(file)
         end         
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+        credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
+                             billing_reference: {id: $lcBillingReference, document_type_code: "01"},
+                             discrepancy_response: {reference_id: $lcBillingReference, response_code: "09", description: $lcDescrip},
+                             lines: [{id: "1", item: {id: "05", description: "DIESEL B5 S-50"}, quantity: $lcCantidad, unit: 'GLL', 
+                                  price: {value: $lcPrecioSIgv}, pricing_reference: $lcPrecioCigv, tax_totals: [{amount: $lcIgv, type: :igv, code: "10"}], line_extension_amount:$lcVVenta }],
+                             additional_monetary_totals: [{id: "1001", payable_amount: $lcVVenta}], tax_totals: [{amount: $lcIgv, type: :igv}], legal_monetary_total: $lcTotal}
+
+        SUNAT.environment = :test 
+
+        files_to_clean = Dir.glob("*.xml") + Dir.glob("./pdf_output/*.pdf") + Dir.glob("*.zip")
+        files_to_clean.each do |file|
+          File.delete(file)
+        end
+
+        credit_note = SUNAT::CreditNote.new(credit_note_data)
+        
+        if credit_note.valid?              
+           credit_note.to_pdf
+        else
+          puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
+        end
 
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
         send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
 
-        
+
+        $lcGuiaRemision =""      
         @@document_serial_id =""
-        $aviso=""
+        $lg_serial_id=""
+
     end 
 
         
@@ -214,7 +242,15 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         end 
 
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
+        credit_note = SUNAT::CreditNote.new(credit_note_data)
+        
+        if credit_note.valid?
+              
+          credit_note.to_pdf
+        else
+          puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
+        end
+
         
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
         $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
@@ -232,8 +268,11 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
 
   # GET /notacredits/1/edit
   def edit
+    @notacredit = Notacredit.find(params[:id])
     @notas = Notum.all 
+    @edit=true  
     @customers = Client.all.order(:vrazon2)
+
   end
 
   # POST /notacredits
@@ -284,6 +323,6 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notacredit_params
-      params.require(:notacredit).permit(:fecha, :code, :nota_id, :motivo, :subtotal, :tax, :total, :moneda_id, :mod_factura, :mod_tipo, :processed, :tipo, :description, :client_id,:price,:quantity)
+      params.require(:notacredit).permit(:fecha, :code, :nota_id, :motivo, :subtotal, :tax, :total, :moneda_id, :mod_factura, :mod_tipo, :processed, :tipo, :description, :customer_id,:price,:quantity)
     end
 end

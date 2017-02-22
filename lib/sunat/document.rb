@@ -26,6 +26,7 @@ module SUNAT
       end
     end
 
+
     def not_implemented_exception
       "Implement in child document"
     end
@@ -108,7 +109,9 @@ module SUNAT
         pdf.font "Helvetica"
         pdf = build_pdf_header(pdf)
         pdf = build_pdf_body(pdf)
+        
         build_pdf_footer(pdf)
+
         $lcFileName =path || self.pdf_path || "app/pdf_output/#{file_name}.pdf"
         $lcFileNameIni =file_name
         $lcFilezip =path || self.pdf_path || "/#{file_name}.zip"
