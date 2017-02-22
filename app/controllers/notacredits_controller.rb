@@ -150,6 +150,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
           credit_note.deliver!    
           rescue Savon::SOAPFault => e
               puts "Error generating document for case : #{e}"              
+              $aviso ="Error generating document for case : #{e}"              
           end
 
           File::open("credit_note.xml", "w") { |file| file.write(credit_note.to_xml) }
@@ -157,6 +158,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
           credit_note.to_pdf
         else
           puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
+          $aviso = "Invalid document, ignoring output: #{credit_note.errors.messages}"
         end
 
         $lcGuiaRemision =""      
@@ -201,17 +203,26 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         end
 
         credit_note = SUNAT::CreditNote.new(credit_note_data)
-        
+        puts "datos "
+        puts $lcRuc
+        puts $lcLegalName
+
         if credit_note.valid?              
            credit_note.to_pdf
-        else
-          puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
-        end
 
-        $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
+           $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
         send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
 
+
+        else
+
+          puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
+          $aviso = "Invalid document, ignoring output: #{credit_note.errors.messages}"
+
+        end
+
+        
 
         $lcGuiaRemision =""      
         @@document_serial_id =""
