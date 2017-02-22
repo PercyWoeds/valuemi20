@@ -19,6 +19,15 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 <h1>Listado Clientes</h1>
 
+
+
+<%= form_tag(clients_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Buscar ordenes" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+
+
 <table style="overflow-x:auto;">
   <thead>
     <tr>

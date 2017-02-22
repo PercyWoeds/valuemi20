@@ -13,10 +13,18 @@ class ClientsController < ApplicationController
   # GET /clients.json
 
   def index
-    
-    @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
-    @clients=@likes.all 
+      
 
+  @clients = Client.all.order(:vrazon2)
+
+  if params[:search]
+
+      @clients = Client.search(params[:search]).order(:vrazon2).order('vrazon2').paginate(:page => params[:page]) 
+  else
+    @clients = Client.all.order(:vrazon2).order('vrazon2').paginate(:page => params[:page]) 
+  end
+
+    
   end     
     
   def search
