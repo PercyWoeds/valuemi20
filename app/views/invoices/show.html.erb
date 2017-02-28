@@ -199,13 +199,18 @@
 	<table>
 		<tr>
 			<%= form_tag sendsunat_invoices_path, multipart: true do %>
-	  		<%= submit_tag "Enviar Sunat  " %>
+ 				 
+	  		<%= submit_tag "Enviar Sunat  "   %>
 			<% end %>
 			
 		</tr>
+
 		<tr>
 			<%= form_tag print_invoices_path, multipart: true do %>
-			  <%= submit_tag  "Imprimir  " %>
+
+	
+
+			  <%= submit_tag  "Imprimir  ",'data-no-turbolink' => true %>
 			<% end %>		
 		</tr>
 

@@ -12,8 +12,7 @@ class NotacreditsController < ApplicationController
 
   # GET /notacredits/1
   # GET /notacredits/1.json
-  def show
-
+  def show 
         @invoice        = Notacredit.find(params[:id])
         $lg_fecha       = @invoice.fecha
         $lg_fecha1      = $lg_fecha.to_s
@@ -108,8 +107,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
 
   end
 
-      def sendsunat
-       
+      def sendsunat       
     
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -250,7 +248,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
           File.delete(file)
         end 
 
-credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
+       credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
                              billing_reference: {id: $lcBillingReference, document_type_code: "01"},
                              discrepancy_response: {reference_id: $lcBillingReference, response_code: "09", description: $lcDescrip},
                              lines: [{id: "1", item: {id: "05", description: "DIESEL B5 S-50"}, quantity: $lcCantidad, unit: 'GLL', 
@@ -267,7 +265,7 @@ credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, custo
           File::open("credit_note.xml", "w") { |file| file.write(credit_note.to_xml) }
 
           $lcFileName1= File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
-          $lcFile2    = File.expand_path('../../../../', __FILE__)+"/sunat-ruby9/credit_note.xml"
+          $lcFile2    = File.expand_path('../../../../', __FILE__)+"sunat-ruby9/credit_note.xml"
         
         ActionCorreo.bienvenido_email(@invoice).deliver
     
