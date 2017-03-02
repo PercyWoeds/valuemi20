@@ -35,6 +35,7 @@ class InvoicesController < ApplicationController
         @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient,clients.mailclient2,clients.mailclient3  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
             
         $lg_fecha       = @invoice.fecha 
+        $lg_serie_factura = "FF"<< @invoice.serie  
         $lg_serial_id   = @invoice.numero.to_i
         $lg_serial_id2  = @invoice.numero
 
@@ -116,7 +117,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
           File.delete(file)
         end 
 
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv(true)
 
         $lcGuiaRemision =""      
         @@document_serial_id =""
@@ -145,7 +146,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
           File.delete(file)
         end         
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
 
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
@@ -179,10 +180,10 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         end 
 
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
         
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
-        $lcFile2    =File.expand_path('../', __FILE__)+ "/"+$lcFilezip
+        $lcFile2    =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
         
         ActionCorreo.bienvenido_email(@invoice).deliver
     
@@ -220,7 +221,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
           File.delete(file)
         end         
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
         $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip    
     
         send_file("#{$lcFile2}",:type =>'application/zip', :disposition => 'inline') 
