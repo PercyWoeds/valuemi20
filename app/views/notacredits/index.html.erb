@@ -35,8 +35,8 @@
         <td><%= notacredit.total %></td>
         <td><%= notacredit.moneda_id %></td>
         <td><%= notacredit.mod_factura %></td>
-       <td><%= notacredit.motivo.descrip %></td>
-       
+        <td><%= notacredit.motivo %></td>
+
         <td><%= link_to 'Ver', notacredit %></td>
         <td><%= link_to 'Editar', edit_notacredit_path(notacredit) %></td>
         <td><%= link_to 'Eliminar ', notacredit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
