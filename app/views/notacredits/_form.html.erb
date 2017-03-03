@@ -11,10 +11,11 @@
     </div>
   <% end %>
 
-<div class="field">
+    <div class="field">
       <%= f.label :nota_id,"Documento " %><br />      
       <%= f.select :nota_id , options_for_select([["NOTA DE CREDITO",1],["NOTA DEBITO ",2]]) %>
     </div>
+
     <div class="field">
       <%= f.label :fecha , "Fecha *", :class => "bold" %><br />    
       <%= f.text_field :fecha, value: Time.now.strftime("%d/%m/%Y") %>
@@ -50,9 +51,7 @@
     <%= f.label :price ,"Precio "%><br>
     <%= f.text_field :price %>
   </div>
-  
-  
-
+    
   <div class="field">
     <%= f.label :subtotal %><br>
     <%= f.text_field :subtotal %>
@@ -73,9 +72,9 @@
     <%= f.label :mod_tipo,"Catalogo de motivos " %><br>  
 
     <% if @edit %>
-    <%= f.select :nota_id,options_from_collection_for_select(@notas,'id','descrip',:selected => @notacredit.nota_id)%> %>
+    <%= f.select :notum_id,options_from_collection_for_select(@notas,'id','descrip',:selected => @notacredit.nota_id)%> %>
     <% else %>
-    <%= f.select :nota_id,options_from_collection_for_select(@notas,'id','descrip') %>
+    <%= f.select :notum_id,options_from_collection_for_select(@notas,'id','descrip') %>
     <% end %>
   </div>
 
