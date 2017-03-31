@@ -54,7 +54,7 @@
 									</tr>
 									<tr>
 										<td id="box-table-a" >RAZ&Oacute;N SOCIAL </td>
-										<td id="box-table-a">: CODISCOM S.A.C.</td>
+										<td id="box-table-a">: HIDROTRANSP S.A.C.</td>
 									</tr>
 									<tr>
 										<td>DOMICILIO FISCAL</td>
@@ -100,11 +100,10 @@
 										<td>Guia Remision </td>
 										<td id="box-table-a"> <%= @invoice.guia  %> </td>
 									</tr>
-								    <tr>
+									<tr>
 										<td>Placa </td>
 										<td id="box-table-a"> <%= @invoice.codplaca10  %> </td>
 									</tr>
-							
 							
 								</table>
 							</td>
@@ -199,15 +198,19 @@
 
 	<table>
 		<tr>
-
 			<%= form_tag sendsunat_invoices_path, multipart: true do %>
-	  		<%= submit_tag "Enviar Sunat  " %>
+ 				 
+	  		<%= submit_tag "Enviar Sunat  "   %>
 			<% end %>
 			
 		</tr>
+
 		<tr>
 			<%= form_tag print_invoices_path, multipart: true do %>
-			  <%= submit_tag  "Imprimir  " %>
+
+	
+
+			  <%= submit_tag  "Imprimir  ",'data-no-turbolink' => true %>
 			<% end %>		
 		</tr>
 

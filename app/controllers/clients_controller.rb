@@ -13,16 +13,18 @@ class ClientsController < ApplicationController
   # GET /clients.json
 
   def index
+      
+
+  @clients = Client.all.order(:vrazon2)
+
+  if params[:search]
+
+      @clients = Client.search(params[:search]).order(:vrazon2).order('vrazon2').paginate(:page => params[:page]) 
+  else
+    @clients = Client.all.order(:vrazon2).order('vrazon2').paginate(:page => params[:page]) 
+  end
+
     
-    @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
-    @clients=@likes.all 
-
-    @products = Client.order(:vcodigo)
-    respond_to do |format|
-    format.html
-    format.csv { send_data @products.to_csv }    
-    end
-
   end     
     
   def search

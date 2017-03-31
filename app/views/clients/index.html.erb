@@ -19,6 +19,15 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 <h1>Listado Clientes</h1>
 
+
+
+<%= form_tag(clients_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Buscar ordenes" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+
+
 <table style="overflow-x:auto;">
   <thead>
     <tr>
@@ -50,9 +59,6 @@ tr:nth-child(even){background-color: #f2f2f2}
 <br>
 
 <%= link_to 'Nuevo Cliente', new_client_path %>
-
-  <%= link_to "Download CSV", clients_path(format: "csv") %> |
-
 
 <h2>Importar Archivo clientes "*.csv"</h2>
 <%= form_tag import_clients_path, multipart: true do %>

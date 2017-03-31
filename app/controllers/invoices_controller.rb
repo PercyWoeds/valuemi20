@@ -1,7 +1,8 @@
 class InvoicesController < ApplicationController
-before_action :authenticate_user!
+    
+    before_action :authenticate_user!
 
-	def   index             
+	def index             
          @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
             LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
@@ -11,7 +12,8 @@ before_action :authenticate_user!
     def search
         if params[:search].blank?
             #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 
+            from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
             LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
             order by numero desc').paginate(:page => params[:page])
@@ -19,11 +21,10 @@ before_action :authenticate_user!
             #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
             @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
-            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
-            order by numero desc where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
+            LEFT JOIN clients ON invoices.cliente = clients.vcodigo            
+            order by numero  where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
         end        
     end
-
 
 	def import
        Invoice.delete_all 
@@ -33,8 +34,9 @@ before_action :authenticate_user!
     def show
     	@invoice        = Invoice.find(params[:id])
         @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient,clients.mailclient2,clients.mailclient3  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
-        
+            
         $lg_fecha       = @invoice.fecha 
+        $lg_serie_factura = "FF"<< @invoice.serie  
         $lg_serial_id   = @invoice.numero.to_i
         $lg_serial_id2  = @invoice.numero
 
@@ -80,25 +82,23 @@ before_action :authenticate_user!
         #$lcAutorizacion1=""
 
           $lcPercentIgv  =18000   
-          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0005592/SUNAT del 22/06/2016 "
-          $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:
-  Banco SCOTIABANK Cuenta Corriente en Moneda Nacional Numero: 000-2681110  CCI: 009-702-000002681110-29
-  BBVA Continental Cuenta Corriente en Moneda Nacional Numero: 0011-0244-01-00023293  CCI: 011 244 000100023293 12
-  BBVA Continental Cuenta Corriente en Moneda Extranjera Numero: 0011-0244-02-00040322 CCI: 01124400020004032216
-  BCP Cuenta Corriente en Moneda Nacional Numero: 191-2231128-0-45 CCI: 00219100223112804551
-  BCP Cuenta Corriente en Moneda Extranjera Numero: 191-2222846-198 CCI:  00219100222284619858"
-
+          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0004185/SUNAT del 26/10/2015 "
+        $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
+Banco SCOTIABANK Cuenta Corriente soles : 000-2681110 CCI : 009-702-000002681110-29
+BBVA CONTINENTAL Cuenta Corriente soles : 0011-0244-01-00023293 CCI : 011 244 000100023293 12
+Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 00219100223112804551"
 
           $lcScop1       =""   
           $lcScop2       =""
           $lcCantScop1   =""
           $lcCantScop2   =""  
           $lcAutorizacion1=$lcAutorizacion +$lcCuentas
-                
+                                
     end
 
     def sendsunat
        
+    
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -118,7 +118,7 @@ before_action :authenticate_user!
           File.delete(file)
         end 
 
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv(true)
 
         $lcGuiaRemision =""      
         @@document_serial_id =""
@@ -147,7 +147,7 @@ before_action :authenticate_user!
           File.delete(file)
         end         
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv2(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
 
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
@@ -179,19 +179,20 @@ before_action :authenticate_user!
         files_to_clean.each do |file|
           File.delete(file)
         end 
+
         
-        
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
         
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
-        $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
+        $lcFile2    =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
         
         ActionCorreo.bienvenido_email(@invoice).deliver
-
+    
         @mailing = Mailing.new(:td =>$lcTd, :serie => 'FF01', :numero => $lcDocument_serial_id, :ruc=>$lcRuc, :flag1 => '1')
         @mailing.save
         $lcGuiaRemision =""
-        
+             
+
     end
 
 
@@ -221,7 +222,7 @@ before_action :authenticate_user!
           File.delete(file)
         end         
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv3(true)
+        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
         $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip    
     
         send_file("#{$lcFile2}",:type =>'application/zip', :disposition => 'inline') 

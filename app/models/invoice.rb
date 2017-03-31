@@ -1,14 +1,14 @@
 class Invoice < ActiveRecord::Base
  self.per_page = 10
+  belongs_to :client, :class_name=> 'Client',    :foreign_key=> 'cliente'
+  
 
-	belongs_to :client, :class_name=> 'Client',    :foreign_key=> 'cliente'
-
-	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa
+	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa,:codplaca10
 
         def self.import(file)
           CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
-        
           Invoice.create! row.to_hash 
+          
         end
 
       end 
@@ -25,7 +25,6 @@ class Invoice < ActiveRecord::Base
       def client_name
         read_attribute(client_name) || client.vrazon2
       end
-
 
 end
 

@@ -1,7 +1,11 @@
 class Client < ActiveRecord::Base
 
 	has_many :invoices, :class_name=> 'Invoice',	:foreign_key => 'vcodigo' 
+  has_many :notacredits 
 	
+    self.per_page = 20
+
+    
 	attr_accessible :vcodigo, :vdep, :vdireccion, :vdistrito, :vprov, :vrazon2, :vruc, :mailclient, :mailclient2, :mailclient3
 
       def self.import(file)
@@ -10,21 +14,10 @@ class Client < ActiveRecord::Base
         end
       end       
 
-	   def self.search(search,page=1)  
-        paginate :per_page=>5 , :page=> page,  
-        :conditions=> ["vrazon2 LIKE ?","%#{:search}%","%#{:search}%"],order=>'name'
-        #clients = Client.where("vrazon2   LIKE ?","%#{params[:search]}%") if params[:search].present?
-        #clients
-
-     end
-    def self.to_csv(options = {})
-      CSV.generate(options) do |csv|
-        csv << column_names
-        all.each do |client|
-          csv << client.attributes.values_at(*column_names)
-        end
-      end
-    end
+  def self.search(search)
+      where("vruc  LIKE ?", "%#{search}%") 
+        
+  end
 
 
 end
