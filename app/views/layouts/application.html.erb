@@ -14,7 +14,6 @@
 <body>
   <div id="sidebar">
 
-  
     <ul>
       <li class="category">Website</li>
       <li><%= link_to "Facturas", invoices_path %></li>
@@ -34,7 +33,7 @@
       <li><a href="mailto:percywoeds@gmail.com">Email</a></li>
     </ul>
     <% if !user_signed_in? %>
-      <p class="Sing in "><%= link_to "Admin Login", new_user_session_path %></p>
+      <p class="Sign  in "><%= link_to "Admin Login", new_user_session_path %></p>
     <% end %>
   </div>
   
