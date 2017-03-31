@@ -1,21 +1,10 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-  resources :notacredits
-  resources :products
-  resources :nota
-  resources :credits
-  resources :mailings
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   resources :clients
   resources :clients
   resources :clients
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   devise_for :users
 
 
@@ -24,23 +13,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-<<<<<<< HEAD
-  resources :notacredits do
-=======
-   resources :invoices do
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
-    collection { post :import }
-    collection { post :sendsunat }
-    collection { post :print }
-    collection { post :xml }
-    collection { post :sendmail }
-    collection { get :search   }
-
-
-<<<<<<< HEAD
-  end 
-
-
    resources :invoices do
     collection { post :import }
     collection { post :sendsunat }
@@ -48,8 +20,8 @@ Rails.application.routes.draw do
     collection { post :xml }
     collection { post :sendmail }
     collection { get :search   }
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
+
+
    end 
    
    resources :clients do
@@ -58,18 +30,12 @@ Rails.application.routes.draw do
    end 
 
    resources :voideds do
-<<<<<<< HEAD
-    collection { post :anular }  
-   end 
-
-=======
     collection { post :anular }
   
    end 
 
 
 
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
    get '/about', to: 'layouts#about'
 
    resources :assets do
@@ -78,14 +44,10 @@ Rails.application.routes.draw do
     end
    end
 
-<<<<<<< HEAD
-  root 'invoices#index'
-=======
 
    
 
    root 'invoices#index'
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
