@@ -4,25 +4,26 @@ SUNAT.configure do |config|
   config.credentials do |c|
 
 
-    c.ruc       = "20522012336"
+    c.ruc       = "20545339006"
     c.username  = "FACTURA2"
-    c.password  = "20522012336"
+    c.password  = "20545339006"
    end
 
   config.signature do |s|
-    s.party_id    = "20522012336"
-    s.party_name  = "HIDROTRANSP S.A.C."
-    s.cert_file   = File.join(Dir.pwd, './app/keys', 'CESAR JAIME MANRIQUE MILLA.crt')
-    s.pk_file     = File.join(Dir.pwd, './app/keys', 'sunat-private.key') 
+    s.party_id    = "20545339006"
+    s.party_name  = "CODISCOM S.A.C."
+    s.cert_file   = File.join(Dir.pwd, '/app/keys', 'certificado.crt')
+    s.pk_file     = File.join(Dir.pwd, '/app/keys', 'CERTIFICADO.key') 
+    
   end
 
   config.supplier do |s|
-    s.legal_name = "HIDROTRANSP S.A.C."
-    s.name       = "Cesar Jaime Manrique Milla"
-    s.ruc        = "20522012336"
+    s.legal_name = "CODISCOM S.A."
+    s.name       = "HUGO DENIS MADRID REFULIO"
+    s.ruc        = "20545339006"
     s.address_id = "150117"
-    s.street     = "JR. TOMAS CATARI NRO. 405 URB. EL TREBOL 1RA. ETAPA"
-    s.district   = "LOS OLIVOS"
+    s.street     = "CL.IGNACIO TOROTE NRO.515 DPTO 202 URB. EL TREBOL"
+    s.district   = "1RA. ETAPA LOS OLIVOS"
     s.city       = "LIMA"
     s.country    = "PE"
     s.logo_path  = "#{Dir.pwd}/app/assets/images/logo.PNG"

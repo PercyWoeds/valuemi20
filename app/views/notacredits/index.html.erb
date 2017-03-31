@@ -25,7 +25,7 @@
   <tbody>
     <% @notacredits.each do |notacredit| %>
       <tr>
-        <td><%= notacredit.fecha %></td>
+        <td><%= notacredit.fecha.strftime("%d/%m/%Y") %></td>
         <td><%= notacredit.code %></td>
         <td><%= notacredit.client.vrazon2 %></td>
         <td><%= notacredit.nota_id %></td>
