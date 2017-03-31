@@ -45,13 +45,8 @@ Rails.application.configure do
     address:              'send.one.com',
     port:                 587,
     domain:               'one.com',
-<<<<<<< HEAD
-    user_name:            'factura-electronica@hidrotransp.com',
-    password:             'hidro123456',
-=======
     user_name:            'factura-electronica@codiscom.com',
     password:             'Factura2016',
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
     authentication:       'plain',
     enable_starttls_auto: true  }
 
