@@ -3,17 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
-<<<<<<< HEAD
-gem 'httpclient', '~> 2.8', '>= 2.8.2.2'
 
 
-
-gem 'rspec-core', '~> 3.5', '>= 3.5.1'
-
-=======
-
-
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,12 +27,7 @@ gem 'devise'
 
 gem 'protected_attributes'
 
-<<<<<<< HEAD
-gem 'will_paginate', '~> 3.1.0'
-
-=======
 gem 'will_paginate', '~> 3.0.6'
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
 gem "prawn", "~> 1.3"
 gem 'prawn-table', '~> 0.2.2'
@@ -49,12 +35,6 @@ gem 'numbers_and_words', '~> 0.10.5'
 gem 'savon', '~> 2.11', '>= 2.11.1'
 gem 'rubyzip', '~> 1.2'
 
-<<<<<<< HEAD
-gem 'i18n-active_record', :require => 'i18n/active_record'
-
-
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
