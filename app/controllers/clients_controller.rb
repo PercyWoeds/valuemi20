@@ -13,20 +13,6 @@ class ClientsController < ApplicationController
   # GET /clients.json
 
   def index
-<<<<<<< HEAD
-      
-
-  @clients = Client.all.order(:vrazon2)
-
-  if params[:search]
-
-      @clients = Client.search(params[:search]).order(:vrazon2).order('vrazon2').paginate(:page => params[:page]) 
-  else
-    @clients = Client.all.order(:vrazon2).order('vrazon2').paginate(:page => params[:page]) 
-  end
-
-    
-=======
     
     @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
     @clients=@likes.all 
@@ -37,7 +23,6 @@ class ClientsController < ApplicationController
     format.csv { send_data @products.to_csv }    
     end
 
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   end     
     
   def search

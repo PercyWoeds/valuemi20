@@ -54,11 +54,7 @@
 									</tr>
 									<tr>
 										<td id="box-table-a" >RAZ&Oacute;N SOCIAL </td>
-<<<<<<< HEAD
-										<td id="box-table-a">: HIDROTRANSP S.A.C.</td>
-=======
 										<td id="box-table-a">: CODISCOM S.A.C.</td>
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 									</tr>
 									<tr>
 										<td>DOMICILIO FISCAL</td>
@@ -104,19 +100,12 @@
 										<td>Guia Remision </td>
 										<td id="box-table-a"> <%= @invoice.guia  %> </td>
 									</tr>
-<<<<<<< HEAD
-									<tr>
-=======
 								    <tr>
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 										<td>Placa </td>
 										<td id="box-table-a"> <%= @invoice.codplaca10  %> </td>
 									</tr>
 							
-<<<<<<< HEAD
-=======
 							
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 								</table>
 							</td>
 						</tr>
@@ -210,21 +199,6 @@
 
 	<table>
 		<tr>
-<<<<<<< HEAD
-			<%= form_tag sendsunat_invoices_path, multipart: true do %>
- 				 
-	  		<%= submit_tag "Enviar Sunat  "   %>
-			<% end %>
-			
-		</tr>
-
-		<tr>
-			<%= form_tag print_invoices_path, multipart: true do %>
-
-	
-
-			  <%= submit_tag  "Imprimir  ",'data-no-turbolink' => true %>
-=======
 
 			<%= form_tag sendsunat_invoices_path, multipart: true do %>
 	  		<%= submit_tag "Enviar Sunat  " %>
@@ -234,7 +208,6 @@
 		<tr>
 			<%= form_tag print_invoices_path, multipart: true do %>
 			  <%= submit_tag  "Imprimir  " %>
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 			<% end %>		
 		</tr>
 

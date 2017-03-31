@@ -1,61 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-  <title>Hidrotransp</title>
-
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false  %>
-  <%= csrf_meta_tags %>   
-  
-
-  <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
-   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">   
-
-</head>
-<body>
-    <div id="header_cont">
-      <div id="header">
-        <div id="logo">
-          </div>
-      </div>
-    </div>
-
-
-    <%= render 'layouts/menu' %>
-    <div id="content">
-      
-      <%- flash.each do |key, msg| -%>
-        <div class="<%= key %>">
-          <%= msg %>
-        </div>
-      <%- end -%>
-    
-      <%= yield %>
-
-    </div>
-  
-    <div class="break"><!-- i --></div>
-  
-  
-    <div id="footer_cont">
-      <div id="footer">
-        <%= link_to getAppUrl, getAppUrl %>
-        <%= link_to "blog", "/blog" %>
-        <%= link_to "terms of service", "/p/tos" %>
-        <%= link_to "faq", "/p/faq" %>
-        <%= link_to "help", "/help" %>
-        <%= link_to "about us", "/p/about" %>
-      </div>
-    </div>
-    
-    <div id="loading">loading...</div>
-    <div id="remote"><!-- i --></div>
-    
-    <iframe name="ires" id="ires"></iframe>
-  </body>
-=======
   <title>Codiscom SAC</title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -114,5 +59,4 @@
   </div>
 
 </body>
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 </html>

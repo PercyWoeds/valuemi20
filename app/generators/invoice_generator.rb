@@ -1,12 +1,8 @@
 require_relative 'document_generator'
 
 class InvoiceGenerator < DocumentGenerator
-<<<<<<< HEAD
-  attr_reader :items    
-=======
   attr_reader :items 
    
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
   #$lcAutorizacion1=$lcAutorizacion <<' Datos Adicionales GUIA DE REMISION : '<<$lcGuiaRemision
 
@@ -117,10 +113,7 @@ class InvoiceGenerator < DocumentGenerator
   def document_class
     SUNAT::Invoice
   end
-<<<<<<< HEAD
-=======
 
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   
    
   #$lcid= "#{@serie}-#{"%06d" % @@document_serial_id }"

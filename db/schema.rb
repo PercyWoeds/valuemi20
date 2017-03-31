@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170303163734) do
-=======
 ActiveRecord::Schema.define(version: 20160909210656) do
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
   create_table "clients", force: :cascade do |t|
     t.string   "vcodigo"
@@ -32,28 +28,6 @@ ActiveRecord::Schema.define(version: 20160909210656) do
     t.string   "mailclient3"
   end
 
-<<<<<<< HEAD
-  create_table "credits", force: :cascade do |t|
-    t.datetime "fecha"
-    t.string   "code"
-    t.integer  "nota_id"
-    t.string   "motivo"
-    t.float    "subtotal"
-    t.float    "tax"
-    t.float    "total"
-    t.integer  "moneda_id"
-    t.string   "mod_factura"
-    t.integer  "mod_tipo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "processed"
-    t.string   "tipo"
-    t.string   "description"
-    t.integer  "customer_id"
-  end
-
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   create_table "invoices", force: :cascade do |t|
     t.string   "cliente"
     t.date     "fecha"
@@ -70,10 +44,7 @@ ActiveRecord::Schema.define(version: 20160909210656) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "guia"
-<<<<<<< HEAD
-=======
     t.string   "flag1"
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
     t.string   "codplaca10"
   end
 
@@ -83,49 +54,7 @@ ActiveRecord::Schema.define(version: 20160909210656) do
     t.string   "numero"
     t.string   "ruc"
     t.boolean  "flag"
-<<<<<<< HEAD
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string   "flag1"
-  end
-
-  create_table "nota", force: :cascade do |t|
-    t.string   "code"
-    t.string   "descrip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "notacredits", force: :cascade do |t|
-    t.datetime "fecha"
-    t.string   "code"
-    t.integer  "nota_id"
-    t.string   "motivo"
-    t.float    "subtotal"
-    t.float    "tax"
-    t.float    "total"
-    t.integer  "moneda_id"
-    t.string   "mod_factura"
-    t.integer  "mod_tipo"
-    t.string   "processed"
-    t.string   "tipo"
-    t.string   "description"
-    t.integer  "customer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.float    "quantity"
-    t.float    "price"
-    t.float    "price2"
-    t.integer  "client_id"
-    t.integer  "notum_id"
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string   "code"
-    t.string   "name"
-=======
-    t.string   "flag1"
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -149,16 +78,6 @@ ActiveRecord::Schema.define(version: 20160909210656) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "voided_invoices", force: :cascade do |t|
-    t.string   "numero"
-    t.string   "serie"
-    t.string   "factura"
-    t.date     "fecha"
-    t.text     "texto"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "voideds", force: :cascade do |t|
     t.string   "numero"
