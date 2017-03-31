@@ -17,6 +17,12 @@ class ClientsController < ApplicationController
     @likes= Client.order("vcodigo ASC").page(params[:page]).per_page(15)        
     @clients=@likes.all 
 
+    @products = Client.order(:vcodigo)
+    respond_to do |format|
+    format.html
+    format.csv { send_data @products.to_csv }    
+    end
+
   end     
     
   def search

@@ -2,7 +2,7 @@
 <VoidedDocuments xmlns="urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:stat="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatusCode-1.0" xmlns:udt="urn:un:unece:uncefact:data:draft:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ext:UBLExtensions>
     <ext:UBLExtension>
-      <ext:ExtensionContent><ds:Signature Id="IDSignKG"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>2whmdaFU0KUL5G52stn2Dq7i1f8=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>SeQ3KyrlbgZMG0Dx2lutFeEIiNN+goDF474n2qBjEzQa6V+xbStpyHM1Ve8V3Jo2MIKXOjBsSVdNzhwmPeuksFJVywaw5DAjPnVmxdpY+GrUKqdqGRdgd/NvIlxJAhX3xO/0XZhHbCe4Rvm+fGrw/QYzkWOADSJ7lRBFOFLWEI9rlCVwC3947puHE7bBm5+LNzzfuWu1mp1bxz/q1i1qb18BLQic4j4hBi7u47U32HaizGCDSVD+bvuHYOMfPgoGuh8cmonoiKeJrDH1IdshI0arf321wl7whoYJ6IahGCPYi0R3Y/tcJvqa0trcx4J5nxG7/SFwa67K5FmeHPiIqA==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509SubjectName>C=BE,O=GlobalSign nv-sa,CN=GlobalSign PersonalSign 2 CA - G3</ds:X509SubjectName><ds:X509Certificate>
+      <ext:ExtensionContent><ds:Signature Id="IDSignKG"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>nVpZCVaWPTgsn6zMiBDuStczQ1A=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>WZXJgVQwUwL1uB2K1eSsCQxjOekuW0fkHmEoayCHOoB50a+7aCxdWzAYB6fh1ZKlZnKv1lXuwGa7SzVEtc+bfEGn36nD1sJnujFbl0Wo+EajpvUnnoTDeZlqRd849leEjJ3WFetBvqSJBg46z9ef1211YcODSkilF7G3AhpNwRNoDMb5Zf3oOFcA0GNrKVbbKY/BShUTCp48krHHJcg6VAnuGun5cFp2ilYcxAIFJ3uaKRpMXqU9kMLHm/+khKs1CCB8qnp1yaZXnADeR//9LDrYoFS6rYjYQGfB0V1jE4Fmuo2JUSMQCOqKiLkrmEpE0fNWleAcE39UAIREe/T/tA==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509SubjectName>C=BE,O=GlobalSign nv-sa,CN=GlobalSign PersonalSign 2 CA - G3</ds:X509SubjectName><ds:X509Certificate>
 MIIFiDCCBHCgAwIBAgIMM2J6sc9XNZwpVPb+MA0GCSqGSIb3DQEBBQUAMFQxCzAJ
 BgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFH
 bG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0gRzMwHhcNMTYwNjIxMTkzNzU1
@@ -39,9 +39,9 @@ xejq5QrfjtcKDF34pZ/x4oFOjtMfaOPbls6mqw==
   </ext:UBLExtensions>
   <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
   <cbc:CustomizationID>1.0</cbc:CustomizationID>
-  <cbc:ID>RA-20160926-2</cbc:ID>
-  <cbc:ReferenceDate>2016-09-26</cbc:ReferenceDate>
-  <cbc:IssueDate>2016-09-26</cbc:IssueDate>
+  <cbc:ID>RA-20160922-10</cbc:ID>
+  <cbc:ReferenceDate>2016-09-22</cbc:ReferenceDate>
+  <cbc:IssueDate>2016-09-22</cbc:IssueDate>
   <cac:Signature>
     <cbc:ID>IDSignKG</cbc:ID>
     <cac:SignatoryParty>
@@ -85,7 +85,7 @@ xejq5QrfjtcKDF34pZ/x4oFOjtMfaOPbls6mqw==
     <cbc:LineID>1</cbc:LineID>
     <cbc:DocumentTypeCode>01</cbc:DocumentTypeCode>
     <sac:DocumentSerialID>FF01</sac:DocumentSerialID>
-    <sac:DocumentNumberID>000043</sac:DocumentNumberID>
+    <sac:DocumentNumberID>000044</sac:DocumentNumberID>
     <sac:VoidReasonDescription>Error en datos consignados</sac:VoidReasonDescription>
   </sac:VoidedDocumentsLine>
 </VoidedDocuments>

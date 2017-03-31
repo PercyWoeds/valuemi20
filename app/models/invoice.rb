@@ -26,6 +26,7 @@ class Invoice < ActiveRecord::Base
         read_attribute(client_name) || client.vrazon2
       end
 
+
 end
 
 
