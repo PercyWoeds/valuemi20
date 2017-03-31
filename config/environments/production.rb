@@ -1,5 +1,9 @@
 Rails.application.configure do
+<<<<<<< HEAD
   # Settings specified here will take precedence over those in config/application.rb.
+=======
+    # Settings specified here will take precedence over those in config/application.rb.
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -11,7 +15,11 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
+<<<<<<< HEAD
   config.consider_all_requests_local       = false 
+=======
+  config.consider_all_requests_local       = false
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -84,11 +92,20 @@ Rails.application.configure do
     address:              'send.one.com',
     port:                 587,
     domain:               'one.com',
+<<<<<<< HEAD
     user_name:            'factura-electronica@hidrotransp.com',
     password:             'hidro123456',
     authentication:       'plain',
     enable_starttls_auto: true  }
 
   
+=======
+    user_name:            'factura-electronica@codiscom.com',
+    password:             'Factura2016',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+
+
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
     
 end

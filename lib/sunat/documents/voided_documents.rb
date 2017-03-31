@@ -93,5 +93,9 @@ module SUNAT
       formatted_issue_date = issue_date.strftime("%Y%m%d")
       "RA-#{formatted_issue_date}-#{correlative_number}"
     end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   end
 end

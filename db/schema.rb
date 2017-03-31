@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170303163734) do
+=======
+ActiveRecord::Schema.define(version: 20160909210656) do
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
   create_table "clients", force: :cascade do |t|
     t.string   "vcodigo"
@@ -28,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170303163734) do
     t.string   "mailclient3"
   end
 
+<<<<<<< HEAD
   create_table "credits", force: :cascade do |t|
     t.datetime "fecha"
     t.string   "code"
@@ -47,6 +52,8 @@ ActiveRecord::Schema.define(version: 20170303163734) do
     t.integer  "customer_id"
   end
 
+=======
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
   create_table "invoices", force: :cascade do |t|
     t.string   "cliente"
     t.date     "fecha"
@@ -63,6 +70,10 @@ ActiveRecord::Schema.define(version: 20170303163734) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "guia"
+<<<<<<< HEAD
+=======
+    t.string   "flag1"
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
     t.string   "codplaca10"
   end
 
@@ -72,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170303163734) do
     t.string   "numero"
     t.string   "ruc"
     t.boolean  "flag"
+<<<<<<< HEAD
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "flag1"
@@ -111,6 +123,9 @@ ActiveRecord::Schema.define(version: 20170303163734) do
   create_table "products", force: :cascade do |t|
     t.string   "code"
     t.string   "name"
+=======
+    t.string   "flag1"
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

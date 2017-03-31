@@ -26,7 +26,10 @@ module SUNAT
       end
     end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
     def not_implemented_exception
       "Implement in child document"
     end
@@ -92,11 +95,22 @@ module SUNAT
     end
 
 
+<<<<<<< HEAD
     def build_pdf_footer(pdf)
 
       pdf.bounding_box([0, 140], :width => 535, :height => 140) do
       pdf.stroke_bounds
       pdf.text  $lcAutorizacion1 ,:align => :center,:valign => :center, :style => :bold    
+=======
+
+    def build_pdf_footer(pdf)
+
+
+      pdf.bounding_box([0, 100], :width => 535, :height => 100) do      
+
+      pdf.stroke_bounds
+      pdf.text  $lcAutorizacion1 ,  :align => :center,:valign => :center, :style => :bold    
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
       end
 
       pdf
@@ -105,6 +119,7 @@ module SUNAT
 
     def build_pdf(path=false)
       Prawn::Document.generate(path || self.pdf_path || "app/pdf_output/#{file_name}.pdf") do |pdf|
+<<<<<<< HEAD
       
         pdf.font "Helvetica"
         pdf = build_pdf_header(pdf)
@@ -112,6 +127,24 @@ module SUNAT
         
         build_pdf_footer(pdf)
 
+=======
+        pdf.font "Helvetica"
+        pdf = build_pdf_header(pdf)
+        pdf = build_pdf_body(pdf)
+        build_pdf_footer(pdf)
+        $lcFileName =path || self.pdf_path || "app/pdf_output/#{file_name}.pdf"
+        $lcFileNameIni =file_name
+        $lcFilezip =path || self.pdf_path || "/#{file_name}.zip"
+        
+      end
+    end
+    def build_pdf2(path=false)
+      Prawn::Document.generate(path || self.pdf_path || "app/pdf_output/#{file_name}.pdf") do |pdf|
+        pdf.font "Helvetica"
+        pdf = build_pdf_header(pdf)
+        pdf = build_pdf_body(pdf)
+        
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
         $lcFileName =path || self.pdf_path || "app/pdf_output/#{file_name}.pdf"
         $lcFileNameIni =file_name
         $lcFilezip =path || self.pdf_path || "/#{file_name}.zip"
@@ -122,6 +155,12 @@ module SUNAT
     def to_pdf(path=false)
       build_pdf(path)
     end
+<<<<<<< HEAD
+=======
+    def to_pdf2(path=false)
+      build_pdf2(path)
+    end
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
     def customization_id
       self['customization_id'] ||= DEFAULT_CUSTOMIZATION_ID

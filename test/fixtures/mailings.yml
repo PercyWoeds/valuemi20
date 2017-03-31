@@ -6,6 +6,10 @@ one:
   numero: MyString
   ruc: MyString
   flag: false
+<<<<<<< HEAD
+=======
+  flag1: MyString
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
 two:
   td: MyString
@@ -13,3 +17,7 @@ two:
   numero: MyString
   ruc: MyString
   flag: false
+<<<<<<< HEAD
+=======
+  flag1: MyString
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8

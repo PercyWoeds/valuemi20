@@ -10,14 +10,22 @@ require './app/generators/receipt_generator'
 require './app/generators/daily_receipt_summary_generator'
 require './app/generators/voided_documents_generator'
 
+<<<<<<< HEAD
 SUNAT.environment = :production
+=======
+SUNAT.environment = :test
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
 files_to_clean = Dir.glob("*.xml") + Dir.glob("./app/pdf_output/*.pdf") + Dir.glob("*.zip")
 files_to_clean.each do |file|
   File.delete(file)
 end 
 
+<<<<<<< HEAD
 #case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
+=======
+case_3 = InvoiceGenerator.new(1, 3, 1, "FF01").with_igv(true)
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
 #case_6 = CreditNoteGenerator.new(1, 6, "FF01").for_igv_document(case_3,true)
 # case_6 = CreditNoteGenerator.new(1, 6, "FF01").for_igv_document(true)

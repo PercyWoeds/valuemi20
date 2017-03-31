@@ -19,6 +19,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 <h1>Listado Clientes</h1>
 
+<<<<<<< HEAD
 
 
 <%= form_tag(clients_path, :method => "get", id: "search-form") do %>
@@ -28,6 +29,8 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 
 
+=======
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 <table style="overflow-x:auto;">
   <thead>
     <tr>
@@ -60,6 +63,12 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 <%= link_to 'Nuevo Cliente', new_client_path %>
 
+<<<<<<< HEAD
+=======
+  <%= link_to "Download CSV", clients_path(format: "csv") %> |
+
+
+>>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 <h2>Importar Archivo clientes "*.csv"</h2>
 <%= form_tag import_clients_path, multipart: true do %>
   <%= file_field_tag :file %>
