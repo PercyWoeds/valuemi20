@@ -4,10 +4,7 @@ module SUNAT
   # used to generate an XML document suitable for presentation.
   # Represents a legal payment for SUNAT. Spanish: Factura
   #
-<<<<<<< HEAD
 require 'active_support/number_helper'
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
 
   class BasicInvoice < Document
 
@@ -104,10 +101,7 @@ require 'active_support/number_helper'
           :width => pdf.bounds.width
         }) do
           columns([0, 2]).font_style = :bold
-<<<<<<< HEAD
 
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
         end
 
         pdf.move_down 20
@@ -129,7 +123,6 @@ require 'active_support/number_helper'
         table_content << line.build_pdf_table_row(pdf)
       end
 
-<<<<<<< HEAD
       result = pdf.table table_content, {:position => :center,
                                         :header => true,
                                         :width => pdf.bounds.width
@@ -142,11 +135,6 @@ require 'active_support/number_helper'
                                           columns([6]).align=:right
                                         end
 
-=======
-      result = pdf.table table_content, :position => :center,
-                                        :header => true,
-                                        :width => pdf.bounds.width
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
       pdf.move_down 10
 
       pdf.table invoice_summary, {
@@ -156,10 +144,7 @@ require 'active_support/number_helper'
       } do
         columns([0]).font_style = :bold
         columns([1]).align = :right
-<<<<<<< HEAD
         
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
       end
 
       pdf
@@ -190,11 +175,8 @@ require 'active_support/number_helper'
       #invoice_headers = [["Fecha de emisión :", "2015-12-09"]]
       invoice_headers << ["Tipo de moneda : ", Currency.new(document_currency_code).singular_name.upcase]
       invoice_headers << ["Guia Remision :", $lcGuiaRemision]
-<<<<<<< HEAD
       invoice_headers << ["Placa :", $lcPlaca]
 
-=======
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
       invoice_headers
     end
 
@@ -210,37 +192,22 @@ require 'active_support/number_helper'
       monetary_totals.each do |monetary_total|
         value = get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[monetary_total[:catalog_index]])
         if value.present?
-<<<<<<< HEAD
           invoice_summary << [monetary_total[:label], ActiveSupport::NumberHelper::number_to_delimited(value.payable_amount,delimiter:",",separator:".").to_s]
-=======
-          invoice_summary << [monetary_total[:label], value.payable_amount.to_s]
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
         end
       end
 
       tax_totals.each do |tax_total|
-<<<<<<< HEAD
         invoice_summary << [tax_total.tax_type_name,ActiveSupport::NumberHelper::number_to_delimited(tax_total.tax_amount,delimiter:",",separator:".").to_s]
       end
 
       invoice_summary << ["Total", ActiveSupport::NumberHelper::number_to_delimited(legal_monetary_total,delimiter:",",separator:".").to_s]
 
-=======
-        invoice_summary << [tax_total.tax_type_name, tax_total.tax_amount.to_s]
-      end
-
-      invoice_summary << ["Total", legal_monetary_total.to_s]
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
       if get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0])
         total = get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0]).value
       else
         total = legal_monetary_total.textify.upcase
       end
-<<<<<<< HEAD
       invoice_summary << ["Monto del total", ActiveSupport::NumberHelper::number_to_delimited(total,delimiter:",",separator:".")]
-=======
-      invoice_summary << ["Monto del total", total]
->>>>>>> 78a73d75881b3f03cd1267ae4e5b28d4653ee4f8
       invoice_summary
     end
 
