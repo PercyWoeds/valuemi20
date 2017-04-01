@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909210656) do
+ActiveRecord::Schema.define(version: 20170303163734) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "vcodigo"
@@ -26,6 +26,25 @@ ActiveRecord::Schema.define(version: 20160909210656) do
     t.string   "mailclient"
     t.string   "mailclient2"
     t.string   "mailclient3"
+  end
+
+  create_table "credits", force: :cascade do |t|
+    t.datetime "fecha"
+    t.string   "code"
+    t.integer  "nota_id"
+    t.string   "motivo"
+    t.float    "subtotal"
+    t.float    "tax"
+    t.float    "total"
+    t.integer  "moneda_id"
+    t.string   "mod_factura"
+    t.integer  "mod_tipo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "processed"
+    t.string   "tipo"
+    t.string   "description"
+    t.integer  "customer_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -55,6 +74,44 @@ ActiveRecord::Schema.define(version: 20160909210656) do
     t.string   "ruc"
     t.boolean  "flag"
     t.string   "flag1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nota", force: :cascade do |t|
+    t.string   "code"
+    t.string   "descrip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notacredits", force: :cascade do |t|
+    t.datetime "fecha"
+    t.string   "code"
+    t.integer  "nota_id"
+    t.string   "motivo"
+    t.float    "subtotal"
+    t.float    "tax"
+    t.float    "total"
+    t.integer  "moneda_id"
+    t.string   "mod_factura"
+    t.integer  "mod_tipo"
+    t.string   "processed"
+    t.string   "tipo"
+    t.string   "description"
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.float    "quantity"
+    t.float    "price"
+    t.float    "price2"
+    t.integer  "client_id"
+    t.integer  "notum_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "code"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
