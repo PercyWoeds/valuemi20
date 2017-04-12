@@ -15,7 +15,12 @@ class ClientsController < ApplicationController
   def index
       
 
-  @clients = Client.all.order(:vrazon2)
+  @clients = Client.all.order(:vrazon2).paginate(:page => params[:page]) 
+  respond_to do |format|
+    format.html
+    format.csv { send_data @clients.to_csv }    
+    end
+
 
   if params[:search]
 
