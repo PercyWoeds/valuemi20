@@ -82,11 +82,15 @@ class InvoicesController < ApplicationController
         #$lcAutorizacion1=""
 
           $lcPercentIgv  =18000   
-          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0004185/SUNAT del 26/10/2015 "
-        $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
-Banco SCOTIABANK Cuenta Corriente soles : 000-2681110 CCI : 009-702-000002681110-29
-BBVA CONTINENTAL Cuenta Corriente soles : 0011-0244-01-00023293 CCI : 011 244 000100023293 12
-Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 00219100223112804551"
+          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.032-005-0000886/SUNAT del 22/11/2016 "
+          $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
+Banco SCOTIABANK Cuenta Corriente soles   : 000-9942513 
+Banco SCOTIABANK Cuenta Corriente dolares : 000-4716917     
+Banco de CREDITO Cuenta Corriente soles   : 194-2011689-0-89 
+Banco BBVA BANCO CONTINENTAL Cuenta Corriente soles   : 0244-01-00008847
+Banco BBVA BANCO CONTINENTAL Cuenta Corriente dolares : 0176-02-00461442
+Banco Interbank  CONTINENTAL Cuenta Corriente soles   : 330-3000796174"
+
 
           $lcScop1       =""   
           $lcScop2       =""

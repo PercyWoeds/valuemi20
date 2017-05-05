@@ -197,19 +197,14 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
         
 
         credit_note = SUNAT::CreditNote.new(credit_note_data)
-        puts "datos "
-        puts $lcRuc
-        puts $lcLegalName
-
+        
         if credit_note.valid?              
-
-         
-
+        
            credit_note.to_pdf
 
            $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
-        send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
+          send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
 
 
         else
