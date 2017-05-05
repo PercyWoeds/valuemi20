@@ -89,7 +89,7 @@ Banco SCOTIABANK Cuenta Corriente dolares : 000-4716917
 Banco de CREDITO Cuenta Corriente soles   : 194-2011689-0-89 
 Banco BBVA BANCO CONTINENTAL Cuenta Corriente soles   : 0244-01-00008847
 Banco BBVA BANCO CONTINENTAL Cuenta Corriente dolares : 0176-02-00461442
-Banco Interbank  CONTINENTAL Cuenta Corriente soles   : 330-3000796174"
+Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
 
 
           $lcScop1       =""   
