@@ -82,7 +82,7 @@ class InvoicesController < ApplicationController
         #$lcAutorizacion1=""
 
           $lcPercentIgv  =18000   
-          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.032-005-0000886/SUNAT del 22/11/2016 "
+          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0005710/SUNAT del 13/07/2016 "
           $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
 Banco SCOTIABANK Cuenta Corriente soles   : 000-9942513 
 Banco SCOTIABANK Cuenta Corriente dolares : 000-4716917     
