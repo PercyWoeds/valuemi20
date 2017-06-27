@@ -161,7 +161,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
         
         
         if $lcMoneda == "D"
-            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_differente_currency2
+            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_different_currency2
         else
             case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
         end 
@@ -198,7 +198,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
 
         
          if $lcMoneda == "D"
-            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_differente_currency2
+            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_different_currency2
         else
             case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
         end 
@@ -245,7 +245,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
           File.delete(file)
         end         
          if $lcMoneda == "D"
-            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_differente_currency2
+            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_different_currency2
         else
             case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
         end 
