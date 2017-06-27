@@ -52,15 +52,5 @@ class DocumentGenerator
      raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
     end
   end
- def generate_documents4(document, pdf=false)
 
-    if document.valid?
-      begin
-       document.to_pdf if pdf
-       $aviso = "Documento impreso con exito..."      
-      end 
-     else
-      raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
-    end
-  end
 end
