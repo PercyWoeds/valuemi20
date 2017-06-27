@@ -74,6 +74,7 @@ class InvoicesController < ApplicationController
         #@clienteName1   = Client.where("vcodigo = ?",params[ :$lcClienteInv ])        
         $lcClienteName = ""
         $lcDes1   = @invoice.nombre
+        $lcMoneda = @invoice.moneda 
         
     
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
@@ -123,9 +124,12 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
         files_to_clean.each do |file|
           File.delete(file)
         end 
-
+        
+        if $lcMoneda == "D"
+        else
         case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv(true)
-
+        end     
+        
         $lcGuiaRemision =""      
         @@document_serial_id =""
         $lg_serial_id=""
@@ -153,8 +157,14 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
           File.delete(file)
         end         
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
-
+        
+        
+        
+        if $lcMoneda == "D"
+            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_differente_currency2
+        else
+            case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
+        end 
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
         send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
@@ -187,14 +197,21 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
         end 
 
         
-        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
-        
+         if $lcMoneda == "D"
+            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_differente_currency2
+        else
+            case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
+        end 
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
         $lcFile2    =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
         
         ActionCorreo.bienvenido_email(@invoice).deliver
-    
-        @mailing = Mailing.new(:td =>$lcTd, :serie => 'FF01', :numero => $lcDocument_serial_id, :ruc=>$lcRuc, :flag1 => '1')
+        if $lcMoneda == "D"
+            @mailing = Mailing.new(:td =>$lcTd, :serie => 'FF02', :numero => $lcDocument_serial_id, :ruc=>$lcRuc, :flag1 => '1')
+        else 
+            @mailing = Mailing.new(:td =>$lcTd, :serie => 'FF01', :numero => $lcDocument_serial_id, :ruc=>$lcRuc, :flag1 => '1')
+        end
+        
         @mailing.save
         $lcGuiaRemision =""
              
@@ -227,8 +244,11 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
         files_to_clean.each do |file|
           File.delete(file)
         end         
-        
-        case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
+         if $lcMoneda == "D"
+            case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_differente_currency2
+        else
+            case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
+        end 
         $lcFile2 =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip    
     
         send_file("#{$lcFile2}",:type =>'application/zip', :disposition => 'inline') 
