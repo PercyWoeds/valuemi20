@@ -36,7 +36,12 @@
 										<td><%= @invoice.fecha %> </td>
 										<td with="80px"> </td>
 										<td>MONEDA </td>
+										
+										<%if @invoice.moneda == "D"%>
+										<td>: DOLARES  </td>
+										<%else %>
 										<td>: NUEVOS SOLES </td>
+										<%end %>
 									</tr>									
 								</table>
 							</td>
@@ -160,15 +165,15 @@
 													</tr>	
 																								
 													<tr class="bgn" align="right">									
-														<td align="right" class="totales">S/. &nbsp;  <%= @invoice.vventa %> </td>
-														<td align="right" class="totales">S/. &nbsp; 0</td>
-														<td align="right" class="totales">S/. &nbsp; 0</td>
-														<td align="right" class="totales">S/. &nbsp; 0</td>
-														<td align="right" class="totales">S/. &nbsp; 0</td>
-														<td align="right" class="totales">S/. &nbsp; 0</td>
-														<td align="right" class="totales">S/. &nbsp; 0</td>
-														<td align="right" class="totales">S/. &nbsp;  <%= @invoice.igv %></td>
-														<td align="right" class="totales">S/. &nbsp;  <%= @invoice.importe %></td>
+														<td align="right" class="totales"> &nbsp;  <%= @invoice.vventa %> </td>
+														<td align="right" class="totales"> &nbsp; 0</td>
+														<td align="right" class="totales"> &nbsp; 0</td>
+														<td align="right" class="totales"> &nbsp; 0</td>
+														<td align="right" class="totales"> &nbsp; 0</td>
+														<td align="right" class="totales"> &nbsp; 0</td>
+														<td align="right" class="totales"> &nbsp; 0</td>
+														<td align="right" class="totales"> &nbsp;  <%= @invoice.igv %></td>
+														<td align="right" class="totales"> &nbsp;  <%= @invoice.importe %></td>
 													</tr>													
 												</TBODY>
 											</TABLE>
