@@ -3,7 +3,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :client, :class_name=> 'Client',    :foreign_key=> 'cliente'
   
 
-	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa,:codplaca10
+	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa,:codplaca10,:nombre,:moneda 
 
         def self.import(file)
           CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
