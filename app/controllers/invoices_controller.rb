@@ -157,14 +157,14 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
           File.delete(file)
         end         
         
-        
-        
-        
         if $lcMoneda == "D"
             case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_different_currency2
         else
             case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
         end 
+        
+        puts $lcFileName1
+        
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
         send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
@@ -200,7 +200,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
          if $lcMoneda == "D"
             case_49 = InvoiceGenerator.new(7,49,5,$lg_serie_factura).with_different_currency2
         else
-            case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv3(true)
+            case_3 = InvoiceGenerator.new(1, 3, 1,$lg_serie_factura).with_igv3(true)
         end 
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
         $lcFile2    =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
