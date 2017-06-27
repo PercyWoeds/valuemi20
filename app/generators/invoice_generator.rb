@@ -134,7 +134,7 @@ class InvoiceGenerator < DocumentGenerator
         invoice_data[:lines] = (1..items).map do |item|
           {id: item.to_s, quantity: $lcCantidad, line_extension_amount: {value: $lcTotal, currency: currency}, pricing_reference: {alternative_condition_price: {price_amount: {value: $lcPrecioCigv, currency: currency}}}, 
            price: {value: $lcPrecioSIgv, currency: currency}, tax_totals: [{amount: {value: $lcTotal, currency: currency}, type: :igv}], 
-           item: {id: item.to_s, description: "DIESEL B5 S-50"}}
+           item: {id: item.to_s, description: $lcDes1}}
         end
 
       end

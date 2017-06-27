@@ -73,6 +73,8 @@ class InvoicesController < ApplicationController
 
         #@clienteName1   = Client.where("vcodigo = ?",params[ :$lcClienteInv ])        
         $lcClienteName = ""
+        $lcDes1   = @invoice.nombre
+        
     
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =@invoice.guia     
