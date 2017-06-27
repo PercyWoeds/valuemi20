@@ -18,8 +18,8 @@ class DocumentGenerator
       rescue Savon::SOAPFault => e
       puts "Error generating document for case #{group_case} in group #{group}: #{e}"      
       $aviso = "Error generating document for case #{group_case} in group #{group}: #{e}"
-
       end
+      
       document.to_pdf if pdf
     else
      raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"

@@ -163,7 +163,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
             case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
         end 
         
-        puts $lcFileName1
+        puts $lcFileName
         
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
