@@ -34,7 +34,8 @@ class DocumentGenerator
        $aviso = "Documento impreso con exito..."      
       end 
      else
-      raise "Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
+          
+      raise "**** Documento invalido para caso #{group_case} in group #{group}, ignoring output: #{document.errors.messages}"
     end
   end
   

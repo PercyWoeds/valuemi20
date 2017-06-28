@@ -104,8 +104,6 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
     end
 
     def sendsunat
-       
-    
         lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -138,7 +136,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
 
     def print
 
-        lib = File.expand_path('../lib', __FILE__)
+        lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
         require 'sunat'
@@ -156,14 +154,15 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
         files_to_clean.each do |file|
           File.delete(file)
         end         
-        
-        if $lcMoneda == "D"
-            case_49 = InvoiceGenerator.new(7,49,1,$lg_serie_factura).with_different_currency2
-        else
-            case_3 = InvoiceGenerator.new(1, 3, 1, $lg_serie_factura).with_igv2(true)
-        end 
-        
-        puts $lcFileName
+    
+       if $lcMoneda == "D"  
+            $lcFileName=""
+            case_49 = InvoiceGenerator.new(1,3,1,$lg_serie_factura).with_different_currency2
+          #  puts $lcFileName 
+       else
+            case_3  = InvoiceGenerator.new(1,3,1,$lg_serie_factura).with_igv2(true)
+       end 
+    
         
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
                 
@@ -202,6 +201,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
         else
             case_3 = InvoiceGenerator.new(1, 3, 1,$lg_serie_factura).with_igv3(true)
         end 
+    
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName        
         $lcFile2    =File.expand_path('../../../', __FILE__)+ "/"+$lcFilezip
         

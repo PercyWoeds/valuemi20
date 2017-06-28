@@ -20,7 +20,7 @@ files_to_clean.each do |file|
 end 
 
 
-case_49 = InvoiceGenerator.new(7, 49, 5, "FF02").with_different_currency
+case_49 = InvoiceGenerator.new(1, 3, 1, "FF02").with_different_currency
 
 
 
