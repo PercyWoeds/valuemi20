@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+    
     $: << Dir.pwd  + '/lib'
     before_action :authenticate_user!
 
