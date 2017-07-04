@@ -3,28 +3,63 @@ class InvoicesController < ApplicationController
     $: << Dir.pwd  + '/lib'
     before_action :authenticate_user!
 
-	def index             
+	def index         
+	    
+	    if current_user.permission_level=='admin'
          @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
             LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
             order by numero desc').paginate(:page => params[:page])
+        end 
+        
+        if current_user.permission_level=='cliente'
+            
+             ruc_cliente= current_user.ruc
+             
+           @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+            LEFT JOIN mailings ON invoices.numero = mailings.numero
+            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo where clients.vruc = ? order by numero desc ',ruc_cliente ]).paginate(:page => params[:page])
+        end 
     end     
     
     def search
-        if params[:search].blank?
-            #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 
-            from invoices 
-            LEFT JOIN mailings ON invoices.numero = mailings.numero
-            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
-            order by numero desc').paginate(:page => params[:page])
-        else            
-            #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
-            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
-            LEFT JOIN mailings ON invoices.numero = mailings.numero
-            LEFT JOIN clients ON invoices.cliente = clients.vcodigo            
-             where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
-        end        
+        if current_user.permission_level=='admin'
+        
+            if params[:search].blank?
+                #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
+                @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 
+                from invoices 
+                LEFT JOIN mailings ON invoices.numero = mailings.numero
+                LEFT  JOIN clients ON invoices.cliente = clients.vcodigo            
+                order by numero desc').paginate(:page => params[:page])
+            else            
+                #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
+                @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+                LEFT JOIN mailings ON invoices.numero = mailings.numero
+                LEFT JOIN clients ON invoices.cliente = clients.vcodigo            
+                 where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
+            end      
+            
+        end 
+        if current_user.permission_level=='cliente'
+            ruc_cliente= current_user.ruc
+            
+            if params[:search].blank?
+                #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
+                @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 
+                from invoices 
+                LEFT JOIN mailings ON invoices.numero = mailings.numero
+                LEFT  JOIN clients ON invoices.cliente = clients.vcodigo where clients.vruc = ?
+                order by numero desc ',ruc_cliente]).paginate(:page => params[:page])
+            else            
+                #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
+                @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
+                LEFT JOIN mailings ON invoices.numero = mailings.numero
+                LEFT JOIN clients ON invoices.cliente = clients.vcodigo            
+                 where invoices.numero like ?  or clients.vrazon2 like ? and clients.vruc = ?',params[:search], "%"+ params[:search]+"%",ruc_cliente]).paginate(:page => params[:page])
+            end      
+            
+        end 
     end
 
 	def import

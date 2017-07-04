@@ -2,15 +2,21 @@
   <div id="menu">
     <%= link_to 'Inicio', '/' %>
    <% if user_signed_in? %>
-      <%= link_to 'Facturas.', invoices_path %>    
-      <%= link_to "Clientes", clients_path %>
-      <%= link_to "Mailing", mailings_path %>
-      <%= link_to "Notas", notacredits_path %>
-      <%= link_to "Notas - Tipos", nota_path %>
-      <%= link_to "Products", products_path %>
- 
+   
+      <% if current_user.permission_level=='admin' %>
+          <%= link_to 'Facturas.', invoices_path %>    
+          <%= link_to "Clientes", clients_path %>
+          <%= link_to "Mailing", mailings_path %>
+          <%= link_to "Notas", notacredits_path %>
+          <%= link_to "Notas - Tipos", nota_path %>
+          <%= link_to "Usuarios", users_path %>
+      <% end %> 
+      <% if current_user.permission_level=='cliente' %>
+          <%= link_to 'Facturas.', invoices_path %>    
+          <%= link_to "Notas", notacredits_path %>
+      <% end %>             
       <% if user_signed_in? %>
-        
+ 
        <%= link_to "Cerrar Session ", destroy_user_session_path, method: :delete, data: { confirm: "Esta seguro de salir ?" } %> 
       
       <% end %>
