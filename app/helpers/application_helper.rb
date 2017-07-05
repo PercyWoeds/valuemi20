@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def getAppJustUrl()
-    return 'mnygo.dev'
+    return 'codiscom.com'
   end
   
   def getAppUrl()
