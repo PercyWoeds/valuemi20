@@ -1,5 +1,5 @@
 class AddUserToRuc < ActiveRecord::Migration
   def change
-    add_column :User, :ruc, :string
+    add_column :users, :ruc, :string
   end
 end
