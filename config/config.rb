@@ -26,6 +26,6 @@ SUNAT.configure do |config|
     s.district   = "1RA. ETAPA LOS OLIVOS"
     s.city       = "LIMA"
     s.country    = "PE"
-    s.logo_path  = "#{Dir.pwd}/app/assets/images/logo.PNG"
+    s.logo_path  = "#{Dir.pwd}/public/images/logo.PNG"
   end
 end
