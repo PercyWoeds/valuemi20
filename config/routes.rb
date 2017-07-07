@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources :mailings
   resources :clients
   resources :clients
-  resources :users 
+  resources :users
+  
+  
+  
   
 devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
 
@@ -14,6 +17,9 @@ devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
+
+
 
   resources :notacredits do
     collection { post :import }
