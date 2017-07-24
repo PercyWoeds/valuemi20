@@ -35,7 +35,6 @@ gem 'numbers_and_words', '~> 0.10.5'
 gem 'savon', '~> 2.11', '>= 2.11.1'
 gem 'rubyzip', '~> 1.2'
 
-gem 'activeadmin'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
