@@ -44,9 +44,13 @@
             Mail  
           </th>
           
-     <% if current_user.permission_level=='admin' %>     
+           <% if current_user.permission_level=='admin' %>     
           <th class="bordered_right bordered_bottom" style="width: 50px;">   
-           Activo? 
+           Activo?
+          </th>
+           
+          <th class="bordered_right bordered_bottom" style="width: 50px;">   
+           Estado 
           </th>
           <% end %>
           <th class="bordered_right bordered_bottom" style="width: 50px;">   
@@ -97,12 +101,20 @@
             <td class="bordered_right bordered_bottom right">
               <%= money(invoice.importe) %>
             </td>
+            
+            
             <td class="bordered_right bordered_bottom right">
             <% if invoice.flag1 != nil && invoice.flag1 != ""  %>          
               <i class="fa fa-check-square-o" aria-hidden="true"></i>            
             <% end %>
             </td>
             <% if current_user.permission_level=='admin' %>
+            <td class="bordered_right bordered_bottom right">
+            <% if invoice.flag2 != nil && invoice.flag2 != ""  %>          
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>            
+            <% end %>
+            </td>
+            
              <td class="bordered_right bordered_bottom right">
              <%= check_box_tag "products_ids[]", invoice.id  %>
              </td> 

@@ -17,10 +17,11 @@ class InvoicesController < ApplicationController
         if current_user.permission_level=='cliente'
             
              ruc_cliente= current_user.ruc
+             activo = "2"
              
            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
-            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo where clients.vruc = ? order by numero desc ',ruc_cliente ]).paginate(:page => params[:page])
+            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo where flag2 = ?  and clients.vruc = ? order by numero desc ',activo,ruc_cliente ]).paginate(:page => params[:page])
         end 
     end     
     
@@ -39,26 +40,26 @@ class InvoicesController < ApplicationController
                 @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
                 LEFT JOIN mailings ON invoices.numero = mailings.numero
                 LEFT JOIN clients ON invoices.cliente = clients.vcodigo            
-                 where invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
+                 where  invoices.numero like ?  or clients.vrazon2 like ?',params[:search], "%"+ params[:search]+"%"]).paginate(:page => params[:page])
             end      
             
         end 
         if current_user.permission_level=='cliente'
             ruc_cliente= current_user.ruc
-            
+            activo = "2"
             if params[:search].blank?
                 #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
                 @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 
                 from invoices 
                 LEFT JOIN mailings ON invoices.numero = mailings.numero
-                LEFT  JOIN clients ON invoices.cliente = clients.vcodigo where clients.vruc = ?
-                order by numero desc ',ruc_cliente]).paginate(:page => params[:page])
+                LEFT  JOIN clients ON invoices.cliente = clients.vcodigo where flag2 = ? and clients.vruc = ?
+                order by numero desc ',activo,ruc_cliente]).paginate(:page => params[:page])
             else            
                 #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
                 @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
                 LEFT JOIN mailings ON invoices.numero = mailings.numero
                 LEFT JOIN clients ON invoices.cliente = clients.vcodigo            
-                 where invoices.numero like ?  or clients.vrazon2 like ? and clients.vruc = ?',params[:search], "%"+ params[:search]+"%",ruc_cliente]).paginate(:page => params[:page])
+                 where flag2=? and  invoices.numero like ?  or clients.vrazon2 like ? and clients.vruc = ?',activo,params[:search], "%"+ params[:search]+"%",ruc_cliente]).paginate(:page => params[:page])
             end      
             
         end 
@@ -309,7 +310,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
        Invoice.where(id: params[:products_ids]).update_all(params[:invoice])
         
       flash[:notice] = "Facturas modificadas"
-       redirect_to "/invoices/index"
+       redirect_to "/invoices"
       
   end
     
