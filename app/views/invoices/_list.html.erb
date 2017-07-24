@@ -110,7 +110,7 @@
             </td>
             <% if current_user.permission_level=='admin' %>
             <td class="bordered_right bordered_bottom right">
-            <% if invoice.flag2 != nil && invoice.flag2 != ""  %>          
+            <% if invoice.flag2 != nil && invoice.flag2 != ""  && invoice.flag2 != "0" %>          
               <i class="fa fa-check-square-o" aria-hidden="true"></i>            
             <% end %>
             </td>

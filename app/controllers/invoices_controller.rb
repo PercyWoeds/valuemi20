@@ -21,7 +21,7 @@ class InvoicesController < ApplicationController
              
            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
-            LEFT  JOIN clients ON invoices.cliente = clients.vcodigo where flag2 = ?  and clients.vruc = ? order by numero desc ',activo,ruc_cliente ]).paginate(:page => params[:page])
+            LEFT JOIN clients  ON invoices.cliente = clients.vcodigo where invoices.flag2 = ?  and clients.vruc = ? order by numero desc ',activo,ruc_cliente ]).paginate(:page => params[:page])
         end 
     end     
     
@@ -59,7 +59,7 @@ class InvoicesController < ApplicationController
                 @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
                 LEFT JOIN mailings ON invoices.numero = mailings.numero
                 LEFT JOIN clients ON invoices.cliente = clients.vcodigo            
-                 where flag2=? and  invoices.numero like ?  or clients.vrazon2 like ? and clients.vruc = ?',activo,params[:search], "%"+ params[:search]+"%",ruc_cliente]).paginate(:page => params[:page])
+                 where invoices.flag2 = ? and  invoices.numero like ?  or clients.vrazon2 like ? and clients.vruc = ?',activo,params[:search], "%"+ params[:search]+"%",ruc_cliente]).paginate(:page => params[:page])
             end      
             
         end 
@@ -303,7 +303,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
 
         @guiasselect = Invoice.find(params[:products_ids])      
     end     
-  end
+    end
 
   def updatemultiple
  
