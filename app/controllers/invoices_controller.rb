@@ -309,7 +309,7 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
        Invoice.where(id: params[:products_ids]).update_all(params[:invoice])
         
       flash[:notice] = "Facturas modificadas"
-       redirect_to "invoices#index"
+       redirect_to "/invoices/index"
       
   end
     
