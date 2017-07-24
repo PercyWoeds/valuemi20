@@ -17,8 +17,8 @@
       <% end %>             
       <% if user_signed_in? %>
  
-         <%= link_to "Cerrar Session ", destroy_user_session_path, method: :delete, data: { confirm: "Esta seguro de salir ?" } %> 
-      
+         
+         <%= link_to "Cerrar Sesion " , destroy_user_session_path, method: :get , data: { confirm: "Esta seguro de salir ?" } %>
       
       <% end %>
 
