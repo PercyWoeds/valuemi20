@@ -17,7 +17,7 @@ class InvoicesController < ApplicationController
         if current_user.permission_level=='cliente'
             
              ruc_cliente= current_user.ruc
-             activo = "2"
+             activo = "1"
              
            @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
             LEFT JOIN mailings ON invoices.numero = mailings.numero
@@ -46,7 +46,7 @@ class InvoicesController < ApplicationController
         end 
         if current_user.permission_level=='cliente'
             ruc_cliente= current_user.ruc
-            activo = "2"
+            activo = "1"
             if params[:search].blank?
                 #@likes= Invoice.order("numero ASC").page(params[:page]).per_page(15)        
                 @invoices=Invoice.find_by_sql(['Select invoices.*,clients.vrazon2,mailings.flag1 
