@@ -11,8 +11,12 @@ Rails.application.routes.draw do
   resources :users
   
   
-  devise_for :users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+devise_for :users, skip: [:sessions]
+as :user do
+  get 'signin', to: 'devise/sessions#new', as: :new_user_session
+  post 'signin', to: 'devise/sessions#create', as: :user_session
+  match 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session, via: Devise.mappings[:user].sign_out_via
+end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
