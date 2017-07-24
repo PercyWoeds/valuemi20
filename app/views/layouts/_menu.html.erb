@@ -1,8 +1,11 @@
+ 
+ 
 <div id="menu_cont">
   <div id="menu">
     <%= link_to 'Inicio', '/' %>
    <% if user_signed_in? %>
-   
+      
+      
       <% if current_user.permission_level=='admin' %>
           <%= link_to 'Facturas.', invoices_path %>    
           <%= link_to "Clientes", clients_path %>
@@ -14,12 +17,10 @@
       <% if current_user.permission_level=='cliente' %>
           <%= link_to 'Facturas.', invoices_path %>    
           <%= link_to "Notas", notacredits_path %>
+          
       <% end %>             
       <% if user_signed_in? %>
- 
-         
          <%= link_to "Cerrar Sesion " , destroy_user_session_path, method: :get , data: { confirm: "Esta seguro de salir ?" } %>
-      
       <% end %>
 
     <% end %>

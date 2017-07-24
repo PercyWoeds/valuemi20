@@ -2,8 +2,18 @@ class Invoice < ActiveRecord::Base
  self.per_page = 10
   belongs_to :client, :class_name=> 'Client',    :foreign_key=> 'cliente'
   
+  TABLE_HEADERS2 = ["TD",
+                      "Documento",
+                     "Fecha",
+                     "Cliente",
+                     "Moneda",
+                     "SUBTOTAL",
+                     "IGV.",
+                     "TOTAL",
+                     "ESTADO"]
 
-	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa,:codplaca10,:nombre,:moneda 
+	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa,:codplaca10,:nombre,:moneda,:flag2
+
 
         def self.import(file)
           CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
@@ -25,7 +35,8 @@ class Invoice < ActiveRecord::Base
       def client_name
         read_attribute(client_name) || client.vrazon2
       end
-
+     
+     
 end
 
 

@@ -44,6 +44,12 @@ class ClientsController < ApplicationController
   end
 
 
+  def get_facturas_day(customer,fecha1,fecha2,moneda)
+
+    @facturas = Invoice.where([" ruc = ? and fecha >= ? and fecha<= ? and moneda = ?", customer, "#{fecha1} 00:00:00","#{fecha2} 23:59:59",moneda ]).order(:id )
+    return @facturas
+    
+  end 
   # GET /clients/1
   # GET /clients/1.json
   def show

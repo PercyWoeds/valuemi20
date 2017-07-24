@@ -1,0 +1,10 @@
+
+
+<% if params[:field].blank? || params[:field] == "flag2" %>
+<p>
+    <%= f.label :flag2, "Activo ?  *", :class => "bold" %><br />
+    
+   <%= f.check_box :flag2, {:class => "bold"}, "checked-value", "unchecked-value" %>
+</p>
+<% end %>
+

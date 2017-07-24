@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :credits
   resources :mailings
   resources :clients
-  resources :clients
+  
   resources :users
+  resources :reports 
   
   
 devise_for :users, skip: [:sessions]
@@ -17,14 +18,7 @@ as :user do
   match 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session, via: Devise.mappings[:user].sign_out_via
 end
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-
-
-
-
+ 
   resources :notacredits do
     collection { post :import }
     collection { post :sendsunat }
@@ -44,6 +38,11 @@ end
     collection { post :xml }
     collection { post :sendmail }
     collection { get :search   }
+      collection do 
+      put :editmultiple      
+      put :updatemultiple      
+    end 
+
    end 
    
    resources :clients do
@@ -65,6 +64,9 @@ end
 
   root 'invoices#index'
 
+
+    match 'reports/monthly_customers' => 'reports#report_monthly_customers', via: [:get, :post]
+    match 'reports/view_monthly_customers/:customer_id' => 'reports#report_view_monthly_customers', via: [:get, :post]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

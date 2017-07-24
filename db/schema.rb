@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704173629) do
+ActiveRecord::Schema.define(version: 20170724212805) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "vcodigo"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170704173629) do
     t.string   "codplaca10"
     t.text     "nombre"
     t.string   "moneda"
+    t.string   "flag2"
   end
 
   create_table "mailings", force: :cascade do |t|
@@ -78,6 +79,13 @@ ActiveRecord::Schema.define(version: 20170704173629) do
     t.string   "flag1"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "monedas", force: :cascade do |t|
+    t.string   "description"
+    t.string   "descrip_short"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "nota", force: :cascade do |t|

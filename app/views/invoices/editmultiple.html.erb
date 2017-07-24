@@ -1,0 +1,110 @@
+
+<% if @guiasselect != nil %>
+
+<h1> Editar  </h1>		 
+
+<%= form_tag updatemultiple_invoices_path, method: :put do %>
+
+
+ 	<table>
+		<thead>
+		  <tr>
+		      <th>
+		       Numero
+		      </th>
+		      <th>
+		        TD
+		      </th>
+		      <th>
+		        Cliente Origen
+		      </th>
+		      <th>
+		        Cliente Destino
+		      </th>
+		      <th>
+		        Fec.Ingreso
+		      </th>
+		      
+		      <th>
+		        OST
+		      </th>
+		      
+		   </tr>		 
+		</thead>
+
+
+ 	<% for invoice in @guiasselect %>
+
+ 		<%= hidden_field_tag "products_ids[]",invoice.id %>
+
+	    <tbody>		
+			<td class="bordered_right bordered_bottom">
+              <%= invoice.cliente %>
+            </td>
+            <td class="bordered_right bordered_bottom">
+              
+            </td>
+            
+            <td class="bordered_right bordered_bottom">
+              <%= invoice.fecha %>
+            </td>
+              
+            <td class="bordered_right bordered_bottom">
+              <%= invoice.moneda %>
+            </td>
+            
+            
+            <td class="bordered_right bordered_bottom">
+              <%= invoice.td %>
+            </td>
+            <td class="bordered_right bordered_bottom right">
+              <%= invoice.serie %>
+            </td>
+            <td class="bordered_right bordered_bottom right">
+            <%= invoice.numero  %>
+            </td>
+            
+            <td class="bordered_right bordered_bottom right">
+              <%= money(invoice.preciocigv) %>
+            </td>
+            <td class="bordered_right bordered_bottom right">
+              <%= money(invoice.cantidad) %>
+            </td>
+            
+            
+            <td class="bordered_right bordered_bottom right">
+              <%= money(invoice.importe) %>
+            </td>
+            <td class="bordered_right bordered_bottom right">
+            <% if invoice.flag1 != nil && invoice.flag1 != ""  %>          
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>            
+            <% end %>
+            </td>
+	      </tr>
+
+ 
+	 <%end %>
+	 	</tbody>
+
+	</table>
+
+
+
+	     <%= fields_for  invoice  do |f|	 %>		
+ 				
+ 		 	<%= render "fields",:f=> f %>
+	      	    
+   		 <%end %>
+
+		<div class="actions" >
+		<%= submit_tag "Actualizar  "%>
+		</div>
+
+
+
+<%end %>	
+<%end %>	
+
+
+
+

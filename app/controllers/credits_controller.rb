@@ -823,6 +823,28 @@ class CreditsController < ApplicationController
 
   end
   
+  
+ def get_facturas_day_value(fecha1,fecha2,value = "total",moneda)
+
+    facturas = Invoice.where([" fecha >= ? and fecha<= ? and moneda = ?", self.id, "#{fecha1} 00:00:00","#{fecha2} 23:59:59",moneda])
+    if facturas
+    ret=0  
+    for factura in facturas
+      
+      if(value == "subtotal")
+        ret += factura.subtotal
+      elsif(value == "tax")
+        ret += factura.tax
+      else         
+        ret += factura.total
+      end
+    end
+    end 
+
+    return ret
+  
+ end 
+  
   ###pendientes de pago detalle
 
   def rpt_ccobrar4_pdf

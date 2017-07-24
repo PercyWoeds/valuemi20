@@ -1,4 +1,4 @@
-
+<%= form_tag  editmultiple_invoices_path, method: :put do %>
 
   <link rel="stylesheet">
 
@@ -43,6 +43,12 @@
           <th class="bordered_right bordered_bottom" style="width: 50px;">   
             Mail  
           </th>
+          
+     <% if current_user.permission_level=='admin' %>     
+          <th class="bordered_right bordered_bottom" style="width: 50px;">   
+           Activo? 
+          </th>
+          <% end %>
           <th class="bordered_right bordered_bottom" style="width: 50px;">   
 
           </th>
@@ -96,6 +102,12 @@
               <i class="fa fa-check-square-o" aria-hidden="true"></i>            
             <% end %>
             </td>
+            <% if current_user.permission_level=='admin' %>
+             <td class="bordered_right bordered_bottom right">
+             <%= check_box_tag "products_ids[]", invoice.id  %>
+             </td> 
+            <% end %>
+            
             <td class="bordered_right bordered_bottom">           
               <i> <%=link_to "Ver", invoice, data: { no_turbolink: true } %>  </i>
 
@@ -104,14 +116,22 @@
         <% end %>
       </tbody>
     </table>
+    
+    
     <%= will_paginate @invoices %> 
+
+     <% if current_user.permission_level=='admin' %>
+        <%= select_tag :field, options_for_select([["All Fields", ""]]) %>
+        <%= submit_tag "Editar solo marcados" %>
+     <% end %>
 
   <% else %>
     <p class="error">
       We couldn't find any invoices.
     </p>
   <% end %>
-
+  <% end %>
+  
   <style>
   table {
       border-collapse: collapse;

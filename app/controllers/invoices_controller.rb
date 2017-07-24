@@ -3,7 +3,9 @@ class InvoicesController < ApplicationController
     $: << Dir.pwd  + '/lib'
     before_action :authenticate_user!
 
-	def index         
+	def index
+	    
+	    @ruc = current_user.ruc
 	    
 	    if current_user.permission_level=='admin'
          @invoices=Invoice.find_by_sql('Select invoices.*,clients.vrazon2,mailings.flag1 from invoices 
@@ -293,6 +295,25 @@ Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
         @@document_serial_id =""
         $aviso=""
     end 
+    
+    def editmultiple
+
+    if params[:products_ids] != nil 
+
+        @guiasselect = Invoice.find(params[:products_ids])      
+    end     
+  end
+
+  def updatemultiple
+ 
+       Invoice.where(id: params[:products_ids]).update_all(params[:invoice])
+        
+      flash[:notice] = "Facturas modificadas"
+       redirect_to "invoices#index"
+      
+  end
+    
+    
     private
     def validate_user
         redirect_to  new_user_session_path, notice: "Necesitas iniciar sesión ..."

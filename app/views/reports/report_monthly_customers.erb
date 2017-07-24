@@ -1,0 +1,29 @@
+<%= render 'layouts/charts' %>
+<%
+invoices_subtotal = 0
+invoices_tax = 0
+invoices_total = 0
+subtotals = []
+taxes = []
+totals = []
+%>
+<div class="breadcrumbs">
+ 
+  
+</div>
+
+<h1>
+  <%= image_tag("", :class => "vmiddle") %>
+ Reportes  Mes - <%= @month_name %> <%= @year %> - <%= @customer %> 
+</h1>
+
+<form method="get" action="/reports/view_monthly_customers/<%= @customer %>">
+  <%= select_tag(:year, options_for_select(@years, @year)) %>
+  <%= select_tag(:month, options_for_select(@months, @month)) %>
+  <div class="field">    
+  <%= select_tag(:moneda_id, options_from_collection_for_select(@monedas,'id','description')) %>
+  </div>
+  
+  <input type="submit" value="Reporte"  />
+  
+</form>
