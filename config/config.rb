@@ -22,9 +22,8 @@ SUNAT.configure do |config|
     s.name       = "HUGO DENIS MADRID REFULIO"
     s.ruc        = "20545339006"
     s.address_id = "150142"
-    s.street     = "PACHACAMA MZA. C2 LOTE. 12 BAR.2 SEC. 1 IV ETA. 
-    (POR SEPARADORA INDUSTRIAL Y PACHACUTEC)"
-    s.district   = "LIMA - LIMA - VILLA EL SALVADOR"
+    s.street     = "PACHACAMA MZA. C2 LOTE. 12 BAR.2 SEC. 1 IV ETA. PACHACUTEC"
+    s.district   = "VILLA EL SALVADOR"
     s.city       = "LIMA"
     s.country    = "PE"
     s.logo_path  = "#{Dir.pwd}/public/images/logo.PNG"
