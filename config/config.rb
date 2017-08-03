@@ -21,9 +21,10 @@ SUNAT.configure do |config|
     s.legal_name = "CODISCOM S.A."
     s.name       = "HUGO DENIS MADRID REFULIO"
     s.ruc        = "20545339006"
-    s.address_id = "150117"
-    s.street     = "CL.IGNACIO TOROTE NRO.515 DPTO 202 URB. EL TREBOL"
-    s.district   = "1RA. ETAPA LOS OLIVOS"
+    s.address_id = "150142"
+    s.street     = "PACHACAMA MZA. C2 LOTE. 12 BAR.2 SEC. 1 IV ETA. 
+    (POR SEPARADORA INDUSTRIAL Y PACHACUTEC)"
+    s.district   = "LIMA - LIMA - VILLA EL SALVADOR"
     s.city       = "LIMA"
     s.country    = "PE"
     s.logo_path  = "#{Dir.pwd}/public/images/logo.PNG"
