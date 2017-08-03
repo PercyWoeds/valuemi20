@@ -18,7 +18,7 @@ SUNAT.configure do |config|
   end
 
   config.supplier do |s|
-    s.legal_name = "CODISCOM S.A."
+    s.legal_name = "CODISCOM S.A.C."
     s.name       = "HUGO DENIS MADRID REFULIO"
     s.ruc        = "20545339006"
     s.address_id = "150142"
