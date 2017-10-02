@@ -38,8 +38,10 @@
         <td><%= notacredit.motivo %></td>
 
         <td><%= link_to 'Ver', notacredit %></td>
+        	<% if current_user.permission_level=='admin' %>
         <td><%= link_to 'Editar', edit_notacredit_path(notacredit) %></td>
         <td><%= link_to 'Eliminar ', notacredit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -47,4 +49,7 @@
 
 <br>
 
+	<% if current_user.permission_level=='admin' %>
+
 <%= link_to 'Nueva Nota ', new_notacredit_path %>
+<% end %>
