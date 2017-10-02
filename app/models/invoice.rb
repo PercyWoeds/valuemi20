@@ -15,12 +15,35 @@ class Invoice < ActiveRecord::Base
 	attr_accessible :cant1, :cant2, :cantidad, :cliente, :fecha, :guia, :igv, :importe, :moneda, :numero, :preciocigv, :preciosigv, :ruc, :serie, :td, :vventa,:codplaca10,:nombre,:moneda,:flag2
 
 
-        def self.import(file)
+      def self.import(file)
           CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
-          Invoice.create! row.to_hash 
-          
-        end
-
+                  
+          a= Invoice.find_by(td: row['td'],serie: row['serie'],numero: row['numero'])          
+      
+          if a       
+            if a.td == row['td'] and a.serie == row['serie'] and a.numero == row['numero']
+                
+             a.update(:cliente=>row['cliente'],
+                             :fecha=>row['fecha'],
+                             :preciocigv=>row['preciocigv'],
+                             :preciosigv=>row['preciosigv'],
+                             :cantidad=>row['cantidad'],
+                             :vventa=>row['vventa'], 
+                             :igv=>row['igv'],
+                             :importe=> row['importe'], 
+                             :ruc=>row['ruc'], 
+                             :guia=>row['guia'],
+                             :flag1=>row['flag1'],
+                             :codplaca10=>row['codplaca10'], 
+                             :nombre=>row['nombre'],
+                             :moneda=>row['moneda'])
+        
+            else
+              Invoice.create! row.to_hash 
+              
+            end
+          end 
+         end 
       end 
 
       def self.search(params)        

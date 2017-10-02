@@ -202,14 +202,16 @@
 	<br>
 
 	<table>
+		<% if current_user.permission_level=='admin' %>
 		<tr>
+			 
 			<%= form_tag sendsunat_invoices_path, multipart: true do %>
  				 
 	  		<%= submit_tag "Enviar Sunat  "   %>
 			<% end %>
 			
 		</tr>
-
+<% end %>
 		<tr>
 			<%= form_tag print_invoices_path, multipart: true do %>
 
@@ -225,6 +227,7 @@
 			<% end %>		
 		</tr>
 		
+		 <% if current_user.permission_level=='admin' %>
 		<tr>
 			<%= form_tag sendmail_invoices_path, multipart: true do %>
 	  		<%= submit_tag  "Correo Electronico  " %>
@@ -238,7 +241,7 @@
 			<% end %>
 
 		</tr>
-		
+		<% end %>
 	</table>
 
 </body>

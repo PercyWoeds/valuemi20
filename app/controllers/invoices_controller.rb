@@ -66,7 +66,7 @@ class InvoicesController < ApplicationController
     end
 
 	def import
-       Invoice.delete_all 
+      
 	   Invoice.import(params[:file])
        redirect_to root_url, notice: "Facturas importadas."
     end 

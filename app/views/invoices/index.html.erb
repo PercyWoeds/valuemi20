@@ -13,12 +13,16 @@
 
 <%= render 'invoices/list' %>
 
+
+ <% if current_user.permission_level=='admin' %>
+
+
 <h2>Importar Archivo Facturas "*.csv"</h2>
 <%= form_tag import_invoices_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Importar " %>
 <% end %>
-
+<%end %>
 
 <br />
 </div>
