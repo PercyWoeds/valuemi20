@@ -37,12 +37,13 @@ class Invoice < ActiveRecord::Base
                              :codplaca10=>row['codplaca10'], 
                              :nombre=>row['nombre'],
                              :moneda=>row['moneda'])
-        
+            end 
+            
             else
               Invoice.create! row.to_hash 
               
             end
-          end 
+         
          end 
       end 
 
