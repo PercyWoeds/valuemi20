@@ -78,7 +78,8 @@ class InvoicesController < ApplicationController
         $lg_serie_factura = "FF"<< @invoice.serie  
         $lg_serial_id   = @invoice.numero.to_i
         $lg_serial_id2  = @invoice.numero
-
+        puts $lg_serial_id 
+    
         $lcCantidad     = @invoice.cantidad   
         $lcClienteInv   = @invoice.cliente   
         $lcRuc          = @list[0].ruc
