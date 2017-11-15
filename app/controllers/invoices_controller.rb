@@ -87,7 +87,17 @@ class InvoicesController < ApplicationController
         $lcMail         = @list[0].mailclient
         $lcMail2        = @list[0].mailclient2
         $lcMail3        = @list[0].mailclient3
-        $lcLegalName    = @list[0].vrazon2    
+        
+         legal_name_spaces = @list[0].vrazon2.lstrip    
+        
+        if legal_name_spaces == nil
+            $lcLegalName    = legal_name_spaces
+        else
+            $lcLegalName = @list[0].vrazon2
+        end
+        
+        
+        
         $lcDirCli       = @list[0].vdireccion   
         $lcDisCli       = @list[0].vdistrito
         $lcProv         = @list[0].vprov
