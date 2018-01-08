@@ -2,6 +2,7 @@ class InvoicesController < ApplicationController
     
     $: << Dir.pwd  + '/lib'
     before_action :authenticate_user!
+require "open-uri"
 
 	def index
 	    
@@ -133,7 +134,39 @@ class InvoicesController < ApplicationController
         $lcDocument_serial_id =@invoice.numero 
         #$lcAutorizacion =""
         #$lcAutorizacion1=""
+   
+        $lcSerie= @invoice.serie
+        $lcruc = "20545339006" 
+        
+        if $lcTd == 'FT'
+            $lctidodocumento = '01'
+        end
+        if $lcTd =='BV'
+            $lctidodocumento = '03'
+        end 
+        if $lcTd == 'NC'
+            $lctidodocumento = '07'
+        end 
+        if $lcTd == 'ND'
+            $lctidodocumento = '06'
+        end
+        if @invoice.td == "FT"
+          $lcTipoDocCli =  "1"
+        else
+          $lcTipoDocCli =  "6"
+        end 
+         $lcNroDocCli =@invoice.get_cliente(@invoice.cliente)
+         
+         $lcFecha1codigo      = $lg_fecha.to_s
 
+          parts = $lcFecha1codigo.split("-")
+          $aa = parts[0]
+          $mm = parts[1]        
+          $dd = parts[2]       
+        $lcFechaCodigoBarras = $aa << "-" << $mm << "-" << $dd
+        
+        $lcCodigoBarra = $lcruc << "|" << $lcTd << "|" << $lcSerie << "|" << $lcDocument_serial_id.to_s << "|" <<$lcIgv.to_s<< "|" << $lcTotal.to_s << "|" << $lcFechaCodigoBarras << "|" << $lcTipoDocCli << "|" << $lcNroDocCli
+        
           $lcPercentIgv  =18000   
           $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0005710/SUNAT del 13/07/2016 "
           $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
