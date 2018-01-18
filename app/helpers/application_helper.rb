@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def getAppJustUrl()
-    return 'codiscom.com'
+    return 'hidrotranps.com'
   end
   
   def getAppUrl()
