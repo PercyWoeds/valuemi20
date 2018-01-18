@@ -5,6 +5,7 @@ class CreateMonedas < ActiveRecord::Migration
       t.string :descrip_short
 
       t.timestamps null: false
+      
     end
   end
 end
