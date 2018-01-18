@@ -80,15 +80,14 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   
-  config.action_mailer.smtp_settings = {
+ config.action_mailer.smtp_settings = {
     address:              'send.one.com',
     port:                 587,
     domain:               'one.com',
-    user_name:            'factura-electronica@codiscom.com',
-    password:             'Factura2016',
+    user_name:            'factura-electronica@hidrotransp.com',
+    password:             'hidro123456',
     authentication:       'plain',
     enable_starttls_auto: true  }
-
 
     
 end

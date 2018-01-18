@@ -4,28 +4,28 @@ SUNAT.configure do |config|
   config.credentials do |c|
 
 
-    c.ruc       = "20545339006"
+    c.ruc       = "20522012336"
     c.username  = "FACTURA2"
-    c.password  = "20545339006"
+    c.password  = "20522012336"
    end
 
   config.signature do |s|
-    s.party_id    = "20545339006"
-    s.party_name  = "CODISCOM S.A.C."
-    s.cert_file   = File.join(Dir.pwd, '/app/keys', 'certificado.crt')
-    s.pk_file     = File.join(Dir.pwd, '/app/keys', 'CERTIFICADO.key') 
-    
+    s.party_id    = "20522012336"
+    s.party_name  = "HIDROTRANSP S.A.C."
+    s.cert_file   = File.join(Dir.pwd, './app/keys', 'certificate.crt')
+    s.pk_file     = File.join(Dir.pwd, './app/keys', 'CERTIFICADO.key') 
   end
 
   config.supplier do |s|
-    s.legal_name = "CODISCOM S.A.C."
-    s.name       = "HUGO DENIS MADRID REFULIO"
-    s.ruc        = "20545339006"
-    s.address_id = "150142"
-    s.street     = "URB.PACHACAMAC MZA. C2 LOTE. 12 BAR.2 SEC. 1 IV ETA."
-    s.district   = "VILLA EL SALVADOR"
+    s.legal_name = "HIDROTRANSP S.A.C."
+    s.name       = "Cesar Jaime Manrique Milla"
+    s.ruc        = "20522012336"
+    s.address_id = "150132"
+    s.street     = "CAM.SECTOR CRUZ DEL NORTE I ZONA BAJA MZA. C LOTE. 5 
+    A.H. PROYECTO INTEGRAL ALIANZA INDUSTRIAL DE LAS LOMAS"
+    s.district   = "CARABAYLLO"
     s.city       = "LIMA"
     s.country    = "PE"
-    s.logo_path  = "#{Dir.pwd}/public/images/logo.PNG"
+    s.logo_path  = "#{Dir.pwd}/app/assets/images/logo.PNG"
   end
 end
