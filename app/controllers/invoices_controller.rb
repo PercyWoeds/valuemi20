@@ -136,7 +136,7 @@ require "open-uri"
         #$lcAutorizacion1=""
    
         $lcSerie= @invoice.serie
-        $lcruc = "20545339006" 
+        $lcruc = "20522012336" 
         
         if $lcTd == 'FT'
             $lctidodocumento = '01'
@@ -164,9 +164,11 @@ require "open-uri"
           $mm = parts[1]        
           $dd = parts[2]       
         $lcFechaCodigoBarras = $aa << "-" << $mm << "-" << $dd
+        $lcIGVcode = @invoice.igv
+        $lcTotalcode = @invoice.importe 
         
-        $lcCodigoBarra = $lcruc << "|" << $lcTd << "|" << $lcSerie << "|" << $lcDocument_serial_id.to_s << "|" <<$lcIgv.to_s<< "|" << $lcTotal.to_s << "|" << $lcFechaCodigoBarras << "|" << $lcTipoDocCli << "|" << $lcNroDocCli
-        
+        $lcCodigoBarra = $lcruc << "|" << $lcTd << "|" << $lcSerie << "|" << $lcDocument_serial_id.to_s << "|" <<$lcIGVcode.to_s<< "|" << $lcTotalcode.to_s << "|" << $lcFechaCodigoBarras << "|" << $lcTipoDocCli << "|" << $lcNroDocCli
+      
           $lcPercentIgv  =18000   
           $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0005710/SUNAT del 13/07/2016 "
           $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
