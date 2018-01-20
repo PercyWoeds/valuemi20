@@ -136,7 +136,7 @@ require "open-uri"
         #$lcAutorizacion1=""
    
         $lcSerie= @invoice.serie
-        $lcruc = "20522012336" 
+        $lcruc = "20555691263" 
         
         if $lcTd == 'FT'
             $lctidodocumento = '01'
