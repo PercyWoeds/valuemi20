@@ -24,6 +24,9 @@ p
     s.district   = "LIMA - LIMA - CARABAYLLO"
     s.city       = "LIMA"
     s.country    = "PE"
-    s.logo_path  = "#{Dir.pwd}/app/assets/images/logo.PNG"
+    s.logo_path  = "/app/assets/images/logo.PNG"
+  
   end
 end
+
+

@@ -70,7 +70,7 @@
      <%= f.select :moneda_id , options_for_select([["SOLES",1],["DOLARES",2]]) %>
    </div>
   <div class="field">
-    <%= f.label :mod_tipo,"Catalogo de motivos " %><br>  
+    <%= f.label :notum_id,"Catalogo de motivos " %><br>  
 
     <% if @edit %>
     <%= f.select :notum_id,options_from_collection_for_select(@notas,'id','descrip',:selected => @notacredit.nota_id)%> 
@@ -89,7 +89,7 @@
     <%= f.text_field :nombre %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit  %>
   </div>
 <% end %>
 
