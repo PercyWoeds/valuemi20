@@ -204,7 +204,6 @@
 	<table>
 		<% if current_user.permission_level=='admin' %>
 		<tr>
-			 
 			<%= form_tag sendsunat_invoices_path, multipart: true do %>
 	  		<%= submit_tag "Enviar Sunat  " ,  data: { no_turbolink: true }  %>
 			<% end %>
