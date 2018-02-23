@@ -52,7 +52,8 @@ class VoidedDocumentsGenerator < DocumentGenerator
       raise "Invalid voided document: #{document.errors}"
     end
   end
-    def generate2
+  
+  def generate2
 
     lcanio= $lg_fecha.year
     lcmes = $lg_fecha.mon
