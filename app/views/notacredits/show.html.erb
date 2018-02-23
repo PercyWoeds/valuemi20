@@ -229,6 +229,13 @@
     </tr>
   
     
+    <tr>
+      
+      <%= form_tag anular2_voideds_path,  multipart: true, data: { confirm: "Esta seguro de anular este documento ?" } do  %>
+        <%= submit_tag  "Anular " %>
+      <% end %>
+
+    </tr>
   </table>
 
 </body>
