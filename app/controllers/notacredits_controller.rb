@@ -304,9 +304,7 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
     @notacredit[:tax]  = @notacredit[:total] - @notacredit[:subtotal]
    
   @notas = Notum.all
-  puts "aaaa"
-  puts  params[:notacredit_subtotal]
-
+  
     respond_to do |format|
       if @notacredit.save
         format.html { redirect_to @notacredit, notice: 'Notacredit was successfully created.' }

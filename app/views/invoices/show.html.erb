@@ -206,38 +206,35 @@
 		<tr>
 			 
 			<%= form_tag sendsunat_invoices_path, multipart: true do %>
- 				 
-	  		<%= submit_tag "Enviar Sunat  "   %>
+	  		<%= submit_tag "Enviar Sunat  " , data: { no-turbolinks: true }  %>
 			<% end %>
 			
 		</tr>
-<% end %>
+       <% end %>
+       
 		<tr>
 			<%= form_tag print_invoices_path, multipart: true do %>
-
-
-
-			  <%= submit_tag  "Imprimir  ", data: { turbolinks: true } %>
+     	    <%= submit_tag  "Imprimir  ", data: { no-turbolinks: true } %>
 			<% end %>		
 		</tr>
 
 		<tr>
 			<%= form_tag xml_invoices_path, multipart: true do %>
-			  <%= submit_tag  "XML  " %>
+			  <%= submit_tag  "XML  " , data: { no-turbolinks: true } %>
 			<% end %>		
 		</tr>
 		
 		 <% if current_user.permission_level=='admin' %>
 		<tr>
 			<%= form_tag sendmail_invoices_path, multipart: true do %>
-	  		<%= submit_tag  "Correo Electronico  " %>
+	  		<%= submit_tag  "Correo Electronico  " , data: { no-turbolinks: true } %>
 			<% end %>
 		</tr>
 		
 		<tr>
 			
 			<%= form_tag anular_voideds_path,  multipart: true, data: { confirm: "Esta seguro de anular este documento ?" } do  %>
-	  		<%= submit_tag  " Anular " %>
+	  		<%= submit_tag  " Anular "  , data: { no-turbolinks: true } %>
 			<% end %>
 
 		</tr>
