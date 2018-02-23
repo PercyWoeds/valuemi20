@@ -64,21 +64,8 @@ ActiveRecord::Schema.define(version: 20170724212805) do
     t.datetime "updated_at", null: false
     t.string   "guia"
     t.string   "flag1"
-    t.string   "codplaca10"
     t.text     "nombre"
-    t.string   "moneda"
     t.string   "flag2"
-  end
-
-  create_table "mailings", force: :cascade do |t|
-    t.string   "td"
-    t.string   "serie"
-    t.string   "numero"
-    t.string   "ruc"
-    t.boolean  "flag"
-    t.string   "flag1"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "monedas", force: :cascade do |t|
@@ -86,13 +73,6 @@ ActiveRecord::Schema.define(version: 20170724212805) do
     t.string   "descrip_short"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "nota", force: :cascade do |t|
-    t.string   "code"
-    t.string   "descrip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "notacredits", force: :cascade do |t|
@@ -112,11 +92,6 @@ ActiveRecord::Schema.define(version: 20170724212805) do
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.float    "quantity"
-    t.float    "price"
-    t.float    "price2"
-    t.integer  "client_id"
-    t.integer  "notum_id"
   end
 
   create_table "products", force: :cascade do |t|
