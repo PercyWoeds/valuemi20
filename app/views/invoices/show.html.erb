@@ -214,7 +214,7 @@
        
 		<tr>
 			<%= form_tag print_invoices_path, multipart: true do %>
-     	    <%= submit_tag  "Imprimir  ",  data: { no_turbolink: true } %>
+     	    <%= submit_tag  "Imprimir  ",  :"data-no-turbolink" => true  %>
 			<% end %>		
 		</tr>
 
