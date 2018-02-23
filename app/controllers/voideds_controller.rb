@@ -84,7 +84,7 @@
         Voided.where(:id=>'1').update_all(:numero =>lcnumero)
         end 
         
-
+end 
 
 
 end
