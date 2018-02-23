@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724212805) do
+ActiveRecord::Schema.define(version: 20180909205117) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "vcodigo"
@@ -68,11 +68,29 @@ ActiveRecord::Schema.define(version: 20170724212805) do
     t.string   "flag2"
   end
 
+  create_table "mailings", force: :cascade do |t|
+    t.string   "td"
+    t.string   "serie"
+    t.string   "numero"
+    t.string   "ruc"
+    t.boolean  "flag"
+    t.string   "flag1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "monedas", force: :cascade do |t|
     t.string   "description"
     t.string   "descrip_short"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "nota", force: :cascade do |t|
+    t.string   "code"
+    t.string   "descrip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "notacredits", force: :cascade do |t|
@@ -92,6 +110,11 @@ ActiveRecord::Schema.define(version: 20170724212805) do
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "quantity"
+    t.float    "price"
+    t.float    "client_id"
+    t.integer  "notum_id"
+    t.string   "nombre"
   end
 
   create_table "products", force: :cascade do |t|

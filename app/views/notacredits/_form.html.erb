@@ -96,35 +96,35 @@
 
 <script type="text/javascript">
 
-  $(document).ready(function() {
-    $("#notacredit_quantity").bind("keyup", function() {
-      calculoTotal();
-    });
-    $("#notacredit_price").bind("keyup", function() {
-      calculoTotal();
+  $(document).on('turbolinks:load', function() {
+    
+      $("#notacredit_quantity").bind("keyup", function() {
+        calculoTotal();
+      });
+      
+      $("#notacredit_price").bind("keyup", function() {
+        calculoTotal();
+      });
+      
     });
     
-  });
-    
-      function calculoTotal()
+function calculoTotal()
     {
       var quantity = $("#notacredit_quantity").val();
-      var price = $("#notacredit_price").val();
-      
+      var price    = $("#notacredit_price").val();
       
       var vventa = round(quantity * price,2);
       var total = round(vventa  * 1.18,2 );
       var igv = round(total - vventa ,2);
       
-      
       $("#notacredit_total").html(total);
       $("#notacredit_subtotal").html(vventa);
       $("#notacredit_tax").html(igv);
       
-     
     }
     
-    function round(value, decimals) {
-        return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-      }
+ function round(value, decimals) {
+      return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+  }
+  
 </script>

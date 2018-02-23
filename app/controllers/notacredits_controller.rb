@@ -103,6 +103,8 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
     @customers = Client.all.order(:vrazon2)
     @notacredit[:code] = "#{generate_guid()}"
     @notacredit[:processed] = false
+    @notacredit[:quantity] = false
+    @notacredit[:price] = false
     @edit =true 
 
 
