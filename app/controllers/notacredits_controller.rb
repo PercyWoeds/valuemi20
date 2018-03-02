@@ -253,31 +253,55 @@ BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"
           File.delete(file)
         end 
 
-       credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
+      if $lcTd == 1        
+        credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
                              billing_reference: {id: $lcBillingReference, document_type_code: "01"},
                              discrepancy_response: {reference_id: $lcBillingReference, response_code: "09", description: $lcDescrip},
-                             lines: [{id: "1", item: {id: "05", description: $lcNombre_1}, quantity: $lcCantidad, unit: 'GLL', 
+                             lines: [{id: "1", item: {id: "05", description: $lcDescrip2}, quantity: $lcCantidad, unit: 'GLL', 
                                   price: {value: $lcPrecioSIgv}, pricing_reference: $lcPrecioCigv, tax_totals: [{amount: $lcIgv, type: :igv, code: "10"}], line_extension_amount:$lcVVenta }],
                              additional_monetary_totals: [{id: "1001", payable_amount: $lcVVenta}], tax_totals: [{amount: $lcIgv, type: :igv}], legal_monetary_total: $lcTotal}
         
+
         credit_note = SUNAT::CreditNote.new(credit_note_data)
-        
-        if credit_note.valid?          
-          credit_note.to_pdf
-          File::open("credit_note.xml", "w") { |file| file.write(credit_note.to_xml) }
-          $lcFileName1 = File.expand_path('../../../', __FILE__)+ "/"+$lcFileName                  
-          $lcFile2     = File.expand_path('../../../../', __FILE__)+"/"+$lcFilezip
 
-          #$lcFile2     = File.expand_path('../../../../', __FILE__)+"/sunat-ruby9/credit_note.xml"        
+        if credit_note.valid?                       
+           credit_note.to_pdf    
+           
+           $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName              
+          send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
 
-          ActionCorreo.bienvenido_email(@invoice).deliver    
-          @mailing = Mailing.new(:td =>$lcTd, :serie => 'FF01', :numero => $lcDocument_serial_id, :ruc=>$lcRuc, :flag1 => '1')
-          @mailing.save      
         else
-          $aviso =  "Invalid document, ignoring output: #{credit_note.errors.messages}"
+          
+          $aviso = "Invalid document, ignoring output: #{credit_note.errors.messages}"
+
         end
+
+      else
+          debit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
+                     billing_reference: {id: $lcBillingReference, document_type_code: "01"},
+                     discrepancy_response: {reference_id: $lcBillingReference, response_code: "02", description: $lcDescrip},
+                     lines: [{id: "1", item: {id: "05", description: $lcDescrip2}, quantity: $lcCantidad, unit: 'GLL', 
+                          price: {value: $lcPrecioSIgv}, pricing_reference: $lcPrecioCigv, tax_totals: [{amount: $lcIgv, type: :igv, code: "10"}], line_extension_amount:$lcVVenta }],
+                     additional_monetary_totals: [{id: "1001", payable_amount: $lcVVenta}], tax_totals: [{amount: $lcIgv, type: :igv}], legal_monetary_total: $lcTotal}
+
+          debit_note = SUNAT::DebitNote.new(debit_note_data)
+          
+
+        if debit_note.valid?
+            debit_note.to_pdf
+            $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName              
+            send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
+        else          
+          $aviso = "Invalid document, ignoring output: #{debit_note.errors.messages}"          
+        end
+
+
+      end 
         
-        $lcGuiaRemision =""            
+
+        $lcGuiaRemision =""      
+        @@document_serial_id =""
+        $lg_serial_id=""
 
     end
 
