@@ -80,6 +80,7 @@ class NotacreditsController < ApplicationController
         #@clienteName1   = Client.where("vcodigo = ?",params[ :$lcClienteInv ])        
         $lcClienteName = ""
         $lcDescrip      = "ANULACION DE FACTURA "    
+        $lcNombre_1     = @invoice.nombre
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =""
         $lcPlaca =""
@@ -139,7 +140,7 @@ BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"
         credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
                              billing_reference: {id: $lcBillingReference, document_type_code: "01"},
                              discrepancy_response: {reference_id: $lcBillingReference, response_code: "09", description: $lcDescrip},
-                             lines: [{id: "1", item: {id: "05", description: $lcDescrip}, quantity: $lcCantidad, unit: 'GLL', 
+                             lines: [{id: "1", item: {id: "05", description: $lcNombre_1}, quantity: $lcCantidad, unit: 'GLL', 
                                   price: {value: $lcPrecioSIgv}, pricing_reference: $lcPrecioCigv, tax_totals: [{amount: $lcIgv, type: :igv, code: "10"}], line_extension_amount:$lcVVenta }],
                              additional_monetary_totals: [{id: "1001", payable_amount: $lcVVenta}], tax_totals: [{amount: $lcIgv, type: :igv}], legal_monetary_total: $lcTotal}
 
@@ -198,7 +199,7 @@ BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"
         credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
                              billing_reference: {id: $lcBillingReference, document_type_code: "01"},
                              discrepancy_response: {reference_id: $lcBillingReference, response_code: "09", description: $lcDescrip},
-                             lines: [{id: "1", item: {id: "05", description: $lcDescrip}, quantity: $lcCantidad, unit: 'GLL', 
+                             lines: [{id: "1", item: {id: "05", description: $lcNombre_1}, quantity: $lcCantidad, unit: 'GLL', 
                                   price: {value: $lcPrecioSIgv}, pricing_reference: $lcPrecioCigv, tax_totals: [{amount: $lcIgv, type: :igv, code: "10"}], line_extension_amount:$lcVVenta }],
                              additional_monetary_totals: [{id: "1001", payable_amount: $lcVVenta}], tax_totals: [{amount: $lcIgv, type: :igv}], legal_monetary_total: $lcTotal}
 
@@ -255,7 +256,7 @@ BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"
        credit_note_data = { issue_date: Date.new($aa,$mm,$dd), id: $lcNumeroNota, customer: {legal_name:$lcLegalName , ruc:$lcRuc },
                              billing_reference: {id: $lcBillingReference, document_type_code: "01"},
                              discrepancy_response: {reference_id: $lcBillingReference, response_code: "09", description: $lcDescrip},
-                             lines: [{id: "1", item: {id: "05", description: $lcDescrip}, quantity: $lcCantidad, unit: 'GLL', 
+                             lines: [{id: "1", item: {id: "05", description: $lcNombre_1}, quantity: $lcCantidad, unit: 'GLL', 
                                   price: {value: $lcPrecioSIgv}, pricing_reference: $lcPrecioCigv, tax_totals: [{amount: $lcIgv, type: :igv, code: "10"}], line_extension_amount:$lcVVenta }],
                              additional_monetary_totals: [{id: "1001", payable_amount: $lcVVenta}], tax_totals: [{amount: $lcIgv, type: :igv}], legal_monetary_total: $lcTotal}
         
