@@ -170,14 +170,12 @@ require "open-uri"
         $lcCodigoBarra = $lcruc << "|" << $lcTd << "|" << $lcSerie << "|" << $lcDocument_serial_id.to_s << "|" <<$lcIGVcode.to_s<< "|" << $lcTotalcode.to_s << "|" << $lcFechaCodigoBarras << "|" << $lcTipoDocCli << "|" << $lcNroDocCli
       
           $lcPercentIgv  =18000   
-          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0005710/SUNAT del 13/07/2016 "
+          $lcAutorizacion="Autorizado mediante Resolucion de Intendencia Nro.034-005-0005592/SUNAT del 22/06/2016 "
           $lcCuentas=" El pago del documento sera necesariamente efectuado mediante deposito en cualquiera de las siguientes cuentas bancarias:  
-Banco SCOTIABANK Cuenta Corriente soles   : 000-9942513 
-Banco SCOTIABANK Cuenta Corriente dolares : 000-4716917     
-Banco de CREDITO Cuenta Corriente soles   : 194-2011689-0-89 
-Banco BBVA BANCO CONTINENTAL Cuenta Corriente soles   : 0244-01-00008847
-Banco BBVA BANCO CONTINENTAL Cuenta Corriente dolares : 0176-02-00461442
-Banco Interbank  Cuenta Corriente soles   : 330-3000796174"
+  BBVA Continental Cuenta Corriente en Moneda Nacional Numero: 0011-0172-01-00041266
+  BBVA Continental Cuenta Corriente en Moneda Extranjera Numero: 0011-0176-01-00063164 
+BCP Cuenta Corriente Moneda Nacional : 191-2167239-0-01
+BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"  
 
 
           $lcScop1       =""   
