@@ -299,8 +299,8 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
     @quantity = params[:notacredit][:quantity] 
     @precio = params[:notacredit][:price] 
     
-    @notacredit[:subtotal] = @quantity.to_f  * @precio.to_f
-    @notacredit[:total] = @notacredit[:subtotal] * 1.18
+    @notacredit[:total] = @quantity.to_f  * @precio.to_f
+    @notacredit[:subtotal] = @notacredit[:total] / 1.18
     @notacredit[:tax]  = @notacredit[:total] - @notacredit[:subtotal]
    
   @notas = Notum.all
@@ -321,9 +321,9 @@ Banco de CREDITO Cuenta Corriente soles : 191-2231128-0-45 CCI : 002191002231128
   def update
     @quantity = params[:notacredit][:quantity] 
     @precio = params[:notacredit][:price] 
-    @notacredit[:subtotal] = @quantity.to_f  * @precio.to_f
-   @notacredit[:total] = @notacredit[:subtotal] * 1.18
-   @notacredit[:tax]  = @notacredit[:total] - @notacredit[:subtotal]
+    @notacredit[:total] = @quantity.to_f  * @precio.to_f
+    @notacredit[:subtotal] = @notacredit[:total] / 1.18
+    @notacredit[:tax]  = @notacredit[:total] - @notacredit[:subtotal]
    
     respond_to do |format|
       if @notacredit.update(notacredit_params)
