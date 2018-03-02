@@ -81,6 +81,7 @@ class NotacreditsController < ApplicationController
         $lcClienteName = ""
         $lcDescrip      = "ANULACION DE FACTURA "    
         $lcNombre_1     = @invoice.nombre
+        $lcDescrip2     = @invoice.nombre
         #$lcGuiaRemision ="NRO.CUENTA BBVA BANCO CONTINENTAL : 0244-0100023293"
         $lcGuiaRemision =""
         $lcPlaca =""
