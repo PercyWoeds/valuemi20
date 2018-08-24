@@ -8,8 +8,7 @@ module SUNAT
 
       ADDRESSES = {:homologation => "https://www.sunat.gob.pe/ol-ti-itcpgem-sqa/billService?wsdl",
                    :production => "https://www.sunat.gob.pe/ol-ti-itcpfegem/billService?wsdl",                                  
-                   :test => "https://www.sunat.gob.pe:443/ol-ti-itcpgem-beta/billService?wsdl"}
-        
+                   :test => "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl"}
 
       def address
         ADDRESSES[SUNAT.environment]

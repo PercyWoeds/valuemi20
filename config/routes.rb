@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :notes
   resources :notacredits
   resources :products
   resources :nota
@@ -45,6 +46,11 @@ end
 
    end 
    
+   
+   resources :notes do
+     collection { post :import }
+     collection { post :procesar }
+   end 
    resources :clients do
     collection { post :import }
     collection { get :search   }
@@ -68,6 +74,8 @@ end
 
     match 'reports/monthly_customers' => 'reports#report_monthly_customers', via: [:get, :post]
     match 'reports/view_monthly_customers/:customer_id' => 'reports#report_view_monthly_customers', via: [:get, :post]
+    
+    
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -2,7 +2,8 @@ class InvoicesController < ApplicationController
     
     $: << Dir.pwd  + '/lib'
     before_action :authenticate_user!
-require "open-uri"
+    
+    require "open-uri"
 
 	def index
 	    
@@ -75,11 +76,11 @@ require "open-uri"
     	@invoice        = Invoice.find(params[:id])
         @list           = Invoice.find_by_sql([' Select invoices.*,clients.vrazon2,clients.vdireccion,clients.vdistrito,clients.vprov,clients.vdep,clients.mailclient,clients.mailclient2,clients.mailclient3  from invoices INNER JOIN clients ON clients.vcodigo= invoices.cliente where invoices.id = ?',params[:id] ] )
             
-        $lg_fecha       = @invoice.fecha 
+        $lg_fecha       = @invoice.fecha.to_s
         $lg_serie_factura = "FF"<< @invoice.serie  
         $lg_serial_id   = @invoice.numero.to_i
         $lg_serial_id2  = @invoice.numero
-        puts $lg_serial_id 
+    
     
         $lcCantidad     = @invoice.cantidad   
         $lcClienteInv   = @invoice.cliente   
@@ -97,10 +98,7 @@ require "open-uri"
         else
             $lcLegalName = @list[0].vrazon2
         end
-        
-        
-        
-        $lcDirCli       = @list[0].vdireccion   
+                $lcDirCli       = @list[0].vdireccion   
         $lcDisCli       = @list[0].vdistrito
         $lcProv         = @list[0].vprov
         $lcDep          = @list[0].vdep
@@ -183,7 +181,8 @@ BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"
           $lcCantScop1   =""
           $lcCantScop2   =""  
           $lcAutorizacion1=$lcAutorizacion +$lcCuentas
-                                
+          puts $lg_fecha
+          
     end
 
     def sendsunat
@@ -340,6 +339,8 @@ BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"
         @@document_serial_id =""
         $aviso=""
     end 
+    
+    
     
     def editmultiple
 

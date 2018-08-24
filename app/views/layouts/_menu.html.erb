@@ -8,8 +8,10 @@
       
       <% if current_user.permission_level=='admin' %>
           <%= link_to 'Facturas.', invoices_path %>    
+          <%= link_to 'Boletas.', notes_path %>        
           <%= link_to "Clientes", clients_path %>
           <%= link_to "Mailing", mailings_path %>
+          
           <%= link_to "Notas", notacredits_path %>
           <%= link_to "Notas - Tipos", nota_path %>
           <%= link_to "Usuarios", users_path %>

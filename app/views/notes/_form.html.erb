@@ -1,0 +1,85 @@
+<%= form_for(@note) do |f| %>
+  <% if @note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+      <% @note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :td %><br>
+    <%= f.text_field :td %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.datetime_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :turno %><br>
+    <%= f.text_field :turno %>
+  </div>
+  <div class="field">
+    <%= f.label :cod_emp %><br>
+    <%= f.text_field :cod_emp %>
+  </div>
+  <div class="field">
+    <%= f.label :caja %><br>
+    <%= f.text_field :caja %>
+  </div>
+  <div class="field">
+    <%= f.label :serie %><br>
+    <%= f.text_field :serie %>
+  </div>
+  <div class="field">
+    <%= f.label :numero %><br>
+    <%= f.text_field :numero %>
+  </div>
+  <div class="field">
+    <%= f.label :cod_cli %><br>
+    <%= f.text_field :cod_cli %>
+  </div>
+  <div class="field">
+    <%= f.label :ruc %><br>
+    <%= f.text_field :ruc %>
+  </div>
+  <div class="field">
+    <%= f.label :placa %><br>
+    <%= f.text_field :placa %>
+  </div>
+  <div class="field">
+    <%= f.label :odometro %><br>
+    <%= f.text_field :odometro %>
+  </div>
+  <div class="field">
+    <%= f.label :cod_prod %><br>
+    <%= f.text_field :cod_prod %>
+  </div>
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.text_field :cantidad %>
+  </div>
+  <div class="field">
+    <%= f.label :precio %><br>
+    <%= f.text_field :precio %>
+  </div>
+  <div class="field">
+    <%= f.label :importe %><br>
+    <%= f.text_field :importe %>
+  </div>
+  <div class="field">
+    <%= f.label :igv %><br>
+    <%= f.text_field :igv %>
+  </div>
+  <div class="field">
+    <%= f.label :fpago %><br>
+    <%= f.text_field :fpago %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

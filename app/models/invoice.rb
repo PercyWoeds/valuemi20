@@ -64,6 +64,11 @@ class Invoice < ActiveRecord::Base
           a = Client.find_by(vcodigo: code)
           return a.vruc 
       end 
+      
+     
+     
+     
+     
      
 end
 
