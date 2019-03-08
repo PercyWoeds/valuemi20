@@ -17,6 +17,7 @@
       <th>Placa</th>
       <th>Odometro</th>
       <th>Cod prod</th>
+      <th>Descrip</th></th>
       <th>Cantidad</th>
       <th>Precio</th>
       <th>Importe</th>
@@ -42,11 +43,12 @@
         <td class="small bordered_bottom bordered_right"><%= note.placa %></td>
         <td class="small bordered_bottom bordered_right"> <%= note.odometro %></td>
         <td class="small bordered_bottom bordered_right"><%= note.cod_prod %></td>
+        <td class="small bordered_bottom bordered_right"><%= note.descrip %></td>
         <td class="small bordered_bottom bordered_right"><%= note.cantidad %></td>
         <td class="small bordered_bottom bordered_right"><%= note.precio %></td>
         <td class="small bordered_bottom bordered_right"><%= note.importe %></td>
         <td class="small bordered_bottom bordered_right"><%= note.igv %></td>
-        <td class="small bordered_bottom bordered_right"> <%= note.fpago %></td>
+        <td class="small bordered_bottom bordered_right"> <%= note.procesado %></td>
         <td class="small bordered_bottom bordered_right" ><%= link_to 'Show', note %></td>
         <td class="small bordered_bottom bordered_right"><%= link_to 'Edit', edit_note_path(note) %></td>
         <td class="small bordered_bottom bordered_right"><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -65,6 +67,14 @@
 </div>
 
 <%= form_tag procesar_notes_path do %>
+
+    <div class="field">
+      <input type="date" name="fecha1" value="2018-10-01" style = "width: 150px" >
+    </div>
+
+	<div class="field">
+		  <input type="date" name="fecha2" value="2018-10-01" style = "width: 150px" >
+  </div>
      	    <%= submit_tag  "Procesar ",  :"data-no-turbolink" => true  %>
 		<% end %>		
 

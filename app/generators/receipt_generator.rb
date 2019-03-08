@@ -4,7 +4,7 @@ class ReceiptGenerator < InvoiceGenerator
 
   def customer
     
-    if $lcTd != "F"
+    if $lcRuc == nil 
     {legal_name: "CLIENTE GENERICO", dni: "00000000"}
     else
     {legal_name: $lcLegalName , ruc:  $lcRuc0 }

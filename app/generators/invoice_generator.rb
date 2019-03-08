@@ -206,7 +206,7 @@ class InvoiceGenerator < DocumentGenerator
 
  def data(items = 0, currency = 'PEN')
    
-    @invoice1 = Note.select(:fecha,:ruc,:placa,"SUM(vventa) as vventa","SUM(tax) as tax","SUM(importe) as importe").where(serie: @serie , numero: @numero).group(:serie,:numero)
+    @invoice1 = Note.select(:fecha,:ruc,:placa,:td,"SUM(vventa) as vventa","SUM(tax) as tax","SUM(importe) as importe").where(serie: @serie , numero: @numero).group(:serie,:numero)
     
     costs_sum_vventa = @invoice1.first.vventa
     costs_sum_tax = @invoice1.first.tax
@@ -243,25 +243,34 @@ class InvoiceGenerator < DocumentGenerator
         
         $lcRuc          = @invoice1.first.ruc
         
-        $lcTd           = "FT"
+        $lcTd           = @invoice1.first.td 
         
         $lcMail         = ""
         $lcMail2        = ""
         $lcMail3        = ""
         
-        if $lcTd != "BV"
+        puts $lcTd
+        puts $lcRuc 
         
-         result = PeruSunatRuc.name_from $lcRuc
-           
-         result2 = PeruSunatRuc.address_from   $lcRuc
-         #result = "-"
-         #result2 = "-"
-        else
+        if $lcRuc == nil ||  $lcRuc == ""
           result = "CLIENTE GENERICO"
           result2 = "-"
+         
+        else 
+        
+         result  = PeruSunatRuc.name_from $lcRuc
+           
+         result2 = PeruSunatRuc.address_from   $lcRuc
+         
+         $lcRuc0 = $lcRuc 
+         $lcLegalName= result 
+         #result = "-"
+         #result2 = "-"
+      
           
        end 
-         $lcNroDocCli = "00000000"
+       
+       $lcNroDocCli = "00000000"   
         
                 
          legal_name_spaces = result.lstrip    

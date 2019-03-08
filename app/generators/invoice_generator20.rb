@@ -5,10 +5,11 @@ class InvoiceGenerator < DocumentGenerator
 
   #$lcAutorizacion1=$lcAutorizacion <<' Datos Adicionales GUIA DE REMISION : '<<$lcGuiaRemision
 
-  def initialize(group, group_case, items, serie)
+  def initialize(group, group_case, items, serie,numero)
     super(group, group_case)
     @items = items
     @serie = serie
+    @numero = numero 
   end 
 
   def with_igv(pdf=false)
@@ -132,7 +133,7 @@ class InvoiceGenerator < DocumentGenerator
    
 
   def data(items = 0, currency = 'PEN')
-    invoice_data = {id: "#{@serie}-#{"%06d" %  $lg_serial_id}", customer: customer, 
+    invoice_data = {id: "#{@serie}-#{"%06d" %  @numero.to_i }", customer: customer, 
     tax_totals: [{amount: {value: items*$lcIgv, currency: currency}, type: :igv}], legal_monetary_total: {value: $lcTotal * items, currency: currency}, 
     additional_monetary_totals: [{id: "1001", payable_amount: {value: $lcVVenta * items, currency: currency}}]}
 

@@ -52,8 +52,6 @@ module PeruSunatRuc
      # electronic_emisor: page.at('/html/body/table[1]/tr[13]/td[2]').text
 
  
-
-
 end
 
 

@@ -2,33 +2,29 @@ SUNAT.configure do |config|
   config.credentials do |c|
 
 
-    c.ruc       = "20555691263"
+    c.ruc       = "20517308367"
     c.username  = "FACTURA2"
-    c.password  = "20555691263"
+    c.password  = "NORMA2018"
    end
-   
-   
 
   config.signature do |s|
-    s.party_id    = "20555691263"
-    s.party_name  = "INVERSIONES VALUEMI S.A.C."
-    s.cert_file   = File.join(Dir.pwd, './app/keys', 'certificate3.crt')
-    s.pk_file     = File.join(Dir.pwd, './app/keys', 'CERTIFICADO3.key') 
+    s.party_id    = "20517308367"
+    s.party_name  = "INVERSIONES NOBAL S.A.C."
+    s.cert_file   = File.join(Dir.pwd, './app/keys', 'certificate4.crt')
+    s.pk_file     = File.join(Dir.pwd, './app/keys', 'CERTIFICADO4.key') 
   end
-p
+
   config.supplier do |s|
-    s.legal_name = "INVERSIONES VALUEMI S.A.C."
-    s.name       = "Cesar Jaime Manrique Milla"
-    s.ruc        = "20555691263"
-    s.address_id = "150106"
-    s.street     = "CAM.SECTOR CRUZ DEL NORTE I ZONA BAJA MZA. C LOTE. 5
-    A.H. PROYECTO INTEGRAL ALIANZA INDUSTRIAL DE LAS LOMAS "
-    s.district   = "LIMA - LIMA - CARABAYLLO"
+    s.legal_name = "INVERSIONES NOBAL  S.A.C."
+    s.name       = "NOEL BAUTISTA "
+    s.ruc        = "20517308367"
+    s.address_id = "150140"
+    s.street     = "JR. MONTE FICUS NRO. 151 PROLONGACION BENAVIDES (ALT CDRA 32 DE AV.CAMINOS DEL INCA) "
+    s.district   = "LIMA - LIMA - SANTIAGO DE SURCO"
     s.city       = "LIMA"
     s.country    = "PE"
-    s.logo_path  = "#{Dir.pwd}/app/assets/images/logo.PNG"
+    s.logo_path  = "#{Dir.pwd}/app/assets/images/logo3.jpg"
   
   end
 end
-
 
