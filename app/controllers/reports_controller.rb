@@ -280,7 +280,7 @@ class ReportsController < ApplicationController
   end
   
    def client_data_headers_rpt
-      client_headers  = [["Empresa  :", "INV.VALUEMI S.A.C."]]
+      client_headers  = [["Empresa  :", "INV.NOBAL S.A.C."]]
       client_headers << ["Direccion :", ""]
       client_headers
   end
