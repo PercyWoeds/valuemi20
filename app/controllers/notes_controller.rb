@@ -42,7 +42,7 @@ class NotesController < ApplicationController
         @fecha1 = params[:fecha1]    
         @fecha2 = params[:fecha2]
     
-        @boleta = Note.select("fecha,serie,numero,cod_cli,td,ruc,precio,precio_sigv,cod_prod,sum(cantidad) as cantidad, sum(importe) as importe").where(["fecha >= ? and fecha <= ? and importe >= 0 and procesado <> ? and serie = ?", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59","1","BB02"] ).group(:fecha,:serie,:numero)
+        @boleta = Note.select("fecha,serie,numero,cod_cli,td,ruc,precio,precio_sigv,cod_prod,cantidad, importe").where(["fecha >= ? and fecha <= ? and importe >= 0 and procesado <> ? and serie = ?", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59","1","BB02"] )
 
 #         @boleta = Note.select("id,fecha,serie,numero,cod_cli,td,ruc,precio,precio_sigv,cod_prod,SUM(cantidad) as cantidad, SUM(importe) as importe").where(["fecha >= ? and fecha <= ? and importe >= 0 and procesado = ? and serie = ? ", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59","0","BX01"] ).group(:fecha,:serie,:numero)
       
