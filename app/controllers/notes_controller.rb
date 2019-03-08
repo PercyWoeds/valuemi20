@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
   
    $: << Dir.pwd + '/lib'
-    require 'pry'
+   #require 'pry'
     require 'peru_sunat_ruc'
   
   lib = File.expand_path('../../../lib', __FILE__)
