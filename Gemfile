@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 ruby "~> 2.4.4"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
-# Use sqlite3 as the database for Active Record
-
+# Use sqlite3 as the database for Active Record4
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
