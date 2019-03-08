@@ -74,7 +74,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-      @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and serie=? and importe > ? and td <> ?","2019-01-01 00:00:00","2019-02-28 23:59:59","BX01","0.00","N").order("fecha DESC","serie ","NUMERO DESC")
+      @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and serie=? and importe > ? and td <> ?","2019-01-01 00:00:00","2019-12-31 23:59:59","BX01","0.00","N").order("fecha DESC","serie ","NUMERO DESC")
   end
 
   # GET /notes/1
