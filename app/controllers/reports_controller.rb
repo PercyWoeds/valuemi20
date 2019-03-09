@@ -7,6 +7,20 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!
 # Report customers monthly
 
+  def report_1 
+    
+    @pagetitle = "Reportes de Ventas"    
+    
+  end
+  
+  def rventas 
+    
+    @pagetitle = "Reportes de Ventas"    
+    
+  end
+  def show
+end 
+
   def report_monthly_customers
     
     @customer =  current_user.ruc
@@ -290,6 +304,7 @@ class ReportsController < ApplicationController
       invoice_headers << ["Hora :", $lcHora ]
       invoice_headers
   end
+
 
 
   

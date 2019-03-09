@@ -18,7 +18,12 @@ as :user do
   post 'signin', to: 'devise/sessions#create', as: :user_session
   match 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session, via: Devise.mappings[:user].sign_out_via
 end
-
+ resources :reports do
+ collection { get :rpt_factura_all   }
+ collection { get :report_1   }
+ collection { get :rventas    }
+ 
+ end 
  
   resources :notacredits do
     collection { post :import }
@@ -50,6 +55,8 @@ end
    resources :notes do
      collection { post :import }
      collection { post :procesar }
+     collection { post :reporte_venta_dia }
+     
    end 
    resources :clients do
     collection { post :import }
@@ -74,8 +81,10 @@ end
 
     match 'reports/monthly_customers' => 'reports#report_monthly_customers', via: [:get, :post]
     match 'reports/view_monthly_customers/:customer_id' => 'reports#report_view_monthly_customers', via: [:get, :post]
-    
-    
+    match 'reports/rventas' => 'reports#rventas', via: [:get, :post]
+    match 'reports/reports/report_1' => 'reports#report_1', via: [:get, :post]
+    resources :reports 
+     
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

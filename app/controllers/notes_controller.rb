@@ -139,7 +139,32 @@ class NotesController < ApplicationController
   end 
     
   
+  def reporte_venta_dia 
+    
+    
+    @fecha1 = params[:fecha1]    
+    @fecha2 = params[:fecha2]    
+    @note = Note.all.first 
+    
+    @facturas_rpt = @note.get_facturas_day(@fecha1,@fecha2)          
+    puts "reporte chico.."
+   puts @fecha1
+   puts @fecha2
+    
+    case params[:print]
+      when "To PDF" then 
+        begin 
+          render  pdf: "Facturas ",template: "reports/rventas_rpt.pdf.erb",locals: {:facturas => @facturas_rpt},
+             :page_size => "A4"
+        
+        end   
+      when "To Excel" then render xlsx: 'rventas_rpt_xls'
+      else render action: "index"
+    end
+  end
   
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

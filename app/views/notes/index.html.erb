@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Notes</h1>
+<h1>Listado Facturas/Boletas y Notas</h1>
+
+
 
 <table>
   <thead>
@@ -8,8 +10,6 @@
       <th>Td</th>
       <th>Fecha</th>
       <th>Turno</th>
-      <th>Cod emp</th>
-      <th>Caja</th>
       <th>Serie</th>
       <th>Numero</th>
       <th>Cod cli</th>
@@ -34,8 +34,6 @@
         <td  class="small bordered_bottom bordered_right"><%= note.td %></td>
         <td class="small bordered_bottom bordered_right"><%= note.fecha.strftime("%d/%m/%Y") %></td>
         <td class="small bordered_bottom bordered_right"><%= note.turno %></td>
-        <td class="small bordered_bottom bordered_right"><%= note.cod_emp %></td>
-        <td class="small bordered_bottom bordered_right"><%= note.caja %></td>
         <td class="small bordered_bottom bordered_right"><%= note.serie %></td>
         <td class="small bordered_bottom bordered_right"><%= note.numero %></td>
         <td class="small bordered_bottom bordered_right"><%= note.cod_cli %></td>
@@ -66,16 +64,21 @@
       <%= link_to 'Nueva Nota', new_note_path %>
 </div>
 
+
+<h2> Procesar informacion  </h2>
+
 <%= form_tag procesar_notes_path do %>
 
     <div class="field">
-      <input type="date" name="fecha1" value="2018-10-01" style = "width: 150px" >
+      <input type="date" name="fecha1" value="2019-03-08" style = "width: 150px" >
     </div>
 
 	<div class="field">
-		  <input type="date" name="fecha2" value="2018-10-01" style = "width: 150px" >
+		  <input type="date" name="fecha2" value="2019-03-08" style = "width: 150px" >
   </div>
      	    <%= submit_tag  "Procesar ",  :"data-no-turbolink" => true  %>
+     	    
+     	    
 		<% end %>		
 
 

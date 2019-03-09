@@ -34,5 +34,11 @@ class Note < ActiveRecord::Base
           return ret
      end
           
-    
+    def get_facturas_day(fecha1,fecha2) 
+      
+        
+        @boletas = Note.select("serie,MIN(numero) as minimo, MAX(numero) as maximo,sum(importe) as total").where(["fecha >= ? and fecha<= ?", "#{fecha1} 00:00:00","#{fecha2} 23:59:59" ]).group(:serie)
+        return @boletas
+        
+    end 
 end

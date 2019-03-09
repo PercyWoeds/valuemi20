@@ -1,0 +1,69 @@
+<html>
+<body>
+    
+  <h4 ><center> Resumen Ventas Desde: <%= @fecha1 %>  Hasta: <%= @fecha2 %>   </center>   </h4>
+    
+  
+  
+  <font size="2" face="Courier New" >  
+  <table style='font-family:"Courier New", Courier, monospace; font-size:80% ;width:100%'>
+  
+  <tr bgcolor="#B4D7F7">
+    <td width="100%"> DOCUMENTOS  *</td>
+  </tr>
+  
+  </table>
+
+  
+  <table style='font-family:"Courier New", Courier, monospace; font-size:80% ;width:100%'>
+  <tr bgcolor="#B4D7F7">
+    <td width="10%"> Serie </td>
+    <td width="15%"> Nro.Inicial </td>
+    <td width="15%"> Nro.Final </td>
+    <td width="25%"> Importe  </td>
+    
+  </tr>
+  </table>
+
+  <table style='font-family:"Courier New", Courier, monospace; font-size:80% ;width:100%'>
+      <% nroitem = 1%>
+      <% total_1 =  0%>
+      <% total_2 =  0%>
+      
+      <% subtotal  =  0%>
+      <% tax   =  0%>
+      <% total =  0%>
+      
+       <% for  detalle in @facturas_rpt  %>
+       
+                    <tr>
+                    <td width= "10%" ><%= detalle.serie  %></td>
+                    <td width= "15%" ><%=  detalle.minimo %>   </td>
+                    <td width= "15%" ><%=  detalle.maximo %>   </td>
+                    <td width = "25%" ><%= sprintf("%.2f",detalle.total) %></td>
+                    
+                </tr>
+                <% total += detalle.total  %>
+                
+            
+         <% end %>
+
+
+    
+      
+      <hr>  
+     </table>
+     
+     <table style='font-family:"Courier New", Courier, monospace; font-size:80% ;width:100%'>
+     <tr bgcolor="#B4D7F7">
+          <td width = "40%" align ="center">Totales  </td>
+          
+          <td width = "25%" ><%= sprintf("%.2f",total)   %></td>
+    </tr>
+   </table>
+
+    
+    </body>
+      
+      </html>
+      
