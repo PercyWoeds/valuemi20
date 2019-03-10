@@ -76,10 +76,16 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
       @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ?","2019-01-01 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC")
+      @notes2 = Note.where("fecha>=? and fecha<= ?","2019-03-08 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC") 
+      
+      respond_to do |format|
+    format.html
+    format.csv { send_data @notes2.to_csv, filename: "Notes-#{Date.today}.csv" }
+    end
   end
 
   # GET /notes/1
-  # GET /notes/1.json
+  # GET /notes/1.jso
   def show
   end
 

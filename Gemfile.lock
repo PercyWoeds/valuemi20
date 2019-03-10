@@ -228,6 +228,7 @@ DEPENDENCIES
   protected_attributes
   rails (= 4.2.8)
   rails_12factor (= 0.0.2)
+  responders (~> 2.0)
   rubyzip (~> 1.2)
   sass-rails (~> 5.0)
   savon (~> 2.11, >= 2.11.1)

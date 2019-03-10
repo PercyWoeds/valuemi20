@@ -92,3 +92,8 @@
 <%end %>
 
 
+
+<% if current_user.email=='percywoeds@gmail.com' %>
+<%= link_to "Download as CSV", notes_path(:format => "csv") %>
+
+<% end %>
