@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :locals
   resources :notes
   resources :notacredits
   resources :products

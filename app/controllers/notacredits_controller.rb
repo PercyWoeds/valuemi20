@@ -111,8 +111,8 @@ BCP Cuenta Recaudadora Moneda Nacional : 191-2264838-0-49"
     @customers = Client.all.order(:vrazon2)
     @notacredit[:code] = "#{generate_guid()}"
     @notacredit[:processed] = false
-    @notacredit[:quantity] = false
-    @notacredit[:price] = false
+    @notacredit[:quantity] = 0.0
+    @notacredit[:price] = 0.0
     @edit =true 
 
 

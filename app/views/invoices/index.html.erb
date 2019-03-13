@@ -13,8 +13,15 @@
 
 <%= render 'invoices/list' %>
 
-<% if current_user.permission_level=='admin' %>
 
+
+
+<div class="button">
+      <%= link_to 'Nueva Factura ', new_invoice_path %>
+</div>
+
+
+<% if current_user.permission_level=='admin' %>
 
 <h2>Importar Archivo Facturas "*.csv"</h2>
 <%= form_tag import_invoices_path, multipart: true do %>

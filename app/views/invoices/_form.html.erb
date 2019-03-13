@@ -1,10 +1,10 @@
-<%= form_for(@product) do |f| %>
-  <% if @product.errors.any? %>
+<%= form_for(@invoice) do |f| %>
+  <% if @invoice.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
       <ul>
-      <% @product.errors.full_messages.each do |msg| %>
+      <% @invoice.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -12,17 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :cliente %><br />
-    <%= f.text_field :cliente %>
+      <%= f.label :flag2, "Local *", :class => "bold"  %><br />
+       <%= f.collection_select :flag2 , @local , :id, :descrip, :prompt => true %>
   </div>
+  
+  
+  <div class="field">
+      <%= f.label :cliente, "Razon Social *", :class => "bold"  %><br />
+       <%= f.collection_select :cliente , @customer , :vcodigo, :vrazon2, :prompt => true %>
+  </div>
+  
+    
+
   <div class="field">
     <%= f.label :fecha %><br />
-    <%= f.date_select :fecha %>
+    <%= f.date_field :fecha %>
   </div>
-  <div class="field">
-    <%= f.label :td %><br />
-    <%= f.text_field :td %>
-  </div>
+  
+  
   <div class="field">
     <%= f.label :serie %><br />
     <%= f.text_field :serie %>
@@ -31,44 +38,79 @@
     <%= f.label :numero %><br />
     <%= f.text_field :numero %>
   </div>
-  <div class="field">
-    <%= f.label :preciocigv %><br />
-    <%= f.text_field :preciocigv %>
-  </div>
-  <div class="field">
-    <%= f.label :preciosigv %><br />
-    <%= f.text_field :preciosigv %>
-  </div>
-  <div class="field">
-    <%= f.label :cant1 %><br />
-    <%= f.text_field :cant1 %>
-  </div>
-  <div class="field">
-    <%= f.label :cant2 %><br />
-    <%= f.text_field :cant2 %>
-  </div>
+  
+  
   <div class="field">
     <%= f.label :cantidad %><br />
-    <%= f.text_field :cantidad %>
+  <%= f.number_field :cantidad, :step => 0.01 %>
   </div>
   <div class="field">
-    <%= f.label :vventa %><br />
-    <%= f.text_field :vventa %>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre  %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :preciocigv %><br />
+     <%= f.number_field :preciocigv, :step => 0.01 %>
+  </div>
+  
+  
+   <div >
+    <%= f.label :vventa  %><br>
+   <span id="invoice_vventa">0.00</span>
   </div>
   <div class="field">
-    <%= f.label :igv %><br />
-    <%= f.text_field :igv %>
+    <%= f.label :igv %><br>
+    <span id="invoice_igv">0.00</span>
   </div>
   <div class="field">
-    <%= f.label :importe %><br />
-    <%= f.text_field :importe %>
+    <%= f.label :importe %><br>
+    <span id="invoice_total">0.00</span>
   </div>
-  <div class="field">
-    <%= f.label :ruc %><br />
-    <%= f.text_field :ruc %>
-  </div>
+ 
+ 
+  
+  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    
+    $("#invoice_cantidad").bind("keyup", function() {
+      calculoTotal();
+    });
+    
+    alert('calculo');
+    $("#invoice_preciocigv").bind("keyup", function() {
+      calculoTotal();
+    });
+    
+  });
+    
+      function calculoTotal()
+    {
+      var quantity = $("#invoice_cantidad").val();
+      var price = $("#invoice_preciocigv").val();
+      
+      
+      var vventa = round(quantity * price,2);
+      var total = round(vventa  * 1.18,2 );
+      var igv = round(total - vventa ,2);
+      
+      
+      $("#invoice_total").html(total);
+      $("#invoice_vventa").html(vventa);
+      $("#invoice_igv").html(igv);
+      
+     
+    }
+    
+    function round(value, decimals) {
+      return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+  }
+</script>

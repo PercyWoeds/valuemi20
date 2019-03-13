@@ -22,7 +22,7 @@
       <th>Precio</th>
       <th>Importe</th>
       <th>Igv</th>
-      <th>Fpago</th>
+      <th>Procesado</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -46,10 +46,10 @@
         <td class="small bordered_bottom bordered_right"><%= note.precio %></td>
         <td class="small bordered_bottom bordered_right"><%= note.importe %></td>
         <td class="small bordered_bottom bordered_right"><%= note.igv %></td>
-        <td class="small bordered_bottom bordered_right"> <%= note.procesado %></td>
-        <td class="small bordered_bottom bordered_right" ><%= link_to 'Show', note %></td>
-        <td class="small bordered_bottom bordered_right"><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td class="small bordered_bottom bordered_right"><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="small bordered_bottom bordered_right"> <%= note.get_processed_short %></td>
+        <td class="small bordered_bottom bordered_right" ><%= link_to 'Ver', note %></td>
+        <td class="small bordered_bottom bordered_right"><%= link_to 'Editar', edit_note_path(note) %></td>
+        <td class="small bordered_bottom bordered_right"><%= link_to 'Eliminar', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

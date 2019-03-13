@@ -5,6 +5,15 @@ class InvoicesController < ApplicationController
     
     require "open-uri"
 
+    def new
+         @invoice = Invoice.new
+         @customer = Client.all 
+         
+         @local  =  Local.all 
+         
+    end
+    
+    
 	def index
 	    
 	    @ruc = current_user.ruc

@@ -50,6 +50,15 @@ class Note < ActiveRecord::Base
         end
       end
     end
-
+ def get_processed_short
+    if(self.processed == "1")
+      return "Si"
+    elsif (self.processed == "3")
+       return "Si"
+    else
+      return "No"
+    end
+  end
+  
   
 end
