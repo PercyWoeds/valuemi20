@@ -51,9 +51,9 @@ class Note < ActiveRecord::Base
       end
     end
  def get_processed_short
-    if(self.processed == "1")
+    if(self.procesado== "1")
       return "Si"
-    elsif (self.processed == "3")
+    elsif (self.procesado  == "3")
        return "Si"
     else
       return "No"
