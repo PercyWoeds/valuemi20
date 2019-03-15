@@ -42,7 +42,7 @@ class NotesController < ApplicationController
         @fecha1 = params[:fecha1]    
         @fecha2 = params[:fecha2]
     
-        @boleta = Note.select("fecha,serie,numero,cod_cli,td,ruc,precio,precio_sigv,cod_prod,cantidad, importe").where(["fecha >= ? and fecha <= ? and importe >= 0  and serie = ?", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59","BB02"] )
+        @boleta = Note.select("fecha,serie,numero,cod_cli,td,ruc,precio,precio_sigv,cod_prod,cantidad, importe").where(["fecha >= ? and fecha <= ? ", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59"] )
 
 #         @boleta = Note.select("id,fecha,serie,numero,cod_cli,td,ruc,precio,precio_sigv,cod_prod,SUM(cantidad) as cantidad, SUM(importe) as importe").where(["fecha >= ? and fecha <= ? and importe >= 0 and procesado = ? and serie = ? ", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59","0","BX01"] ).group(:fecha,:serie,:numero)
       
@@ -53,7 +53,7 @@ class NotesController < ApplicationController
                   $lcCuentas=" "  
 
 
-                  $lcAutorizacion1 = $lcAutorizacion +$lcCuentas
+              #    $lcAutorizacion1 = $lcAutorizacion +$lcCuentas
                   
               #  case_54 = ReceiptGenerator.new(8, 54, 1, "BB02").with_igv(true)      
               
@@ -61,7 +61,7 @@ class NotesController < ApplicationController
               #  if @invoice.td == "F"
       #         case_3 = InvoiceGenerator.new(1, 3, 1, @invoice.serie ,@invoice.numero).with_igv(true)
               #  else
-              case_54 = ReceiptGenerator.new(8, 54, 1,@invoice.serie,@invoice.numero).with_igv(true)      
+            #  case_54 = ReceiptGenerator.new(8, 54, 1,@invoice.serie,@invoice.numero).with_igv(true)      
                # end 
                 
                   @invoice[:procesado] = "1"
