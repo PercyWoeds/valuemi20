@@ -2,6 +2,12 @@
 
 <h1>Listado Facturas/Boletas y Notas</h1>
 
+<%= form_tag notes_path, :method => 'get' do %>
+  <p>
+    <%= submit_tag "Villa", :name => "eess" %>
+    <%= submit_tag "Lurin", :name => "eess" %>
+  </p>
+<% end %>
 
 
 <table>
@@ -12,10 +18,8 @@
       <th>Turno</th>
       <th>Serie</th>
       <th>Numero</th>
-      <th>Cod cli</th>
       <th>Ruc</th>
-      <th>Placa</th>
-      <th>Odometro</th>
+      <th>Placa</th> 
       <th>Cod prod</th>
       <th>Descrip</th></th>
       <th>Cantidad</th>
@@ -23,6 +27,8 @@
       <th>Importe</th>
       <th>Igv</th>
       <th>Procesado</th>
+      <th>Sunat </th>
+      
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,10 +42,9 @@
         <td class="small bordered_bottom bordered_right"><%= note.turno %></td>
         <td class="small bordered_bottom bordered_right"><%= note.serie %></td>
         <td class="small bordered_bottom bordered_right"><%= note.numero %></td>
-        <td class="small bordered_bottom bordered_right"><%= note.cod_cli %></td>
+
         <td class="small bordered_bottom bordered_right"><%= note.ruc %></td>
         <td class="small bordered_bottom bordered_right"><%= note.placa %></td>
-        <td class="small bordered_bottom bordered_right"> <%= note.odometro %></td>
         <td class="small bordered_bottom bordered_right"><%= note.cod_prod %></td>
         <td class="small bordered_bottom bordered_right"><%= note.descrip %></td>
         <td class="small bordered_bottom bordered_right"><%= note.cantidad %></td>
@@ -47,6 +52,8 @@
         <td class="small bordered_bottom bordered_right"><%= note.importe %></td>
         <td class="small bordered_bottom bordered_right"><%= note.igv %></td>
         <td class="small bordered_bottom bordered_right"> <%= note.get_processed_short %></td>
+        <td class="small bordered_bottom bordered_right"> <%= note.cdr %></td>
+        
         <td class="small bordered_bottom bordered_right" ><%= link_to 'Ver', note %></td>
         <td class="small bordered_bottom bordered_right"><%= link_to 'Editar', edit_note_path(note) %></td>
         <td class="small bordered_bottom bordered_right"><%= link_to 'Eliminar', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -274,12 +274,7 @@ end
     
     
     @facturas_rpt = @supplier.get_facturas_day(@customer,@fecha1,@fecha2,@moneda)
-
-#    respond_to do |format|
-#      format.html    
-#      format.xls # { send_data @products.to_csv(col_sep: "\t") }
-#    end 
-
+   
     Prawn::Document.generate("app/pdf_output/rpt_factura.pdf") do |pdf|
         pdf.font "Helvetica"
         pdf = build_pdf_header_rpt(pdf)

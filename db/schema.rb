@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190311171545) do
+ActiveRecord::Schema.define(version: 20190316233426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,8 +152,8 @@ ActiveRecord::Schema.define(version: 20190311171545) do
     t.string   "fpago"
     t.string   "descrip"
     t.string   "tk_devol"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.float    "implista"
     t.string   "cod_tar"
     t.string   "km"
@@ -164,6 +164,8 @@ ActiveRecord::Schema.define(version: 20190311171545) do
     t.string   "procesado"
     t.string   "tipo"
     t.string   "rscliente"
+    t.string   "cdr"
+    t.string   "cdr_extension"
   end
 
   create_table "products", force: :cascade do |t|

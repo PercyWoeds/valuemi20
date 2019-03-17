@@ -66,10 +66,33 @@ class NotesController < ApplicationController
       @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ?","2019-01-01 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC")
       @notes2 = Note.where("fecha>=? and fecha<= ?","2019-03-08 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC") 
       
+        case params[:eess]
+      when "Villa" then 
+        begin 
+        
+         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and SUBSTRING (serie, 2, 1)=? ","2019-01-01 00:00:00","2019-12-31 23:59:59","0").order("fecha DESC","serie","NUMERO DESC")
+    
+        end   
+      when "Lurin" then
+        begin 
+         
+         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and SUBSTRING (serie, 2, 1)=? ","2019-01-01 00:00:00","2019-12-31 23:59:59","1").order("fecha DESC","serie","NUMERO DESC")
+    
+       end 
+       
+      else 
+        begin 
+         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ?","2019-01-01 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC")
+       end 
+    end
+      
       respond_to do |format|
     format.html
     format.csv { send_data @notes2.to_csv, filename: "Notes-#{Date.today}.csv" }
     end
+    
+    
+    
   end
 
   # GET /notes/1
@@ -140,11 +163,24 @@ class NotesController < ApplicationController
     @fecha2 = params[:fecha2]    
     @note = Note.all.first 
     
-    @facturas_rpt = @note.get_facturas_day(@fecha1,@fecha2)          
-    puts "reporte chico.."
-   puts @fecha1
-   puts @fecha2
+    @facturas_rpt = @note.get_facturas_day(@fecha1,@fecha2,"0")          
+    @facturas_rpt2 = @note.get_facturas_day(@fecha1,@fecha2,"1")   
     
+    if  @facturas_rpt
+          @total_villa = @facturas_rpt.first.get_facturas_eess(@fecha1,@fecha2,"0")
+         
+        else
+          @total_villa = 0
+         
+    end
+     
+    if  @facturas_rpt2
+        
+          @total_lurin = @facturas_rpt.first.get_facturas_eess(@fecha1,@fecha2,"1")
+        else
+         
+          @total_lurin = 0
+    end
     case params[:print]
       when "To PDF" then 
         begin 

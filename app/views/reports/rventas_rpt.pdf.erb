@@ -53,12 +53,51 @@
       
       <hr>  
      </table>
-     
+  
      <table style='font-family:"Courier New", Courier, monospace; font-size:80% ;width:100%'>
      <tr bgcolor="#B4D7F7">
-          <td width = "40%" align ="center">Totales  </td>
+          <td width = "40%" align ="center">Totales Villa  </td>
           
-          <td width = "25%" ><%= sprintf("%.2f",total)   %></td>
+          <td width = "25%" ><%= sprintf("%.2f",@total_villa)   %></td>
+    </tr>
+   </table>
+
+    
+
+  <table style='font-family:"Courier New", Courier, monospace; font-size:80% ;width:100%'>
+      <% nroitem = 1%>
+      <% total_1 =  0%>
+      <% total_2 =  0%>
+      
+      <% subtotal  =  0%>
+      <% tax   =  0%>
+      <% total =  0%>
+      
+       <% for  detalle in @facturas_rpt2  %>
+       
+                    <tr>
+                    <td width= "10%" ><%= detalle.serie  %></td>
+                    <td width= "15%" ><%=  detalle.minimo %>   </td>
+                    <td width= "15%" ><%=  detalle.maximo %>   </td>
+                    <td width = "25%" ><%= sprintf("%.2f",detalle.total) %></td>
+                    
+                </tr>
+                <% total += detalle.total  %>
+                
+            
+         <% end %>
+
+
+    
+      
+      <hr>  
+     </table>
+
+     <table style='font-family:"Courier New", Courier, monospace; font-size:80% ;width:100%'>
+     <tr bgcolor="#B4D7F7">
+          <td width = "40%" align ="center">Totales Lurin  </td>
+          
+          <td width = "25%" ><%= sprintf("%.2f",@total_lurin)   %></td>
     </tr>
    </table>
 
