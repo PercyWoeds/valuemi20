@@ -166,7 +166,7 @@ class NotesController < ApplicationController
     @facturas_rpt = @note.get_facturas_day(@fecha1,@fecha2,"0")          
     @facturas_rpt2 = @note.get_facturas_day(@fecha1,@fecha2,"1")   
     
-    if  @facturas_rpt
+    if  @facturas_rpt.first != nil 
           @total_villa = @facturas_rpt.first.get_facturas_eess(@fecha1,@fecha2,"0")
          
         else
@@ -174,7 +174,7 @@ class NotesController < ApplicationController
          
     end
      
-    if  @facturas_rpt2
+    if  @facturas_rpt2.first != nil 
         
           @total_lurin = @facturas_rpt2.first.get_facturas_eess(@fecha1,@fecha2,"1")
         else
