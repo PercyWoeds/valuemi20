@@ -176,7 +176,7 @@ class NotesController < ApplicationController
      
     if  @facturas_rpt2
         
-          @total_lurin = @facturas_rpt.first.get_facturas_eess(@fecha1,@fecha2,"1")
+          @total_lurin = @facturas_rpt2.first.get_facturas_eess(@fecha1,@fecha2,"1")
         else
          
           @total_lurin = 0
