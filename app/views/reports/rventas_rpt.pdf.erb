@@ -33,7 +33,7 @@
       <% subtotal  =  0%>
       <% tax   =  0%>
       <% total =  0%>
-      
+      <% if @facturas_rpt %>
        <% for  detalle in @facturas_rpt  %>
        
                     <tr>
@@ -47,7 +47,7 @@
                 
             
          <% end %>
-
+        <% end %>
 
     
       
@@ -72,7 +72,7 @@
       <% subtotal  =  0%>
       <% tax   =  0%>
       <% total =  0%>
-      
+      <% if @facturas_rpt2 %>
        <% for  detalle in @facturas_rpt2  %>
        
                     <tr>
@@ -86,7 +86,7 @@
                 
             
          <% end %>
-
+     <% end %>
 
     
       
