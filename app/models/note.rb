@@ -79,5 +79,14 @@ class Note < ActiveRecord::Base
     end
   end
   
+ def get_cdr 
+    if(self.cdr== nil )
+      return "En Proceso..."
+    else
+      return self.cdr 
+      
+      end
+  end
+  
   
 end
