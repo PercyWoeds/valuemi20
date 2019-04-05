@@ -64,7 +64,7 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
       @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ?","2019-01-01 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC")
-      @notes2 = Note.where("fecha>=? and fecha<= ?","2019-03-08 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC") 
+      @notes2 = Note.where("fecha>=? and fecha<= ?","2019-03-28 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC") 
       
         case params[:eess]
       when "Villa" then 
