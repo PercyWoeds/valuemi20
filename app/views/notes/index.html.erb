@@ -4,8 +4,19 @@
 
 <%= form_tag notes_path, :method => 'get' do %>
   <p>
-    <%= submit_tag "Villa", :name => "eess" %>
-    <%= submit_tag "Lurin", :name => "eess" %>
+    
+    
+    <div class="field">
+    <input type="date" name="fecha1" value="2019-03-19" style = "width: 150px" >
+    
+	  
+		<input type="date" name="fecha2" value="2019-03-31" style = "width: 150px" >
+    
+    <%= select_tag(:location, options_for_select([['Todos locales', '0'], ['Portales', '1'], ['Lurin', '2']], 'Albania'))%>
+
+    <%= submit_tag "Buscar"  %>
+    </div>
+    
   </p>
 <% end %>
 
@@ -30,6 +41,7 @@
       <th>Sunat </th>
       
       <th colspan="3"></th>
+      
     </tr>
   </thead>
 

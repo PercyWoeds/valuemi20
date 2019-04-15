@@ -65,24 +65,32 @@ class NotesController < ApplicationController
   def index
       @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ?","2019-01-01 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC")
       @notes2 = Note.where("fecha>=? and fecha<= ?","2019-03-28 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC") 
+      @fecha1 = params[:fecha1]
+      @fecha2 = params[:fecha2]
+      @location = params[:location]
       
-        case params[:eess]
-      when "Villa" then 
+      puts "datos ingresos"
+      puts @fecha1
+      puts @fecha2
+      puts params[:location]
+      
+      case @location 
+      when "1" then 
         begin 
         
-         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and SUBSTRING (serie, 2, 1)=? ","2019-01-01 00:00:00","2019-12-31 23:59:59","0").order("fecha DESC","serie","NUMERO DESC")
+         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and SUBSTRING (serie, 2, 1)=? ", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59","0").order("fecha DESC","serie","NUMERO DESC")
     
         end   
-      when "Lurin" then
+      when "2" then
         begin 
          
-         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and SUBSTRING (serie, 2, 1)=? ","2019-01-01 00:00:00","2019-12-31 23:59:59","1").order("fecha DESC","serie","NUMERO DESC")
+         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ? and SUBSTRING (serie, 2, 1)=? ", "#{@fecha1} 00:00:00","#{@fecha2} 23:59:59","1").order("fecha DESC","serie","NUMERO DESC")
     
        end 
        
       else 
         begin 
-         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ?","2019-01-01 00:00:00","2019-12-31 23:59:59").order("fecha DESC","serie ","NUMERO DESC")
+         @notes = Note.all.paginate(:page => params[:page]).where("fecha>=? and fecha<= ?",@fecha1,@fecha2).order("fecha DESC","serie ","NUMERO DESC")
        end 
     end
       
