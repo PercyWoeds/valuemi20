@@ -36,6 +36,7 @@ gem 'numbers_and_words', '~> 0.10.5'
 gem 'savon', '~> 2.11', '>= 2.11.1'
 gem 'rubyzip', '~> 1.2'
 gem 'sendfile', '~> 1.2', '>= 1.2.2'
+gem 'thin'
 
 
 gem 'pry'

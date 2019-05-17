@@ -185,23 +185,18 @@ class NotesController < ApplicationController
         end         
         
         $lcFileName=""
+        $lcFileName1=""
         
        if @invoice.td=="B"
       
-
-           
        else        
            case_3  = InvoiceGenerator.new(1,3,1,@invoice.serie,@invoice.numero).with_igv2(true)
-           
         end 
-    
-        
+  
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
-                
-        send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline')
-
-
         
+        send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline', :stream => false)
+
         @@document_serial_id =""
         $aviso=""
     end 
