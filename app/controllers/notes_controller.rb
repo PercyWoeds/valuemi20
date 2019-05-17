@@ -192,10 +192,14 @@ class NotesController < ApplicationController
        else        
            case_3  = InvoiceGenerator.new(1,3,1,@invoice.serie,@invoice.numero).with_igv2(true)
         end 
-  
-        $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
         
-        send_file("#{$lcFileName1}", :type => 'application/pdf', :disposition => 'inline', :stream => false)
+        puts "nam file"
+  
+        #$lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
+        $lcFileName1= "/app/app/pdf_output/"+$lcFileName
+        puts $lcFileName1
+        
+        send_file("#{$lcFileName1}", :type => 'application/pdf/docx/html/htm/doc',:disposition => 'attachment')  
 
         @@document_serial_id =""
         $aviso=""
