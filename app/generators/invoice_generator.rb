@@ -206,19 +206,22 @@ class InvoiceGenerator < DocumentGenerator
 
  def data(items = 0, currency = 'PEN')
    
-    @invoice1 = Note.select(:fecha,:ruc,:placa,:td,"SUM(vventa) as vventa","SUM(tax) as tax","SUM(importe) as importe").where(serie: @serie , numero: @numero).group(:serie,:numero)
+    @invoice1 = Note.where(serie: @serie ,numero: @numero )
+  costs_sum_vventa = 0
+  costs_sum_tax =0
+  costs_sum_importe = 0
     
-    costs_sum_vventa = @invoice1.first.vventa
-    costs_sum_tax = @invoice1.first.tax
-    costs_sum_importe = @invoice1.first.importe 
+    for ticket in @invoice1 
     
-    puts "*------------"
-    puts @costs_sum_vventa
-    puts @costs_sum_tax
-    puts @costs_sum_importe
+         costs_sum_vventa += ticket.vventa.round(2)
+         costs_sum_tax += ticket.tax.round(2)
+         costs_sum_importe += ticket.importe.round(2)
+         
+    end 
     
+    $unidad_medida ="NIU"
     
-    @invoiceitems = Note.select(:cod_prod,:descrip,:ruc,"precio as price_discount","SUM(cantidad) as cantidad","SUM(importe) as total").where(serie: @serie , numero: @numero).group(:cod_prod,:precio)
+    @invoiceitems = Note.select(:cod_prod,:descrip,:ruc,"precio as price_discount",:cantidad,"importe as total").where(serie: @serie , numero: @numero)
     
         $lg_fecha   = @invoice1.first.fecha.to_date
          
@@ -266,14 +269,12 @@ class InvoiceGenerator < DocumentGenerator
          $lcLegalName= result 
          #result = "-"
          #result2 = "-"
-      
-          
+         
        end 
        
        $lcNroDocCli = "00000000"   
         
-                
-         legal_name_spaces = result.lstrip    
+        legal_name_spaces = result.lstrip    
         
         if legal_name_spaces == nil
             $lcLegalName    = legal_name_spaces
@@ -293,6 +294,53 @@ class InvoiceGenerator < DocumentGenerator
         puts lcIgv_a 
         puts lcTotal_a 
         puts lcVVenta_a
+        
+        #*****
+        $lcSerie = @serie
+        $lcruc = "20517308367" 
+        $lcFechaven =$lg_fecha
+        
+        if $lcTd == 'FT'
+            $lctidodocumento = '01'
+        end
+        if $lcTd =='BV'
+            $lctidodocumento = '03'
+        end 
+        if $lcTd == 'NC'
+            $lctidodocumento = '07'
+        end 
+        if $lcTd == 'ND'
+            $lctidodocumento = '06'
+        end
+        if @invoice1.first.td == "F"
+          $lcTipoDocCli =  "6"
+          $lctidodocumento = '01'
+          $lcNroDocCli =  $lcRuc0
+        else
+          $lctidodocumento = '03'
+          $lcTipoDocCli =  "1"
+          
+        end 
+        
+        
+         
+         
+         $lcFecha1codigo      = $lg_fecha.to_s
+
+          parts = $lcFecha1codigo.split("-")
+          $aa = parts[0]
+          $mm = parts[1]        
+          $dd = parts[2]       
+          
+        $lcFechaCodigoBarras = $aa << "-" << $mm << "-" << $dd
+        $lcIGVcode =  costs_sum_tax
+        $lcTotalcode = costs_sum_importe 
+        
+        
+        $lcCodigoBarra = $lcruc << "|" << $lcTd << "|" << $lcSerie << "|" << $lcDocument_serial_id.to_s << "|" <<$lcIGVcode.to_s<< "|" << $lcTotalcode.to_s << "|" << $lcFechaCodigoBarras << "|" << $lcTipoDocCli  << "|" << $lcNroDocCli
+        
+       #*****
+       
         
         
     invoice_data = {id: "#{@lg_serie_factura}-#{"%06d" %  @lg_serial_id}", customer: customer, 

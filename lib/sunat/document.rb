@@ -56,17 +56,25 @@ module SUNAT
     end
 
     def build_pdf_header(pdf)
+      
       if self.accounting_supplier_party.logo_path.present?
-        pdf.image "#{self.accounting_supplier_party.logo_path}", :width => 100
+         puts $lcSerie 
+         
+         if $lcSerie  == 'F104' || $lcSerie  == 'F105' || $lcSerie  == 'F106' || $lcSerie  == 'F107'
+           pdf.image "#{Dir.pwd}/app/assets/images/logo31.jpg", :width => 300
+          else 
+            pdf.image "#{Dir.pwd}/app/assets/images/logo32.jpg", :width => 300
+         end
+       
         pdf.move_down 6
       end
-      pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}", :size => 12,
-                                                                                               :style => :bold
-      pdf.move_down 4
-      pdf.text supplier.street, :size => 10
-      pdf.text supplier.district, :size => 10
-      pdf.text supplier.city, :size => 10
-      pdf.move_down 4
+      # pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}", :size => 11,
+      #                                                                                         :style => :bold
+      # pdf.move_down 4
+      # pdf.text supplier.street, :size => 8
+      # pdf.text supplier.district, :size => 8
+      # pdf.text supplier.city, :size => 8
+      # pdf.move_down 4
 
       pdf.bounding_box([325, 725], :width => 200, :height => 80) do
         pdf.stroke_bounds
@@ -83,6 +91,7 @@ module SUNAT
       pdf
     end
 
+    
     def build_pdf_header_extension(pdf)
       raise not_implemented_exception
     end
@@ -92,12 +101,27 @@ module SUNAT
     end
 
 
-    def build_pdf_footer(pdf)
+     def build_pdf_footer(pdf)
 
-      pdf.bounding_box([0, 140], :width => 535, :height => 140) do
-      pdf.stroke_bounds
-      pdf.text  $lcAutorizacion1 ,:align => :center,:valign => :center, :style => :bold    
-      end
+     # pdf.bounding_box([0, 50], :width => 535, :height => 50) do
+    #  pdf.stroke_bounds
+    # pdf.text  $lcAutorizacion1 ,:align => :center,:valign => :center, :style => :bold    
+     #pdf.text  " Para consultar el comprobante ingresar a www.nobal.com.pe/facturas
+    #  Representación impresa del comprobante electrónico.OPERACION SUJETA AL SISTEMA DE PAGO DE OBLIGACIONES TRIBUTARIAS
+    #  CON EL GOBIERNO CENTRAL BCO. DE LA NACION NRO.00-093-003985" ,:align => :center,:valign => :center, :style => :bold    
+     # end
+     puts "************ datos ***********"
+     puts $lcSerie
+     puts $lcCodigoBarra 
+     
+     pdf.stroke_horizontal_rule
+     
+     image_path = open("https://chart.googleapis.com/chart?chs=90x90&cht=qr&chl=#{$lcCodigoBarra}&choe=UTF-8")
+    
+     pdf.table([[ {:image => image_path,:position => :center}  , "
+     
+     Para consultar el comprobante ingresar a www.nobal.com.pe/facturas
+      Representación impresa del comprobante electrónico.OPERACION SUJETA AL SISTEMA DE PAGO DE OBLIGACIONES TRIBUTARIAS CON EL GOBIERNO CENTRAL BCO. DE LA NACION NRO.00-093-003985"]],:cell_style => { :border_width => 0 } )
 
       pdf
       

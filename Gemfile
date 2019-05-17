@@ -30,10 +30,16 @@ gem 'protected_attributes'
 gem 'will_paginate', '~> 3.0.6'
 
 gem "prawn", "~> 1.3"
+gem 'prawnto'
 gem 'prawn-table', '~> 0.2.2'
 gem 'numbers_and_words', '~> 0.10.5'
 gem 'savon', '~> 2.11', '>= 2.11.1'
 gem 'rubyzip', '~> 1.2'
+gem 'sendfile', '~> 1.2', '>= 1.2.2'
+
+
+gem 'pry'
+gem 'mechanize'
 
 
 # Use ActiveModel has_secure_password

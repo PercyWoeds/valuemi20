@@ -57,6 +57,7 @@ end
      collection { post :import }
      collection { post :procesar }
      collection { post :reporte_venta_dia }
+     collection { post :print }
      
    end 
    resources :clients do
@@ -84,6 +85,9 @@ end
     match 'reports/view_monthly_customers/:customer_id' => 'reports#report_view_monthly_customers', via: [:get, :post]
     match 'reports/rventas' => 'reports#rventas', via: [:get, :post]
     match 'reports/reports/report_1' => 'reports#report_1', via: [:get, :post]
+    
+    match 'notes/print/:id' => 'notes#print', via: [:get, :post]
+    
     resources :reports 
      
   # Example of regular route:
