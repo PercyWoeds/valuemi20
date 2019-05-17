@@ -252,21 +252,23 @@ class InvoiceGenerator < DocumentGenerator
         $lcMail2        = ""
         $lcMail3        = ""
         
-        puts $lcTd
-        puts $lcRuc 
+        legal_name_spaces = ""
         
         if $lcRuc == nil ||  $lcRuc == ""
           result = "CLIENTE GENERICO"
           result2 = "-"
-         
+         legal_name_spaces = result 
+             $lcLegalName =  "CLIENTE GENERICO"
         else 
+          
+         clientes = Client.find_by(vruc:$lcRuc)
         
-         result  = PeruSunatRuc.name_from $lcRuc
+         #*result  = PeruSunatRuc.name_from $lcRuc
            
-         result2 = PeruSunatRuc.address_from   $lcRuc
+         #*result2 = PeruSunatRuc.address_from   $lcRuc
          
-         $lcRuc0 = $lcRuc 
-         $lcLegalName= result 
+         $lcRuc0 = clientes.vruc  
+          $lcLegalName = clientes.vrazon2 
          #result = "-"
          #result2 = "-"
          
@@ -274,14 +276,8 @@ class InvoiceGenerator < DocumentGenerator
        
        $lcNroDocCli = "00000000"   
         
-        legal_name_spaces = result.lstrip    
         
-        if legal_name_spaces == nil
-            $lcLegalName    = legal_name_spaces
-        else
-            $lcLegalName = result.lstrip    
-        end
-        $lcDirCli       = result2.gsub(/\s+/," ").strip 
+        $lcDirCli       = clientes.vdireccion + " "+ clientes.vdistrito+ " "+ clientes.vprov    
         $lcDisCli       = ""
         $lcProv         = ""
         $lcDep          = ""
