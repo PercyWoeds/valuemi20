@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "~> 2.4.4"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
 # Bundle edge Rails instead:
@@ -79,15 +79,13 @@ gem 'sunat_books'
 gem 'pg', '~> 0.18.4'
 gem 'responders', '~> 2.0'
 
-gem 'axlsx', '~> 2.0'
-gem "axlsx_rails"
-
 
 gem  'prawn-qrcode'
  
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+gem 'better_errors', '~> 2.5', '>= 2.5.1'
 
 
 gem 'pry'

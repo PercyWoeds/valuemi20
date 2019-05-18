@@ -67,6 +67,7 @@
         <td class="small bordered_bottom bordered_right"> <%= note.get_cdr %></td>
         
         <td class="small bordered_bottom bordered_right" ><%= link_to 'Ver', note %></td>
+        
         <td class="small bordered_bottom bordered_right"><%= link_to "Imprimir", "/notes/print/#{note.id}" %></td>
         <td class="small bordered_bottom bordered_right"><%= link_to 'Eliminar', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

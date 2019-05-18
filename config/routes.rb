@@ -80,6 +80,8 @@ end
 
   root 'invoices#index'
 
+    get 'download_pdf', to: "homes#download_pdf"
+
 
     match 'reports/monthly_customers' => 'reports#report_monthly_customers', via: [:get, :post]
     match 'reports/view_monthly_customers/:customer_id' => 'reports#report_view_monthly_customers', via: [:get, :post]

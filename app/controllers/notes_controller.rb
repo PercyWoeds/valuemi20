@@ -195,11 +195,13 @@ class NotesController < ApplicationController
         
         puts "nam file"
   
-        #$lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
-        $lcFileName1= "/app/app/pdf_output/"+$lcFileName
-        puts $lcFileName1
+        $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
+        #$lcFileName1= "/app/app/pdf_output/"+$lcFileName
+        file_path =  $lcFileName1
         
-        send_file("#{$lcFileName1}", :type => 'application/pdf/docx/html/htm/doc',:disposition => 'attachment')  
+        newfile = "#{Dir.pwd}/app/pdf_output/20517308367-01-F105-000007.pdf"
+        
+        send_file("#{newfile}", :type => 'application/pdf',:disposition => 'inline')  
 
         @@document_serial_id =""
         $aviso=""
@@ -244,7 +246,9 @@ class NotesController < ApplicationController
     end
   end
   
-
+def download_pdf
+  send_file "#{Rails.root}/app/assets/docs/Физика.pdf", type: "application/pdf", x_sendfile: true
+end
 
 
   private
@@ -258,3 +262,5 @@ class NotesController < ApplicationController
       params.require(:note).permit(:td, :fecha, :turno, :cod_emp, :caja, :serie, :numero, :cod_cli, :ruc, :placa, :odometro, :cod_prod, :cantidad, :precio, :importe, :igv, :fpago)
     end
 end
+
+
