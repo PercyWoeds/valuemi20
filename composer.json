@@ -1,0 +1,5 @@
+{
+    "require": {
+        "greenter/greenter": "^3.0"
+    }
+}

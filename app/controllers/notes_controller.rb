@@ -6,6 +6,7 @@ class NotesController < ApplicationController
    $: << Dir.pwd + '/lib'
    require 'pry'
     require 'peru_sunat_ruc'
+    require 'open-uri'
   
   lib = File.expand_path('../../../lib', __FILE__)
         $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -193,15 +194,26 @@ class NotesController < ApplicationController
            case_3  = InvoiceGenerator.new(1,3,1,@invoice.serie,@invoice.numero).with_igv2(true)
         end 
         
-        puts "nam file"
+      
   
         $lcFileName1=File.expand_path('../../../', __FILE__)+ "/"+$lcFileName
         #$lcFileName1= "/app/app/pdf_output/"+$lcFileName
         file_path =  $lcFileName1
         
-        newfile = "#{Dir.pwd}/app/pdf_output/20517308367-01-F105-000007.pdf"
+        newfile = "#{Dir.pwd}"+"/"+$lcFileName
         
-        send_file("#{newfile}", :type => 'application/pdf',:disposition => 'inline')  
+        #send_file("#{newfile}", :type => 'application/pdf',:disposition => 'inline')  
+
+        send_file( newfile ,
+        :filename => File.basename(newfile),
+        :type => 'application/x-pdf',
+        :disposition => 'inline',
+        :streaming => 'true',
+        :buffer_size => 4096)
+              
+
+         puts "new file ..." 
+         puts newfile
 
         @@document_serial_id =""
         $aviso=""
