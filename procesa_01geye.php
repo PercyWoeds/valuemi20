@@ -11,31 +11,29 @@ require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/numeroletras.php';
 
 
-$see = require __DIR__.'/config2.php';
-
+$see = require __DIR__.'/configgeye.php';
 
 
 // Emisor
 $address = new Address();
-$address->setUbigueo('150140')
+$address->setUbigueo('150106')
     ->setDepartamento('LIMA')
     ->setProvincia('LIMA')
-    ->setDistrito('SANTIADO DE SURCO')
-    ->setUrbanizacion('')
-    ->setDireccion('JR. MONTE FICUS NRO. 151 PROLONGACION BENAVIDES (ALT CDRA 32 DE AV.CAMINOS DEL INCA)');
+    ->setDistrito('CARABAYLLO')
+    ->setUrbanizacion('PUNCHAUCA')
+    ->setDireccion('AV. TUPAC AMARU KM. 22.5 LOTE. 7 URB.');
 
 $company = new Company();
-$company->setRuc('20517308367')
-    ->setRazonSocial('INVERSIONES NOBAL S.A.C.')
-    ->setNombreComercial('INVERSIONES NOBAL S.A.C.')
+$company->setRuc('20514739065')
+    ->setRazonSocial('GRUPO E & E S.A.C.')
+    ->setNombreComercial('GRUPO E & E S.A.C.')
     ->setAddress($address);
 
 
 
 $linea = 0;
-$archivo = fopen("f.csv", "r");
-
 //Abrimos nuestro archivo
+$archivo = fopen("factura-2019-09-16g.csv", "r");
 //Lo recorremos
 while (($datos = fgetcsv($archivo, ",")) == true) 
 {
@@ -50,6 +48,8 @@ while (($datos = fgetcsv($archivo, ",")) == true)
    echo "Razon Social : ". $datos[24]  . "\n";   
    echo "Codigo :"   . $datos[11]  . "\n";
    echo "Descrip :" . $datos[12]  . "\n";
+
+   echo "unidad :" . $datos[25]  . "\n";
    echo "Cantidad: " . $datos[13]  . "\n";
    echo "Precio S.Igv : " . $datos[14]  . "\n";
    echo "Precio : " . $datos[15]  . "\n";
@@ -92,7 +92,7 @@ while (($datos = fgetcsv($archivo, ",")) == true)
 		$item = (new SaleDetail())
 		    ->setCodProducto($datos[11])
 		    ->setUnidad($datos[25])
-		    ->setCantidad($datos[13])
+		    ->setCantidad(floatval($datos[13]))
 		    ->setDescripcion($datos[12])
 		    ->setMtoBaseIgv(floatval($datos[16]))
 		    ->setPorcentajeIgv(18.00) // 18%

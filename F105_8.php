@@ -1,3 +1,4 @@
+
 <?php
 
 use Greenter\Model\Client\Client;
@@ -32,82 +33,92 @@ $company->setRuc('20517308367')
 
 
 
+
+
 $linea = 0;
-$archivo = fopen("f.csv", "r");
-
 //Abrimos nuestro archivo
-//Lo recorremos
-while (($datos = fgetcsv($archivo, ",")) == true) 
-{
-  $num = count($datos);
-  
-  //Recorremos las columnas de esa linea
-  
-   
-   echo "Fecha :" . $datos[1]  . "\n";
-   echo "Serie : " . $datos[5]  . "\n";
-   echo "Numero : ". $datos[6]  . "\n";
-   echo "Razon Social : ". $datos[24]  . "\n";   
-   echo "Codigo :"   . $datos[11]  . "\n";
-   echo "Descrip :" . $datos[12]  . "\n";
-   echo "Cantidad: " . $datos[13]  . "\n";
-   echo "Precio S.Igv : " . $datos[14]  . "\n";
-   echo "Precio : " . $datos[15]  . "\n";
-   echo "V.Venta :" . $datos[16]  . "\n";
-   echo "IGV :" . $datos[17]  . "\n";
-   echo "Importe : " . $datos[18]  . "\n";
-   $letras =  numtoletras($datos[18]) ;
 
-	
 	//*** Procesa datos      **//
 
 	// Venta
    // Cliente
 		$client = new Client();
 		$client->setTipoDoc('6')
-    	->setNumDoc($datos[8])
-    	->setRznSocial($datos[24]);
+    	->setNumDoc('20536690264')
+    	->setRznSocial('ENCOFRADOS ALSINA DEL PERU S.A.C');
     	
     	
 
-		$date_string = $datos[1];
+		$date_string = '30-05-2019';
 		$date = date_create_from_format('d-m-Y', $date_string); 
 
 		$invoice = (new Invoice())
 		    ->setUblVersion('2.1')
-		    ->setTipoOperacion('0101') // Catalog. 51
+		    ->setTipoOperacion('0101') // Catalog. 5112,654.55
 		    ->setTipoDoc('01')
-		    ->setSerie($datos[5] )
-		    ->setCorrelativo($datos[6] )
+		    ->setSerie('F105')
+		    ->setCorrelativo('8' )
 		    ->setFechaEmision($date)
 		    ->setTipoMoneda('PEN')
 		    ->setClient($client)		    
-		    ->setMtoOperGravadas(floatval($datos[16]))
-		    ->setMtoIGV(floatval($datos[17]))
-		    ->setTotalImpuestos(floatval($datos[17]))
-		    ->setValorVenta(floatval($datos[16]))
-		    ->setMtoImpVenta(floatval($datos[18]))
+		    ->setMtoOperGravadas(floatval('1398.32')) //VALOR VENTA 
+		    ->setMtoIGV(floatval('251.70')) //IGV
+		    ->setTotalImpuestos(floatval('251.70')) //IGV 
+		    ->setValorVenta(floatval('1398.32'))  // VALOR VENTA
+		    ->setMtoImpVenta(floatval('1650.02')) // IMPORTE TOTAL
 		    ->setCompany($company);
 
+		     $letras =  numtoletras('1650.02') ;
+
+
+
+		
+
 		$item = (new SaleDetail())
-		    ->setCodProducto($datos[11])
-		    ->setUnidad($datos[25])
-		    ->setCantidad($datos[13])
-		    ->setDescripcion($datos[12])
-		    ->setMtoBaseIgv(floatval($datos[16]))
+		    ->setCodProducto('07') //CODIGO PRODUCTO
+		    ->setUnidad('LT')
+		    ->setCantidad('705.00')
+		    ->setDescripcion('GLP')
+		    ->setMtoBaseIgv(floatval('788.67'))
 		    ->setPorcentajeIgv(18.00) // 18%
-		    ->setIgv(floatval($datos[17]))
+		    ->setIgv(floatval('141.96'))
 		    ->setTipAfeIgv('10')
-		    ->setTotalImpuestos(floatval($datos[17]))
-		    ->setMtoValorVenta(floatval($datos[16]))
-		    ->setMtoValorUnitario(floatval($datos[14]))
-		    ->setMtoPrecioUnitario(floatval($datos[15]));
+		    ->setTotalImpuestos(floatval('141.96'))
+		    ->setMtoValorVenta(floatval('788.67'))
+		    ->setMtoValorUnitario(floatval('1.12')) //PRECIO SIN IGV
+		    ->setMtoPrecioUnitario(floatval('1.32')); //PRECIO CON IGV 
+
+
+	$desc = <<<XML
+DES 1
+DES 2
+DES 3
+XML;
+
+
+$item2 = (new SaleDetail())
+		    ->setCodProducto('03') //CODIGO PRODUCTO
+		    ->setUnidad('GLL')
+		    ->setCantidad('1')
+		    ->setDescripcion('GASOHOL 95')
+		    ->setMtoBaseIgv(floatval('609.65'))
+		    ->setPorcentajeIgv(18.00) // 18%
+		    ->setIgv(floatval('109.74'))
+		    ->setTipAfeIgv('10')
+		    ->setTotalImpuestos(floatval('109.74'))
+		    ->setMtoValorVenta(floatval('609.65'))
+		    ->setMtoValorUnitario(floatval('11.47')) //PRECIO SIN IGV
+		    ->setMtoPrecioUnitario(floatval('13.54')); //PRECIO CON IGV
+
+
+
+
 
 		$legend = (new Legend())
 		    ->setCode('1000')
 		    ->setValue($letras);
 
-		$invoice->setDetails([$item])
+		$invoice->setDetails([ $item ,$item2   ])
 		        ->setLegends([$legend]);
 
 		$result = $see->send($invoice);
@@ -123,8 +134,9 @@ while (($datos = fgetcsv($archivo, ",")) == true)
 
 
 
-}
+
 //Cerramos el archivo
-fclose($archivo);
+
 ?>
 
+	

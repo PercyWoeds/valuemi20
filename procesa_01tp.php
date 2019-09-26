@@ -10,30 +10,28 @@ use Greenter\Model\Sale\Legend;
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/numeroletras.php';
 
-
-$see = require __DIR__.'/config2.php';
-
+$see = require __DIR__.'/configtp.php';
 
 
 // Emisor
 $address = new Address();
-$address->setUbigueo('150140')
+$address->setUbigueo('150101')
     ->setDepartamento('LIMA')
     ->setProvincia('LIMA')
-    ->setDistrito('SANTIADO DE SURCO')
+    ->setDistrito('LIMA')
     ->setUrbanizacion('')
-    ->setDireccion('JR. MONTE FICUS NRO. 151 PROLONGACION BENAVIDES (ALT CDRA 32 DE AV.CAMINOS DEL INCA)');
+    ->setDireccion('JR. VICTOR REINEL NRO.187 VILLA DE LA LEGUA');
 
 $company = new Company();
-$company->setRuc('20517308367')
-    ->setRazonSocial('INVERSIONES NOBAL S.A.C.')
-    ->setNombreComercial('INVERSIONES NOBAL S.A.C.')
+$company->setRuc('20424092941')
+    ->setRazonSocial('TRANSPORTES PEREDA SRL.')
+    ->setNombreComercial('TRANSPORTES PEREDA SRL.')
     ->setAddress($address);
 
 
 
 $linea = 0;
-$archivo = fopen("f.csv", "r");
+$archivo = fopen("facturas-2019-09-21tp.csv", "r");
 
 //Abrimos nuestro archivo
 //Lo recorremos

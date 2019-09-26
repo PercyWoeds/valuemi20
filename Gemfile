@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'rails', '4.2.8'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
 # Bundle edge Rails instead:
@@ -12,6 +12,7 @@ source 'https://rubygems.org'
 # Added
 gem 'bluecloth'
 
+gem 'nubefact', '~> 0.0.13'
 
 gem 'htmlentities'
 gem 'will_paginate'

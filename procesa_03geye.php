@@ -11,31 +11,34 @@ require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/numeroletras.php';
 
 
-$see = require __DIR__.'/config2.php';
+$see = require __DIR__.'/configgeye.php';
 
-
+// Cliente
+$client = new Client();
+$client->setTipoDoc('1')
+    ->setNumDoc('00000000')
+    ->setRznSocial('CLIENTE GENERICO');
 
 // Emisor
 $address = new Address();
-$address->setUbigueo('150140')
+$address->setUbigueo('150106')
     ->setDepartamento('LIMA')
     ->setProvincia('LIMA')
-    ->setDistrito('SANTIADO DE SURCO')
-    ->setUrbanizacion('')
-    ->setDireccion('JR. MONTE FICUS NRO. 151 PROLONGACION BENAVIDES (ALT CDRA 32 DE AV.CAMINOS DEL INCA)');
+    ->setDistrito('CARABAYLLO')
+    ->setUrbanizacion('PUNCHAUCA')
+    ->setDireccion('AV. TUPAC AMARU KM. 22.5 LOTE. 7 URB.');
 
 $company = new Company();
-$company->setRuc('20517308367')
-    ->setRazonSocial('INVERSIONES NOBAL S.A.C.')
-    ->setNombreComercial('INVERSIONES NOBAL S.A.C.')
+$company->setRuc('20514739065')
+    ->setRazonSocial('GRUPO E & E S.A.C.')
+    ->setNombreComercial('GRUPO E & E S.A.C.')
     ->setAddress($address);
 
 
 
 $linea = 0;
-$archivo = fopen("f.csv", "r");
-
 //Abrimos nuestro archivo
+$archivo = fopen("boletas-2019-09-16g.csv", "r");
 //Lo recorremos
 while (($datos = fgetcsv($archivo, ",")) == true) 
 {
@@ -47,9 +50,10 @@ while (($datos = fgetcsv($archivo, ",")) == true)
    echo "Fecha :" . $datos[1]  . "\n";
    echo "Serie : " . $datos[5]  . "\n";
    echo "Numero : ". $datos[6]  . "\n";
-   echo "Razon Social : ". $datos[24]  . "\n";   
    echo "Codigo :"   . $datos[11]  . "\n";
    echo "Descrip :" . $datos[12]  . "\n";
+   echo "Uni.Medida :" . $datos[25]  . "\n";
+   
    echo "Cantidad: " . $datos[13]  . "\n";
    echo "Precio S.Igv : " . $datos[14]  . "\n";
    echo "Precio : " . $datos[15]  . "\n";
@@ -62,13 +66,6 @@ while (($datos = fgetcsv($archivo, ",")) == true)
 	//*** Procesa datos      **//
 
 	// Venta
-   // Cliente
-		$client = new Client();
-		$client->setTipoDoc('6')
-    	->setNumDoc($datos[8])
-    	->setRznSocial($datos[24]);
-    	
-    	
 
 		$date_string = $datos[1];
 		$date = date_create_from_format('d-m-Y', $date_string); 
@@ -76,7 +73,7 @@ while (($datos = fgetcsv($archivo, ",")) == true)
 		$invoice = (new Invoice())
 		    ->setUblVersion('2.1')
 		    ->setTipoOperacion('0101') // Catalog. 51
-		    ->setTipoDoc('01')
+		    ->setTipoDoc('03')
 		    ->setSerie($datos[5] )
 		    ->setCorrelativo($datos[6] )
 		    ->setFechaEmision($date)
