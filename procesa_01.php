@@ -13,8 +13,6 @@ require __DIR__.'/numeroletras.php';
 
 $see = require __DIR__.'/config2.php';
 
-
-
 // Emisor
 $address = new Address();
 $address->setUbigueo('150140')
@@ -22,6 +20,7 @@ $address->setUbigueo('150140')
     ->setProvincia('LIMA')
     ->setDistrito('SANTIADO DE SURCO')
     ->setUrbanizacion('')
+    
     ->setDireccion('JR. MONTE FICUS NRO. 151 PROLONGACION BENAVIDES (ALT CDRA 32 DE AV.CAMINOS DEL INCA)');
 
 $company = new Company();
@@ -30,10 +29,8 @@ $company->setRuc('20517308367')
     ->setNombreComercial('INVERSIONES NOBAL S.A.C.')
     ->setAddress($address);
 
-
-
 $linea = 0;
-$archivo = fopen("f.csv", "r");
+$archivo = fopen("facturas-2020-07n.csv", "r");
 
 //Abrimos nuestro archivo
 //Lo recorremos

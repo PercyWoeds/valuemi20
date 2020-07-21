@@ -1,0 +1,118 @@
+codiscom20
+
+
+
+heroku git:remote --app factura-tpereda
+git init
+git commit -am "inicio"
+git push heroku master
+
+
+https://xfrtu.s3.amazonaws.com/2806428d-4913-4ff7-8b10-68e24167ed99/2020-07-14T16%3A36%3A13Z/1ff9d80b-34fb-4834-881b-f0f6a464316f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T164541Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=9dd9c4e9978be3149a98a550af81dac032bc2e500adf10458e083ccb6c38de1f
+
+
+heroku pg:backups:restore 'https://s3.amazonaws.com/me/items/mydb.dump' DATABASE_URL -a sushi
+
+
+------
+
+con login nuevo
+
+heroku create grupoeye10
+
+
+percy@dell:~/grupoeye$ heroku create grupoeye10
+Creating ⬢ grupoeye10... done
+https://grupoeye10.herokuapp.com/ | https://git.heroku.com/grupoeye10.git
+percy@dell:~/grupoeye$ heroku create grupoeye20
+Creating ⬢ grupoeye20... done
+https://grupoeye20.herokuapp.com/ | https://git.heroku.com/grupoeye20.git
+percy@dell:~/grupoeye$ heroku create kinzuko10
+Creating ⬢ kinzuko10... done
+https://kinzuko10.herokuapp.com/ | https://git.heroku.com/kinzuko10.git
+percy@dell:~/grupoeye$ heroku create madueno
+Creating ⬢ madueno... done
+https://madueno.herokuapp.com/ | https://git.heroku.com/madueno.git
+percy@dell:~/grupoeye$ heroku create market-caja
+Creating ⬢ market-caja... done
+https://market-caja.herokuapp.com/ | https://git.heroku.com/market-caja.git
+percy@dell:~/grupoeye$ heroku create nobal10
+Creating ⬢ nobal10... done
+https://nobal10.herokuapp.com/ | https://git.heroku.com/nobal10.git
+percy@dell:~/grupoeye$ heroku create nobal20
+Creating ⬢ nobal20... done
+https://nobal20.herokuapp.com/ | https://git.heroku.com/nobal20.git
+percy@dell:~/grupoeye$ heroku create tpereda1
+Creating ⬢ tpereda1... done
+https://tpereda1.herokuapp.com/ | https://git.heroku.com/tpereda1.git
+percy@dell:~/grupoeye$ heroku create tpereda2
+Creating ⬢ tpereda2... !
+ ▸    Name tpereda2 is already taken
+percy@dell:~/grupoeye$ heroku create tpereda21
+Creating ⬢ tpereda21... done
+
+antes codiscom21 
+https://tpereda21.herokuapp.com/ | https://git.heroku.com/tpereda21.git
+percy@dell:~/grupoeye$ heroku create codiscom22
+
+
+heroku addons:create heroku-postgresql:hobby-basic --app codiscom23
+
+
+
+heroku pg:backups:restore '' DATABASE_URL -a tpereda20
+
+
+
+---
+
+antiguo
+
+heroku maintenance:on --app grupoeye
+heroku pg:backups:capture --app grupoeye
+
+
+heroku addons:create heroku-postgresql:hobby-basic --app nobal20
+eye
+
+https://xfrtu.s3.amazonaws.com/678dc010-0a06-4c55-b402-cc97f019df05/2020-07-14T17%3A00%3A57Z/53cb6d9f-29b2-4a59-9985-f15d0545523a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T170135Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=d4dbbf7e3951a234bdb632204b6e947dd21d32139e7289c6c3a25ae9de3dbb14
+
+
+
+heroku pg:backups:url b002 --app tpereda20
+
+https://xfrtu.s3.amazonaws.com/65ce43d6-3501-49e0-9f6b-0136dced004e/2020-07-14T17%3A03%3A51Z/df4387e7-6652-4859-b104-12ac3c0e72e8?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T170425Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=582968bd9091e9ea96d82724619ce2059df28bb63fb7048da392302a39dcca9a
+
+heroku pg:backups:capture --app market-caja2
+
+caja2
+https://xfrtu.s3.amazonaws.com/6b01ade3-310f-4efd-bbca-01009da26fae/2020-07-14T17%3A05%3A01Z/71513b5c-0f8c-4f78-b86e-58b78de288c2?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T170535Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=f9c7198a4004fa4f9edbeccfd8161a507cdb0836dde07417d30b8fb0225bb1d7
+
+
+
+kinzuko
+
+https://xfrtu.s3.amazonaws.com/8982d2d8-924b-48d7-8885-2ba2fa100725/2020-07-14T17%3A24%3A24Z/0bf68ebd-26f4-4af0-968a-430bac9df810?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T172515Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=7aa6e083e5914756aa3491f1ac552fa76d60db688cd39abf4530aca8bdb300aa
+
+
+nobal
+
+https://xfrtu.s3.amazonaws.com/bd491950-b402-46f7-a911-15a6fd3210b4/2020-07-14T17%3A25%3A47Z/08763dc2-fec3-4f3f-950b-429aff4039f9?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T172722Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=ce702c6859a87a3e481e8f26fbbe2162fa2a07a2b7edc89c8ecde6ccf8ea6bdb
+
+
+nobal2
+
+https://xfrtu.s3.amazonaws.com/84b4687c-94fc-4442-83d2-80b2431e6f4f/2020-07-14T17%3A26%3A05Z/aae242c8-4fe9-471b-a458-d8ea5e5b03cc?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T172750Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a67e3b7a816a839b4f9913325579daaf261112a952a946a0a5dda6da41e158fc
+
+madueno
+
+https://xfrtu.s3.amazonaws.com/a30e6f59-2593-4ee4-a96d-ee35ff8b2702/2020-07-14T17%3A26%3A23Z/6bcf99e4-059c-4317-8102-60c2f0c59943?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T172858Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=3ac237a922162a17eba2708b9ce57f590339c125ca442547979d8b5dfad76228
+
+tpereda20
+
+https://xfrtu.s3.amazonaws.com/227e1ba6-3673-4dc3-8742-81566e160703/2020-07-14T17%3A26%3A43Z/9ff9878e-7774-492b-8e50-90a00c97df8a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T172928Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=f1150548f8688d122dc49c8c0e03d94d61a1d63d1d1247b585d1ed90c64e9a2b
+
+
+
+heroku pg:backups:restore 'https://xfrtu.s3.amazonaws.com/227e1ba6-3673-4dc3-8742-81566e160703/2020-07-14T17%3A26%3A43Z/9ff9878e-7774-492b-8e50-90a00c97df8a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQKF7VQWOLOW4WWWL%2F20200714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200714T172928Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=f1150548f8688d122dc49c8c0e03d94d61a1d63d1d1247b585d1ed90c64e9a2b' DATABASE_URL -a tpereda21
+

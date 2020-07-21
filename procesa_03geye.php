@@ -38,7 +38,7 @@ $company->setRuc('20514739065')
 
 $linea = 0;
 //Abrimos nuestro archivo
-$archivo = fopen("boletas-2019-09-16g.csv", "r");
+$archivo = fopen("boletas-2020-06geye.csv", "r");
 //Lo recorremos
 while (($datos = fgetcsv($archivo, ",")) == true) 
 {

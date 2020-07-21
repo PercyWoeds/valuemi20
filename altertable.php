@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username =  "admin";
-$password = "Ycrep2016";
+$username =  "root";
+$password = "root";
 $dbname = "bdfactura";
 // Create connection
 
@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 
 // Attempt create table query execution
-$sql = " ALTER TABLE `invoices` ADD numero VARCHAR(20)   NOT NULL AFTER `serie`";
+$sql= "ALTER TABLE `invoices` ADD OBSERVA VARCHAR(250)   NOT NULL AFTER `ESTADO`";
 
 if ($conn->query($sql) === TRUE) {
     echo "Table employees created successfully";

@@ -31,7 +31,7 @@ $company->setRuc('20424092941')
 
 
 $linea = 0;
-$archivo = fopen("facturas-2019-09-21tp.csv", "r");
+$archivo = fopen("facturas-2019-09-30rtp.csv", "r");
 
 //Abrimos nuestro archivo
 //Lo recorremos

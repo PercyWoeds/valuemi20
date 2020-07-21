@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username =  "admin";
-$password = "Ycrep2016";
+$username =  "root";
+$password = "root";
 $dbname = "bdfactura";
 // Create connection
 
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 
 // Attempt create table query execution
-$sql = " SELECT * FROM notadet ";
+$sql = " SELECT * FROM invoices ";
 
 if ($conn->query($sql) === TRUE) {
 
@@ -22,7 +22,7 @@ if ($conn->query($sql) === TRUE) {
 
  while($row = mysqli_fetch_array($sql))
           {
-          echo "<tr><td>" . $row['serie'] . "</td><td> " . $row['numero'] . "</td></tr>"; //these are the fields that you have stored in your database table employee
+          echo "<tr><td>" . $row['serie'] . "</td><td> " . $row['numero'] . "</td>" . $row['estado'] . "  </tr>"; //these are the fields that you have stored in your database table employee
           }
  echo "</table>";
 

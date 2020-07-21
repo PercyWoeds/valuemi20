@@ -38,7 +38,7 @@ $company->setRuc('20517308367')
 
 $linea = 0;
 //Abrimos nuestro archivo
-$archivo = fopen("boletas-2019-09-21n3.csv", "r");
+$archivo = fopen("boletas-2020-05n.csv", "r");
 //Lo recorremos
 while (($datos = fgetcsv($archivo, ",")) == true) 
 {
@@ -84,6 +84,7 @@ while (($datos = fgetcsv($archivo, ",")) == true)
 		    ->setTotalImpuestos(floatval($datos[17]))
 		    ->setValorVenta(floatval($datos[16]))
 		    ->setMtoImpVenta(floatval($datos[18]))
+		    
 		    ->setCompany($company);
 
 		$item = (new SaleDetail())

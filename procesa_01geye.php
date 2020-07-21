@@ -30,10 +30,9 @@ $company->setRuc('20514739065')
     ->setAddress($address);
 
 
-
 $linea = 0;
 //Abrimos nuestro archivo
-$archivo = fopen("factura-2019-09-16g.csv", "r");
+$archivo = fopen("facturas-2020-06geye.csv", "r");
 //Lo recorremos
 while (($datos = fgetcsv($archivo, ",")) == true) 
 {
